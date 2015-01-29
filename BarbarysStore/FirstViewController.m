@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "XLNParser.h"
 
 @interface FirstViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
+    [[XLNParser alloc] ininWithURL:url];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,11 +10,12 @@
 		325BC3F01A79EE2500A11911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3EF1A79EE2500A11911 /* main.m */; };
 		325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F21A79EE2500A11911 /* AppDelegate.m */; };
 		325BC3F61A79EE2500A11911 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F51A79EE2500A11911 /* FirstViewController.m */; };
-		325BC3F91A79EE2500A11911 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F81A79EE2500A11911 /* SecondViewController.m */; };
 		325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FA1A79EE2500A11911 /* Main.storyboard */; };
 		325BC3FE1A79EE2500A11911 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FD1A79EE2500A11911 /* Images.xcassets */; };
 		325BC4011A79EE2500A11911 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FF1A79EE2500A11911 /* LaunchScreen.xib */; };
 		325BC40D1A79EE2600A11911 /* BarbarysStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC40C1A79EE2600A11911 /* BarbarysStoreTests.m */; };
+		325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC41B1A79EEE300A11911 /* XLNParser.m */; };
+		4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbarysStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore.debug.xcconfig"; sourceTree = "<group>"; };
 		325BC3EA1A79EE2500A11911 /* BarbarysStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarbarysStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC3EE1A79EE2500A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		325BC3EF1A79EE2500A11911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -35,14 +37,18 @@
 		325BC3F21A79EE2500A11911 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		325BC3F41A79EE2500A11911 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		325BC3F51A79EE2500A11911 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		325BC3F71A79EE2500A11911 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		325BC3F81A79EE2500A11911 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		325BC3FB1A79EE2500A11911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		325BC3FD1A79EE2500A11911 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		325BC4001A79EE2500A11911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		325BC4061A79EE2600A11911 /* BarbarysStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarbarysStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC40B1A79EE2600A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		325BC40C1A79EE2600A11911 /* BarbarysStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarbarysStoreTests.m; sourceTree = "<group>"; };
+		325BC41A1A79EEE300A11911 /* XLNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNParser.h; sourceTree = "<group>"; };
+		325BC41B1A79EEE300A11911 /* XLNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNParser.m; sourceTree = "<group>"; };
+		325BC41D1A79F44900A11911 /* XLNConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLNConstants.h; sourceTree = "<group>"; };
+		325BC41E1A79F48C00A11911 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbarysStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore.release.xcconfig"; sourceTree = "<group>"; };
+		A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarbarysStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,12 +70,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E7DD6D565F2862C767B805A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		325BC3E11A79EE2500A11911 = {
 			isa = PBXGroup;
 			children = (
 				325BC3EC1A79EE2500A11911 /* BarbarysStore */,
 				325BC4091A79EE2600A11911 /* BarbarysStoreTests */,
 				325BC3EB1A79EE2500A11911 /* Products */,
+				72F2EBEEFA4BC1613ABAAD7B /* Pods */,
+				2E7DD6D565F2862C767B805A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,12 +101,13 @@
 		325BC3EC1A79EE2500A11911 /* BarbarysStore */ = {
 			isa = PBXGroup;
 			children = (
+				325BC4171A79EECA00A11911 /* Classes */,
+				325BC4181A79EECA00A11911 /* Models */,
+				325BC4191A79EECA00A11911 /* ViewControllers */,
 				325BC3F11A79EE2500A11911 /* AppDelegate.h */,
 				325BC3F21A79EE2500A11911 /* AppDelegate.m */,
 				325BC3F41A79EE2500A11911 /* FirstViewController.h */,
 				325BC3F51A79EE2500A11911 /* FirstViewController.m */,
-				325BC3F71A79EE2500A11911 /* SecondViewController.h */,
-				325BC3F81A79EE2500A11911 /* SecondViewController.m */,
 				325BC3FA1A79EE2500A11911 /* Main.storyboard */,
 				325BC3FD1A79EE2500A11911 /* Images.xcassets */,
 				325BC3FF1A79EE2500A11911 /* LaunchScreen.xib */,
@@ -103,6 +121,7 @@
 			children = (
 				325BC3EE1A79EE2500A11911 /* Info.plist */,
 				325BC3EF1A79EE2500A11911 /* main.m */,
+				325BC41E1A79F48C00A11911 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -124,6 +143,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		325BC4171A79EECA00A11911 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				325BC41D1A79F44900A11911 /* XLNConstants.h */,
+				325BC41A1A79EEE300A11911 /* XLNParser.h */,
+				325BC41B1A79EEE300A11911 /* XLNParser.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		325BC4181A79EECA00A11911 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		325BC4191A79EECA00A11911 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		72F2EBEEFA4BC1613ABAAD7B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */,
+				6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +183,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 325BC4101A79EE2600A11911 /* Build configuration list for PBXNativeTarget "BarbarysStore" */;
 			buildPhases = (
+				294560793835C16FBBCBF097 /* Check Pods Manifest.lock */,
 				325BC3E61A79EE2500A11911 /* Sources */,
 				325BC3E71A79EE2500A11911 /* Frameworks */,
 				325BC3E81A79EE2500A11911 /* Resources */,
+				A4E92659E1E4F55E2347B908 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,12 +273,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		294560793835C16FBBCBF097 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E92659E1E4F55E2347B908 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		325BC3E61A79EE2500A11911 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325BC3F91A79EE2500A11911 /* SecondViewController.m in Sources */,
+				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
 				325BC3F61A79EE2500A11911 /* FirstViewController.m in Sources */,
 				325BC3F01A79EE2500A11911 /* main.m in Sources */,
@@ -347,8 +434,11 @@
 		};
 		325BC4111A79EE2600A11911 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;
 				INFOPLIST_FILE = BarbarysStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,8 +447,11 @@
 		};
 		325BC4121A79EE2600A11911 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;
 				INFOPLIST_FILE = BarbarysStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,6 +511,7 @@
 				325BC4121A79EE2600A11911 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		325BC4131A79EE2600A11911 /* Build configuration list for PBXNativeTarget "BarbarysStoreTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +520,7 @@
 				325BC4151A79EE2600A11911 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
