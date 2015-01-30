@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3514B7F2-0144-4D8A-96AF-80E0CE9F136E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BarbarysStore</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F07375DC196BC1B4AC437AC09067637FCE130270</key>
+		<string>https://bitbucket.org/xelentec/barbarysstore.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BarbarysStore.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F07375DC196BC1B4AC437AC09067637FCE130270</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/xelentec/barbarysstore.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F07375DC196BC1B4AC437AC09067637FCE130270</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F07375DC196BC1B4AC437AC09067637FCE130270</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BarbarysStore</string>
+		</dict>
+	</array>
+</dict>
+</plist>

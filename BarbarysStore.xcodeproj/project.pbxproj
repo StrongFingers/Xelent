@@ -15,6 +15,11 @@
 		325BC4011A79EE2500A11911 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FF1A79EE2500A11911 /* LaunchScreen.xib */; };
 		325BC40D1A79EE2600A11911 /* BarbarysStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC40C1A79EE2600A11911 /* BarbarysStoreTests.m */; };
 		325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC41B1A79EEE300A11911 /* XLNParser.m */; };
+		325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC4221A7A000900A11911 /* XLNDatabaseManager.m */; };
+		325BC4261A7A002200A11911 /* BBSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC4251A7A002200A11911 /* BBSCategory.m */; };
+		325BC4291A7A003000A11911 /* BBSOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC4281A7A003000A11911 /* BBSOffer.m */; };
+		325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC42C1A7A005D00A11911 /* BBSOfferManager.m */; };
+		325BC42F1A7A1B6300A11911 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */; };
 		4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +52,16 @@
 		325BC41B1A79EEE300A11911 /* XLNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNParser.m; sourceTree = "<group>"; };
 		325BC41D1A79F44900A11911 /* XLNConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLNConstants.h; sourceTree = "<group>"; };
 		325BC41E1A79F48C00A11911 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		325BC41F1A79FFF000A11911 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		325BC4211A7A000900A11911 /* XLNDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNDatabaseManager.h; sourceTree = "<group>"; };
+		325BC4221A7A000900A11911 /* XLNDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNDatabaseManager.m; sourceTree = "<group>"; };
+		325BC4241A7A002200A11911 /* BBSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCategory.h; sourceTree = "<group>"; };
+		325BC4251A7A002200A11911 /* BBSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCategory.m; sourceTree = "<group>"; };
+		325BC4271A7A003000A11911 /* BBSOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOffer.h; sourceTree = "<group>"; };
+		325BC4281A7A003000A11911 /* BBSOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOffer.m; sourceTree = "<group>"; };
+		325BC42B1A7A005D00A11911 /* BBSOfferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferManager.h; sourceTree = "<group>"; };
+		325BC42C1A7A005D00A11911 /* BBSOfferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferManager.m; sourceTree = "<group>"; };
+		325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbarysStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore.release.xcconfig"; sourceTree = "<group>"; };
 		A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarbarysStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -56,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325BC42F1A7A1B6300A11911 /* libsqlite3.0.dylib in Frameworks */,
 				4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +89,8 @@
 		2E7DD6D565F2862C767B805A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */,
+				325BC41F1A79FFF000A11911 /* libsqlite3.dylib */,
 				A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */,
 			);
 			name = Frameworks;
@@ -101,6 +119,7 @@
 		325BC3EC1A79EE2500A11911 /* BarbarysStore */ = {
 			isa = PBXGroup;
 			children = (
+				325BC42A1A7A004900A11911 /* Managers */,
 				325BC4171A79EECA00A11911 /* Classes */,
 				325BC4181A79EECA00A11911 /* Models */,
 				325BC4191A79EECA00A11911 /* ViewControllers */,
@@ -149,6 +168,8 @@
 				325BC41D1A79F44900A11911 /* XLNConstants.h */,
 				325BC41A1A79EEE300A11911 /* XLNParser.h */,
 				325BC41B1A79EEE300A11911 /* XLNParser.m */,
+				325BC4211A7A000900A11911 /* XLNDatabaseManager.h */,
+				325BC4221A7A000900A11911 /* XLNDatabaseManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -156,6 +177,10 @@
 		325BC4181A79EECA00A11911 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				325BC4241A7A002200A11911 /* BBSCategory.h */,
+				325BC4251A7A002200A11911 /* BBSCategory.m */,
+				325BC4271A7A003000A11911 /* BBSOffer.h */,
+				325BC4281A7A003000A11911 /* BBSOffer.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +190,16 @@
 			children = (
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		325BC42A1A7A004900A11911 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				325BC42B1A7A005D00A11911 /* BBSOfferManager.h */,
+				325BC42C1A7A005D00A11911 /* BBSOfferManager.m */,
+			);
+			name = Managers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		72F2EBEEFA4BC1613ABAAD7B /* Pods */ = {
@@ -312,9 +347,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
+				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
+				325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
 				325BC3F61A79EE2500A11911 /* FirstViewController.m in Sources */,
 				325BC3F01A79EE2500A11911 /* main.m in Sources */,
+				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
+				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,11 +476,14 @@
 			baseConfigurationReference = 2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pavlo Karatai (Z7249QY6P5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;
 				INFOPLIST_FILE = BarbarysStore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d31737c0-0859-4917-b2e2-1d8b15f95118";
 			};
 			name = Debug;
 		};
@@ -453,8 +495,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;
 				INFOPLIST_FILE = BarbarysStore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d31737c0-0859-4917-b2e2-1d8b15f95118";
 			};
 			name = Release;
 		};
