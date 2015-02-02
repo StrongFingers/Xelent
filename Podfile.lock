@@ -4,14 +4,17 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - SWRevealViewController (2.3.0)
   - TBXML (1.5)
 
 DEPENDENCIES:
   - FMDB
+  - SWRevealViewController
   - TBXML
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
+  SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
   TBXML: a279440030ba55c40e1455cafba3b0a44e1963d4
 
 COCOAPODS: 0.35.0

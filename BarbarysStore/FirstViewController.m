@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"parsingStarted" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    /*[[NSNotificationCenter defaultCenter] addObserverForName:@"parsingStarted" object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.startDate = [NSDate date];
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:@"parsingEnded" object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -31,7 +31,7 @@
         });
     }];
     NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
-    [[XLNParser alloc] ininWithURL:url];
+    [[XLNParser alloc] ininWithURL:url];*/
 }
 
 - (void)didReceiveMemoryWarning {

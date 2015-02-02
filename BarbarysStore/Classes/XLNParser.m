@@ -71,6 +71,19 @@
         if (descriptionElement) {
             offer.descriptionText = [TBXML textForElement:descriptionElement];
         }
+        
+        TBXMLElement *pictureElement = [TBXML childElementNamed:@"picture" parentElement:offerElement];
+        if (pictureElement) {
+            NSString *pictureTagName = [NSString stringWithCString:pictureElement->name encoding:NSUTF8StringEncoding];
+            NSMutableArray *pictures = [[NSMutableArray alloc] init];
+            do {
+                pictureTagName = [NSString stringWithCString:pictureElement->nextSibling->name encoding:NSUTF8StringEncoding];
+                NSString *pictureUrl = [TBXML textForElement:pictureElement];
+                [pictures addObject:pictureUrl];
+            } while ((pictureElement = pictureElement->nextSibling) && [pictureTagName isEqualToString:@"picture"]);
+            offer.pictures = pictures;
+        }
+
         TBXMLElement *paramElement = [TBXML childElementNamed:@"param" parentElement:offerElement];
         do {
             NSString *noteText = [TBXML textForElement:paramElement];

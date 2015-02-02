@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "BBSSideMenuViewController.h"
+#import "BBSTabBarController.h"
+
+#import <SWRevealViewController.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    BBSSideMenuViewController *sideMenuController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"sideMenuController"];
+    BBSTabBarController *tabbarContrller = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabBarController"];
+    
+    SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:sideMenuController frontViewController:tabbarContrller];
+    self.window.rootViewController = revealController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

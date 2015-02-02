@@ -4,6 +4,7 @@
 target 'BarbarysStore' do
 pod 'TBXML'
 pod 'FMDB'
+pod 'SWRevealViewController'
 end
 
 target 'BarbarysStoreTests' do
