@@ -14,19 +14,20 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *offerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *offerVendorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *offerDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *offerModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *offerPriceLabel;
-
 
 @end
 
 @implementation BBSOfferCollectionViewCell
 
 - (void)setOffer:(BBSOffer *)offer {
-    NSURL *imageUrl = [NSURL URLWithString:offer.url];
-    [_offerImageView sd_setImageWithURL:imageUrl];
+    if ([offer.pictures count] > 0) {
+        NSURL *imageUrl = [[NSURL alloc] initWithString:[offer.pictures firstObject]];
+        [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
+    }
     self.offerVendorLabel.text = offer.vendor;
-    self.offerDescriptionLabel.text = offer.descriptionText;
+    self.offerModelLabel.text = offer.model;
     self.offerPriceLabel.text = offer.price;
 }
 

@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.offersCollectionView registerClass:[BBSOfferCollectionViewCell class] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
         self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
@@ -42,8 +41,7 @@
 }
 
 - (BBSOfferCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BBSOfferCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerCollectionCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    BBSOfferCollectionViewCell *cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCollectionCell" forIndexPath:indexPath];
     [cell setOffer:self.offers[indexPath.row]];
     return cell;
 }

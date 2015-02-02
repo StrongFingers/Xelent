@@ -99,16 +99,32 @@
     while ([s next]) {
         BBSOffer *offer = [[BBSOffer alloc] init];
         offer.offerId = [s stringForColumnIndex:0];
-        offer.url = [s stringForColumnIndex:2];
-        offer.price = [s stringForColumnIndex:3];
-        offer.vendor = [s stringForColumnIndex:4];
-        offer.model = [s stringForColumnIndex:5];
-        offer.color = [s stringForColumnIndex:6];
-        offer.gender = [s stringForColumnIndex:7];
-        offer.material = [s stringForColumnIndex:8];
+        offer.descriptionText = [s stringForColumnIndex:1];
+        offer.url = [s stringForColumnIndex:3];
+        offer.price = [s stringForColumnIndex:4];
+        offer.vendor = [s stringForColumnIndex:6];
+        offer.model = [s stringForColumnIndex:7];
+        offer.color = [s stringForColumnIndex:8];
+        offer.gender = [s stringForColumnIndex:9];
+        offer.material = [s stringForColumnIndex:10];
+        offer.pictures = [self getPicturesForOfferId:offer.offerId];
         [offers addObject:offer];
     }
     return offers;
+}
+
+- (NSArray *)getPicturesForOfferId:(NSString *)offerId {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    NSString *query = [NSString stringWithFormat:@"select * from pictures where offerId = %@", offerId];
+    FMResultSet *s = [self.db executeQuery:query];
+    NSMutableArray *pictures = [[NSMutableArray alloc] init];
+    while ([s next]) {
+        NSString *url = [s stringForColumnIndex:1];
+        [pictures addObject:url];
+    }
+    return pictures;
 }
 
 @end
