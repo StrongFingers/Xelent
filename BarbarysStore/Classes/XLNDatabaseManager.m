@@ -89,4 +89,26 @@
     return categories;
 }
 
+- (NSArray *)getOffersByCategoryId:(NSString *)categoryId {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    NSString *query = [NSString stringWithFormat:@"select * from offers where categoryId = %@", categoryId];
+    FMResultSet *s = [self.db executeQuery:query];
+    NSMutableArray *offers = [[NSMutableArray alloc] init];
+    while ([s next]) {
+        BBSOffer *offer = [[BBSOffer alloc] init];
+        offer.offerId = [s stringForColumnIndex:0];
+        offer.url = [s stringForColumnIndex:2];
+        offer.price = [s stringForColumnIndex:3];
+        offer.vendor = [s stringForColumnIndex:4];
+        offer.model = [s stringForColumnIndex:5];
+        offer.color = [s stringForColumnIndex:6];
+        offer.gender = [s stringForColumnIndex:7];
+        offer.material = [s stringForColumnIndex:8];
+        [offers addObject:offer];
+    }
+    return offers;
+}
+
 @end

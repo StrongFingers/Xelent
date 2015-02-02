@@ -10,6 +10,8 @@
 #import "BBSSideMenuCell.h"
 #import "XLNDatabaseManager.h"
 
+#import <SWRevealViewController.h>
+
 @interface BBSSideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 
@@ -55,7 +57,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    BBSSideMenuCell *cell = (BBSSideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateOffers" object:nil userInfo:@{@"categoryId" : [cell categoryId]}];
+    [self.revealViewController revealToggleAnimated:YES];
 }
 
 

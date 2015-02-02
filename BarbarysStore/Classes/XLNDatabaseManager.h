@@ -14,5 +14,6 @@
 - (void)addOffers:(NSArray *)offers;
 - (void)addCategories:(NSArray *)categories;
 - (NSArray *)getAllCategories;
+- (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
 
 @end

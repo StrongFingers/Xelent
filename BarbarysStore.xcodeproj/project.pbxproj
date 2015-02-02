@@ -11,9 +11,10 @@
 		325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */; };
 		3253975B1A7F399E0097DBA1 /* UIColor+BBSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253975A1A7F399E0097DBA1 /* UIColor+BBSColor.m */; };
 		3253975F1A7F3D450097DBA1 /* BBSSideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */; };
+		325397651A7F47A50097DBA1 /* BBSOfferCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397641A7F47A50097DBA1 /* BBSOfferCollectionViewCell.m */; };
+		325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */; };
 		325BC3F01A79EE2500A11911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3EF1A79EE2500A11911 /* main.m */; };
 		325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F21A79EE2500A11911 /* AppDelegate.m */; };
-		325BC3F61A79EE2500A11911 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F51A79EE2500A11911 /* FirstViewController.m */; };
 		325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FA1A79EE2500A11911 /* Main.storyboard */; };
 		325BC3FE1A79EE2500A11911 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FD1A79EE2500A11911 /* Images.xcassets */; };
 		325BC4011A79EE2500A11911 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FF1A79EE2500A11911 /* LaunchScreen.xib */; };
@@ -47,13 +48,15 @@
 		3253975A1A7F399E0097DBA1 /* UIColor+BBSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBSColor.m"; sourceTree = "<group>"; };
 		3253975D1A7F3D450097DBA1 /* BBSSideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSSideMenuCell.h; sourceTree = "<group>"; };
 		3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSSideMenuCell.m; sourceTree = "<group>"; };
+		325397631A7F47A50097DBA1 /* BBSOfferCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferCollectionViewCell.h; sourceTree = "<group>"; };
+		325397641A7F47A50097DBA1 /* BBSOfferCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferCollectionViewCell.m; sourceTree = "<group>"; };
+		325397661A7F480C0097DBA1 /* BBSOffersCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOffersCollectionController.h; sourceTree = "<group>"; };
+		325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOffersCollectionController.m; sourceTree = "<group>"; };
 		325BC3EA1A79EE2500A11911 /* BarbarysStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarbarysStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC3EE1A79EE2500A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		325BC3EF1A79EE2500A11911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		325BC3F11A79EE2500A11911 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		325BC3F21A79EE2500A11911 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		325BC3F41A79EE2500A11911 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		325BC3F51A79EE2500A11911 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		325BC3FB1A79EE2500A11911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		325BC3FD1A79EE2500A11911 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		325BC4001A79EE2500A11911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 			children = (
 				3253975D1A7F3D450097DBA1 /* BBSSideMenuCell.h */,
 				3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */,
+				325397631A7F47A50097DBA1 /* BBSOfferCollectionViewCell.h */,
+				325397641A7F47A50097DBA1 /* BBSOfferCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,8 +152,6 @@
 				325BC4191A79EECA00A11911 /* ViewControllers */,
 				325BC3F11A79EE2500A11911 /* AppDelegate.h */,
 				325BC3F21A79EE2500A11911 /* AppDelegate.m */,
-				325BC3F41A79EE2500A11911 /* FirstViewController.h */,
-				325BC3F51A79EE2500A11911 /* FirstViewController.m */,
 				325BC3FA1A79EE2500A11911 /* Main.storyboard */,
 				325BC3FD1A79EE2500A11911 /* Images.xcassets */,
 				325BC3FF1A79EE2500A11911 /* LaunchScreen.xib */,
@@ -216,6 +219,8 @@
 			children = (
 				325397561A7F374B0097DBA1 /* BBSSideMenuViewController.h */,
 				325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */,
+				325397661A7F480C0097DBA1 /* BBSOffersCollectionController.h */,
+				325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -381,11 +386,12 @@
 				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
 				325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
-				325BC3F61A79EE2500A11911 /* FirstViewController.m in Sources */,
 				325BC3F01A79EE2500A11911 /* main.m in Sources */,
 				3253975B1A7F399E0097DBA1 /* UIColor+BBSColor.m in Sources */,
+				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
 				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,
+				325397651A7F47A50097DBA1 /* BBSOfferCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
