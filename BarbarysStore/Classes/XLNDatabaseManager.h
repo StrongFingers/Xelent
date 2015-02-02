@@ -13,5 +13,6 @@
 - (void)createDB;
 - (void)addOffers:(NSArray *)offers;
 - (void)addCategories:(NSArray *)categories;
+- (NSArray *)getAllCategories;
 
 @end

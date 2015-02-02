@@ -8,7 +8,19 @@
 
 #import "BBSSideMenuCell.h"
 
+@interface BBSSideMenuCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *categoryTitleLabel;
+@property (nonatomic, strong, getter=categoryId) NSString *categoryId;
+
+@end
+
 @implementation BBSSideMenuCell
+
+- (void)setCategory:(NSDictionary *)categoryInfo {
+    self.categoryTitleLabel.text = categoryInfo[@"name"];
+    self.categoryId = categoryInfo[@"id"];
+}
 
 
 @end

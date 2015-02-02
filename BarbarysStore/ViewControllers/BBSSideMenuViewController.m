@@ -8,9 +8,12 @@
 
 #import "BBSSideMenuViewController.h"
 #import "BBSSideMenuCell.h"
+#import "XLNDatabaseManager.h"
 
 @interface BBSSideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
+
+@property (nonatomic, strong) NSArray *categories;
 
 @end
 
@@ -20,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self customizeUI];
+    self.categories = [[[XLNDatabaseManager alloc] init] getAllCategories];
 }
 
 #pragma mark - Customize
@@ -36,7 +40,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.categories count];
 }
 
 - (BBSSideMenuCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,14 +48,14 @@
     if (!cell) {
         cell = [[BBSSideMenuCell alloc] init];
     }
-    cell.categoryTitleLabel.text = @"test";
+    [cell setCategory:self.categories[indexPath.row]];
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
 }
 
 

@@ -20,14 +20,21 @@
 
 @implementation XLNDatabaseManager
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSString *tmpPath = NSTemporaryDirectory();
+        self.path = [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
+        self.db = [FMDatabase databaseWithPath:self.path];
+    }
+    return self;
+}
+
 - (void)createDB {
-    NSString *tmpPath = NSTemporaryDirectory();
-    self.path = [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
-    
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:nil]) {
         [[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];
     }
-    self.db = [FMDatabase databaseWithPath:self.path];
     if (![self.db open]) {
         return;
     }
@@ -66,6 +73,20 @@
             [db executeUpdate:@"insert into categories (categoryId, name, parentId) values (?, ?, ?)", category.categoryId, category.name, category.parentId];
         }
     }];
+}
+
+- (NSArray *)getAllCategories {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    FMResultSet *s = [self.db executeQuery:@"select * from categories"];
+    NSMutableArray *categories = [[NSMutableArray alloc] init];
+    while ([s next]) {
+        NSString *categoryId = [s stringForColumnIndex:0];
+        NSString *categoryName = [s stringForColumnIndex:1];
+        [categories addObject:@{@"id" : categoryId, @"name" : categoryName}];
+    }
+    return categories;
 }
 
 @end

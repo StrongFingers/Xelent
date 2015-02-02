@@ -10,6 +10,8 @@
 
 @interface BBSSideMenuCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *categoryTitleLabel;
+
+- (void)setCategory:(NSDictionary *)categoryInfo;
+- (NSString *)categoryId;
 
 @end
