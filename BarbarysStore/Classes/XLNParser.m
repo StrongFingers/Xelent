@@ -82,6 +82,7 @@
                 [pictures addObject:pictureUrl];
             } while ((pictureElement = pictureElement->nextSibling) && [pictureTagName isEqualToString:@"picture"]);
             offer.pictures = pictures;
+            offer.thumbnailUrl = [pictures firstObject];
         }
 
         TBXMLElement *paramElement = [TBXML childElementNamed:@"param" parentElement:offerElement];

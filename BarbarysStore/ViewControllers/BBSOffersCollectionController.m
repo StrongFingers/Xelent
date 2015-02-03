@@ -9,6 +9,7 @@
 #import "BBSOffersCollectionController.h"
 #import "BBSOfferCollectionViewCell.h"
 #import "XLNDatabaseManager.h"
+#import "XLNParser.h"
 
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -27,6 +28,8 @@
         self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
         [self.offersCollectionView reloadData];
     }];
+    NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
+    [[XLNParser alloc] ininWithURL:url];
 }
 
 - (void)didReceiveMemoryWarning {

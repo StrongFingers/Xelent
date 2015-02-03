@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *offerId;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *thumbnailUrl;
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *currency;
 @property (nonatomic, strong) NSString *categoryId;

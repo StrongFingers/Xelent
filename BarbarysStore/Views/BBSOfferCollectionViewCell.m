@@ -22,8 +22,8 @@
 @implementation BBSOfferCollectionViewCell
 
 - (void)setOffer:(BBSOffer *)offer {
-    if ([offer.pictures count] > 0) {
-        NSURL *imageUrl = [[NSURL alloc] initWithString:[offer.pictures firstObject]];
+    if (![offer.thumbnailUrl isEqualToString:@""]) {
+        NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
     self.offerVendorLabel.text = offer.vendor;

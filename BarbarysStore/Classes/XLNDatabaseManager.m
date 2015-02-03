@@ -38,7 +38,7 @@
     if (![self.db open]) {
         return;
     }
-    [self.db executeUpdate:@"create table offers(offerId text primary key, description text, categoryId text, url text, price text, currency text, vendor text, model text, color text, gender text, material text)"];
+    [self.db executeUpdate:@"create table offers(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text)"];
     [self.db executeUpdate:@"create table categories(categoryId text, name text, parentId text)"];
     [self.db executeUpdate:@"create table categoriesOffers(offerId text, categoryId text)"];
     [self.db executeUpdate:@"create table pictures(offerId text, pictureUrl text)"];
@@ -48,7 +48,7 @@
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         for (BBSOffer *offer in offers) {
-            [db executeUpdate:@"insert into offers (offerId, description, url, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
+            [db executeUpdate:@"insert into offers (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
             [db executeUpdate:@"insert into categoriesOffers (offerId, categoryId) values (?, ?)", offer.offerId, offer.categoryId];
             if (offer.pictures) {
                 for (NSString *pictureUrl in offer.pictures) {
@@ -93,23 +93,26 @@
     if (!self.db.open) {
         [self.db open];
     }
-    NSString *query = [NSString stringWithFormat:@"select * from offers where categoryId = %@", categoryId];
-    FMResultSet *s = [self.db executeQuery:query];
     NSMutableArray *offers = [[NSMutableArray alloc] init];
-    while ([s next]) {
-        BBSOffer *offer = [[BBSOffer alloc] init];
-        offer.offerId = [s stringForColumnIndex:0];
-        offer.descriptionText = [s stringForColumnIndex:1];
-        offer.url = [s stringForColumnIndex:3];
-        offer.price = [s stringForColumnIndex:4];
-        offer.vendor = [s stringForColumnIndex:6];
-        offer.model = [s stringForColumnIndex:7];
-        offer.color = [s stringForColumnIndex:8];
-        offer.gender = [s stringForColumnIndex:9];
-        offer.material = [s stringForColumnIndex:10];
-        offer.pictures = [self getPicturesForOfferId:offer.offerId];
-        [offers addObject:offer];
-    }
+    NSString *query = [NSString stringWithFormat:@"select * from offers where categoryId = %@", categoryId];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            __block BBSOffer *offer = [[BBSOffer alloc] init];
+            offer.offerId = [s stringForColumnIndex:0];
+            offer.descriptionText = [s stringForColumnIndex:1];
+            offer.url = [s stringForColumnIndex:3];
+            offer.thumbnailUrl = [s stringForColumnIndex:4];
+            offer.price = [s stringForColumnIndex:5];
+            offer.vendor = [s stringForColumnIndex:7];
+            offer.model = [s stringForColumnIndex:8];
+            offer.color = [s stringForColumnIndex:9];
+            offer.gender = [s stringForColumnIndex:10];
+            offer.material = [s stringForColumnIndex:11];
+            [offers addObject:offer];
+        }
+    }];
     return offers;
 }
 
@@ -117,13 +120,16 @@
     if (!self.db.open) {
         [self.db open];
     }
-    NSString *query = [NSString stringWithFormat:@"select * from pictures where offerId = %@", offerId];
-    FMResultSet *s = [self.db executeQuery:query];
     NSMutableArray *pictures = [[NSMutableArray alloc] init];
-    while ([s next]) {
-        NSString *url = [s stringForColumnIndex:1];
-        [pictures addObject:url];
-    }
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+    NSString *query = [NSString stringWithFormat:@"select * from pictures where offerId = %@", offerId];
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            NSString *url = [s stringForColumnIndex:1];
+            [pictures addObject:url];
+        }
+    }];
     return pictures;
 }
 

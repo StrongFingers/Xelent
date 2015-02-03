@@ -13,6 +13,7 @@
 - (id)init {
     if (self = [super init]) {
         self.url = @"";
+        self.thumbnailUrl = @"";
         self.offerId = @"";
         self.model = @"";
         self.categoryId = @"";
