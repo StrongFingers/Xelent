@@ -116,7 +116,7 @@
     return offers;
 }
 
-- (NSArray *)getPicturesForOfferId:(NSString *)offerId {
+- (NSArray *)getPicturesForOfferId:(NSString *)offerId { 
     if (!self.db.open) {
         [self.db open];
     }

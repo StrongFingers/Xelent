@@ -11,10 +11,13 @@
 #import "XLNDatabaseManager.h"
 #import "XLNParser.h"
 
-@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
 @property (nonatomic, strong) NSArray *offers;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, assign) BOOL isMultiplyCell;
+- (IBAction)segmentedValueChanged:(id)sender;
 
 @end
 
@@ -30,6 +33,8 @@
     }];
     NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
     [[XLNParser alloc] ininWithURL:url];
+    [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
+    self.isMultiplyCell = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,10 +49,27 @@
 }
 
 - (BBSOfferCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BBSOfferCollectionViewCell *cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCollectionCell" forIndexPath:indexPath];
+    BBSOfferCollectionViewCell *cell;
+    if (self.isMultiplyCell) {
+        cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCollectionCell" forIndexPath:indexPath];
+    } else {
+        cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
+    }
     [cell setOffer:self.offers[indexPath.row]];
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.isMultiplyCell) {
+        return CGSizeMake(300, 380);
+    }
+    return CGSizeMake(150, 260);
+}
+
+- (IBAction)segmentedValueChanged:(id)sender {
+    NSNumber *index = @(self.segmentedControl.selectedSegmentIndex);
+    self.isMultiplyCell = [index boolValue];
+    [self.offersCollectionView reloadData];
+}
 
 @end

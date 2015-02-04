@@ -31,6 +31,7 @@
 #pragma mark - Customize
 
 - (void)customizeUI {
+    [self.view setBackgroundColor:[UIColor sideMenuBackground]];
     [self.categoryTableView setBackgroundColor:[UIColor sideMenuBackground]];
 }
 
