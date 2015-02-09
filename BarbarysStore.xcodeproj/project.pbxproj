@@ -17,6 +17,10 @@
 		3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */; };
 		3257E2341A887C7B0094C5F9 /* BBSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */; };
 		3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */; };
+		3257E23A1A88C9E20094C5F9 /* BBSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2391A88C9E20094C5F9 /* BBSFavoritesViewController.m */; };
+		3257E23E1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E23D1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m */; };
+		3257E2411A88CBC50094C5F9 /* BBSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2401A88CBC50094C5F9 /* BBSProfileViewController.m */; };
+		3257E2441A88CBD80094C5F9 /* BBSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2431A88CBD80094C5F9 /* BBSHomeViewController.m */; };
 		3258BDFD1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */; };
 		325BC3F01A79EE2500A11911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3EF1A79EE2500A11911 /* main.m */; };
 		325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F21A79EE2500A11911 /* AppDelegate.m */; };
@@ -65,6 +69,14 @@
 		3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSNavigationBar.m; sourceTree = "<group>"; };
 		3257E2351A889F4D0094C5F9 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		3257E2381A88C9E20094C5F9 /* BBSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSFavoritesViewController.h; sourceTree = "<group>"; };
+		3257E2391A88C9E20094C5F9 /* BBSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSFavoritesViewController.m; sourceTree = "<group>"; };
+		3257E23C1A88CBBA0094C5F9 /* BBSShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSShoppingCartViewController.h; sourceTree = "<group>"; };
+		3257E23D1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSShoppingCartViewController.m; sourceTree = "<group>"; };
+		3257E23F1A88CBC50094C5F9 /* BBSProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSProfileViewController.h; sourceTree = "<group>"; };
+		3257E2401A88CBC50094C5F9 /* BBSProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSProfileViewController.m; sourceTree = "<group>"; };
+		3257E2421A88CBD80094C5F9 /* BBSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSHomeViewController.h; sourceTree = "<group>"; };
+		3257E2431A88CBD80094C5F9 /* BBSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSHomeViewController.m; sourceTree = "<group>"; };
 		3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSOfferCollectionCellType2.xib; path = ../ViewControllers/BBSOfferCollectionCellType2.xib; sourceTree = "<group>"; };
 		325BC3EA1A79EE2500A11911 /* BarbarysStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarbarysStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC3EE1A79EE2500A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -260,6 +272,14 @@
 				325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */,
 				325397661A7F480C0097DBA1 /* BBSOffersCollectionController.h */,
 				325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */,
+				3257E2381A88C9E20094C5F9 /* BBSFavoritesViewController.h */,
+				3257E2391A88C9E20094C5F9 /* BBSFavoritesViewController.m */,
+				3257E23C1A88CBBA0094C5F9 /* BBSShoppingCartViewController.h */,
+				3257E23D1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m */,
+				3257E23F1A88CBC50094C5F9 /* BBSProfileViewController.h */,
+				3257E2401A88CBC50094C5F9 /* BBSProfileViewController.m */,
+				3257E2421A88CBD80094C5F9 /* BBSHomeViewController.h */,
+				3257E2431A88CBD80094C5F9 /* BBSHomeViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -427,11 +447,15 @@
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
 				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
+				3257E23A1A88C9E20094C5F9 /* BBSFavoritesViewController.m in Sources */,
+				3257E23E1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m in Sources */,
 				325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
+				3257E2411A88CBC50094C5F9 /* BBSProfileViewController.m in Sources */,
 				3257E2341A887C7B0094C5F9 /* BBSNavigationBar.m in Sources */,
 				325BC3F01A79EE2500A11911 /* main.m in Sources */,
 				3253975B1A7F399E0097DBA1 /* UIColor+BBSColor.m in Sources */,
+				3257E2441A88CBD80094C5F9 /* BBSHomeViewController.m in Sources */,
 				3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */,
 				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
