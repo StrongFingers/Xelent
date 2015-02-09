@@ -25,6 +25,7 @@
     BBSTabBarController *tabbarContrller = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabBarController"];
     
     SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:sideMenuController frontViewController:tabbarContrller];
+    revealController.rearViewRevealWidth = self.window.frame.size.width - (self.window.frame.size.width * 0.25);
     self.window.rootViewController = revealController;
     [self.window makeKeyAndVisible];
     

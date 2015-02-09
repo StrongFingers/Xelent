@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-cT-geX">
-                                <rect key="frame" x="5" y="63" width="310" height="505"/>
+                                <rect key="frame" x="5" y="63" width="310" height="456"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="8u9-hG-V4V">
                                     <size key="itemSize" width="150" height="260"/>
@@ -160,7 +160,7 @@
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8kp-B6-bNk">
-                                <rect key="frame" x="8" y="21" width="245" height="29"/>
+                                <rect key="frame" x="5" y="21" width="227" height="29"/>
                                 <segments>
                                     <segment title="Женщинам"/>
                                     <segment title="Мужчинам"/>
