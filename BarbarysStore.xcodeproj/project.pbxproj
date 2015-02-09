@@ -14,6 +14,9 @@
 		325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */; };
 		3253976B1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253976A1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m */; };
 		3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */; };
+		3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */; };
+		3257E2341A887C7B0094C5F9 /* BBSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */; };
+		3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */; };
 		3258BDFD1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */; };
 		325BC3F01A79EE2500A11911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3EF1A79EE2500A11911 /* main.m */; };
 		325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F21A79EE2500A11911 /* AppDelegate.m */; };
@@ -56,6 +59,12 @@
 		3253976A1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferCollectionViewCell.m; sourceTree = "<group>"; };
 		3257E22B1A886B920094C5F9 /* XLNPreferencesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNPreferencesService.h; sourceTree = "<group>"; };
 		3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNPreferencesService.m; sourceTree = "<group>"; };
+		3257E22F1A88764B0094C5F9 /* XLNLocalNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNLocalNotifications.h; sourceTree = "<group>"; };
+		3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNLocalNotifications.m; sourceTree = "<group>"; };
+		3257E2321A887C7B0094C5F9 /* BBSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSNavigationBar.h; sourceTree = "<group>"; };
+		3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSNavigationBar.m; sourceTree = "<group>"; };
+		3257E2351A889F4D0094C5F9 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSOfferCollectionCellType2.xib; path = ../ViewControllers/BBSOfferCollectionCellType2.xib; sourceTree = "<group>"; };
 		325BC3EA1A79EE2500A11911 /* BarbarysStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarbarysStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC3EE1A79EE2500A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +146,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		3257E22E1A8876320094C5F9 /* LocalNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				3257E22F1A88764B0094C5F9 /* XLNLocalNotifications.h */,
+				3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */,
+			);
+			name = LocalNotifications;
+			sourceTree = "<group>";
+		};
 		325BC3E11A79EE2500A11911 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +223,7 @@
 		325BC4171A79EECA00A11911 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3257E22E1A8876320094C5F9 /* LocalNotifications */,
 				3257E22A1A886B920094C5F9 /* Services */,
 				325BC41D1A79F44900A11911 /* XLNConstants.h */,
 				325BC41A1A79EEE300A11911 /* XLNParser.h */,
@@ -215,6 +234,10 @@
 				325397541A7F36F20097DBA1 /* BBSTabBarController.m */,
 				325397591A7F399E0097DBA1 /* UIColor+BBSColor.h */,
 				3253975A1A7F399E0097DBA1 /* UIColor+BBSColor.m */,
+				3257E2321A887C7B0094C5F9 /* BBSNavigationBar.h */,
+				3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */,
+				3257E2351A889F4D0094C5F9 /* UIImage+Alpha.h */,
+				3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -400,13 +423,16 @@
 				3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */,
 				3253976B1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m in Sources */,
 				3253975F1A7F3D450097DBA1 /* BBSSideMenuCell.m in Sources */,
+				3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */,
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
 				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
 				325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
+				3257E2341A887C7B0094C5F9 /* BBSNavigationBar.m in Sources */,
 				325BC3F01A79EE2500A11911 /* main.m in Sources */,
 				3253975B1A7F399E0097DBA1 /* UIColor+BBSColor.m in Sources */,
+				3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */,
 				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
 				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,

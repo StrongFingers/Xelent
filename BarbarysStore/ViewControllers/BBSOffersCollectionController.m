@@ -35,6 +35,7 @@
     [[XLNParser alloc] ininWithURL:url];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)didReceiveMemoryWarning {

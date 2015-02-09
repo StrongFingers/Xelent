@@ -5,6 +5,23 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
+        <!--Item-->
+        <scene sceneID="aIu-dr-yQa">
+            <objects>
+                <navigationController id="Lbd-LH-d8g" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="PaR-L8-ZTV"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hIC-vW-Twp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="daj-A6-jIa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQD-N0-oB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="-263"/>
+        </scene>
         <!--OffersCollectionView-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -14,11 +31,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-cT-geX">
-                                <rect key="frame" x="5" y="63" width="310" height="456"/>
+                                <rect key="frame" x="5" y="64" width="310" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="8u9-hG-V4V">
                                     <size key="itemSize" width="150" height="260"/>
@@ -72,7 +89,7 @@
                                 </connections>
                             </collectionView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="72i-pg-x9l">
-                                <rect key="frame" x="99" y="20" width="123" height="29"/>
+                                <rect key="frame" x="99" y="72" width="123" height="29"/>
                                 <segments>
                                     <segment title="One"/>
                                     <segment title="Multiply"/>
@@ -84,7 +101,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf" userLabel="Offers"/>
+                    <tabBarItem key="tabBarItem" title="" image="first" id="acW-dT-cKf" userLabel="Offers"/>
+                    <navigationItem key="navigationItem" id="mk5-sQ-yfr"/>
                     <connections>
                         <outlet property="offersCollectionView" destination="0uG-cT-geX" id="16j-Fz-flb"/>
                         <outlet property="segmentedControl" destination="72i-pg-x9l" id="Ogg-xw-rTi"/>
@@ -92,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="-327"/>
+            <point key="canvasLocation" x="664" y="-263"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="JTt-2b-ktF">
@@ -107,6 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Z5l-MY-2KI"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="49e-Tb-3d3" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="E1m-bq-BjE"/>
@@ -115,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJo-Ar-4yA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-627" y="0.0"/>
+            <point key="canvasLocation" x="-644" y="-32"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="41e-Ng-Jat">
@@ -192,7 +211,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="Lbd-LH-d8g" kind="relationship" relationship="viewControllers" id="nWI-gw-DKw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
