@@ -13,6 +13,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hIC-vW-Twp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="daj-A6-jIa"/>
@@ -102,7 +103,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="first" id="acW-dT-cKf" userLabel="Offers"/>
-                    <navigationItem key="navigationItem" id="mk5-sQ-yfr"/>
+                    <navigationItem key="navigationItem" id="mk5-sQ-yfr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="dBz-M1-M49">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="showSearchController:" destination="9pv-A4-QxB" id="PY8-gr-iSd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="offersCollectionView" destination="0uG-cT-geX" id="16j-Fz-flb"/>
                         <outlet property="segmentedControl" destination="72i-pg-x9l" id="Ogg-xw-rTi"/>
@@ -147,6 +155,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TuF-dr-8Bf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="524" y="-1133"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="9dO-JB-C8k">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="Oc9-Xt-6tB" customClass="BBSSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7fA-X1-QoA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q65-DB-hhj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GFo-US-d96">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJe-KV-Wzl">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Oc9-Xt-6tB" id="v88-hC-wqS"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="omM-Hr-yD3" id="lLj-AZ-tDU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faP-0F-l1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="omM-Hr-yD3">
+                    <connections>
+                        <outlet property="delegate" destination="Oc9-Xt-6tB" id="B4U-I4-WGM"/>
+                        <outlet property="searchContentsController" destination="Oc9-Xt-6tB" id="aVM-uA-4K0"/>
+                        <outlet property="searchResultsDataSource" destination="Oc9-Xt-6tB" id="5Rc-wV-ecp"/>
+                        <outlet property="searchResultsDelegate" destination="Oc9-Xt-6tB" id="WU8-v9-UhH"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-165" y="1223"/>
         </scene>
         <!--Profile-->
         <scene sceneID="VaZ-tG-ieU">

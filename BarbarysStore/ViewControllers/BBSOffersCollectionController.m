@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
 - (IBAction)segmentedValueChanged:(id)sender;
+- (IBAction)showSearchController:(id)sender;
 
 @end
 
@@ -71,6 +72,11 @@
     NSNumber *index = @(self.segmentedControl.selectedSegmentIndex);
     self.isMultiplyCell = [index boolValue];
     [self.offersCollectionView reloadData];
+}
+
+- (IBAction)showSearchController:(id)sender {
+    UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    [self.navigationController pushViewController:searchCtrl animated:YES];
 }
 
 @end
