@@ -110,6 +110,7 @@
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
+            offer.pictures = [self getPicturesForOfferId:offer.offerId];
             [offers addObject:offer];
         }
     }];

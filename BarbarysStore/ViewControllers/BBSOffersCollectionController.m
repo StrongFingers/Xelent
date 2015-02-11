@@ -10,6 +10,7 @@
 #import "BBSOfferCollectionViewCell.h"
 #import "XLNDatabaseManager.h"
 #import "XLNParser.h"
+#import "BBSOfferDetailViewController.h"
 
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -66,6 +67,12 @@
         return CGSizeMake(300, 380);
     }
     return CGSizeMake(150, 260);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
+    offerDetailVC.offer = self.offers[indexPath.row];
+    [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 
 - (IBAction)segmentedValueChanged:(id)sender {
