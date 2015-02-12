@@ -94,19 +94,18 @@
     }
     NSString *sectionTitle;
     if (section == 2) {
-        sectionTitle = @"Описание";
+        sectionTitle = LOC(@"offerDetail.descriptionSection.headerTitle");
     } else if (section == 3) {
-        sectionTitle = @"О бренде";
+        sectionTitle = LOC(@"offerDetail.brandSection.headerTitle");
     } else if (section == 4) {
-        sectionTitle = @"Оплата и доставка";
+        sectionTitle = LOC(@"offerDetail.paymentSection.headerTitle");
     } else {
-        sectionTitle = @"Обмен и возврат";
+        sectionTitle = LOC(@"offerDetail.changingSection.headerTitle");
     }
     BBSOfferDetailHeaderView *header = [[BBSOfferDetailHeaderView alloc] headerWithTitle:sectionTitle index:section];
     [header setTouchUpTarget:self selector:@selector(headerTap:)];
     if (self.expandedInfo[@(section)]) {
         header.expanded = [self.expandedInfo[@(section)] boolValue];
-        
     } else {
         header.expanded = NO;
     }
