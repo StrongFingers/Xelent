@@ -33,17 +33,17 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 2 || section == 3) {
-        if ([self.expandedInfo[@(section)] boolValue]) {
-            return 1;
-        }
-        return 0;
+    if (section == 0 || section == 1) {
+        return 1;
     }
-    return 1;
+    if ([self.expandedInfo[@(section)] boolValue]) {
+        return 1;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,7 +83,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section ==0 || indexPath.section == 1) {
+    if (indexPath.section == 0 || indexPath.section == 1) {
         return;
     }
 }
@@ -95,8 +95,12 @@
     NSString *sectionTitle;
     if (section == 2) {
         sectionTitle = @"Описание";
-    } else {
+    } else if (section == 3) {
         sectionTitle = @"О бренде";
+    } else if (section == 4) {
+        sectionTitle = @"Оплата и доставка";
+    } else {
+        sectionTitle = @"Обмен и возврат";
     }
     BBSOfferDetailHeaderView *header = [[BBSOfferDetailHeaderView alloc] headerWithTitle:sectionTitle index:section];
     [header setTouchUpTarget:self selector:@selector(headerTap:)];
@@ -110,10 +114,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 2 || section == 3) {
-        return 40;
+    if (section == 0 || section == 1) {
+        return 0;
     }
-    return 0;
+    return 40;
 }
 
 - (void)headerTap:(BBSOfferDetailHeaderView *)header {
