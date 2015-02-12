@@ -33,8 +33,8 @@
         self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
         [self.offersCollectionView reloadData];
     }];
-    NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
-    [[XLNParser alloc] ininWithURL:url];
+    //NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
+    //[[XLNParser alloc] ininWithURL:url];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
     [self setNeedsStatusBarAppearanceUpdate];
