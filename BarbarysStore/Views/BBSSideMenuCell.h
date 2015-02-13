@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BBSCategory.h"
 @interface BBSSideMenuCell : UITableViewCell
 
 
-- (void)setCategory:(NSDictionary *)categoryInfo;
+- (void)setCategory:(BBSCategory *)categoryInfo;
 - (NSString *)categoryId;
 
 @end

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BBSCategorySet.h"
+#import "BBSCategory.h"
+
 @interface BBSCategoriesManager : NSObject
 
-- (void)loadCategories;
-- (NSArray *)getCategories;
++ (NSArray *)loadCategories;
 
 @end

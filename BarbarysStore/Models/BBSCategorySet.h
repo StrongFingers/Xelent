@@ -1,17 +1,16 @@
 //
-//  Category.h
+//  BBSCategorySet.h
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 1/29/15.
+//  Created by Dmitry Kozlov on 2/12/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface BBSCategory : NSObject
+@interface BBSCategorySet : NSObject
 
 @property (nonatomic, strong) NSString *categoryId;
-@property (nonatomic, strong) NSString *parentId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *subcategories;
 

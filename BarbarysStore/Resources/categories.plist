@@ -8,25 +8,79 @@
 			<key>id</key>
 			<string></string>
 			<key>name</key>
-			<string>Женская</string>
+			<string>Женщинам</string>
 			<key>subcategories</key>
-			<array/>
+			<array>
+				<dict>
+					<key>id</key>
+					<string></string>
+					<key>name</key>
+					<string>Аксессуары</string>
+					<key>icon</key>
+					<string></string>
+					<key>subcategories</key>
+					<array>
+						<dict>
+							<key>id</key>
+							<string>5999991343</string>
+							<key>name</key>
+							<string>Браслеты</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>id</key>
 			<string></string>
 			<key>name</key>
-			<string>Мужская</string>
+			<string>Мужчинам</string>
 			<key>subcategories</key>
-			<array/>
+			<array>
+				<dict>
+					<key>id</key>
+					<string></string>
+					<key>name</key>
+					<string>Обувь</string>
+					<key>icon</key>
+					<string></string>
+					<key>subcategories</key>
+					<array>
+						<dict>
+							<key>id</key>
+							<string>699999942</string>
+							<key>name</key>
+							<string>Кроссовки</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>id</key>
 			<string></string>
 			<key>name</key>
-			<string>Детская</string>
+			<string>Детям</string>
 			<key>subcategories</key>
-			<array/>
+			<array>
+				<dict>
+					<key>id</key>
+					<string></string>
+					<key>name</key>
+					<string>Одежда</string>
+					<key>icon</key>
+					<string></string>
+					<key>subcategories</key>
+					<array>
+						<dict>
+							<key>id</key>
+							<string>972999991139</string>
+							<key>name</key>
+							<string>Джинсы</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 	</array>
 </dict>

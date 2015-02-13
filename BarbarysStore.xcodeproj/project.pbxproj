@@ -12,6 +12,8 @@
 		324DE0D21A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0D01A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib */; };
 		324DE0D61A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324DE0D41A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m */; };
 		324DE0D71A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0D51A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib */; };
+		3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */; };
+		325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */; };
 		325397551A7F36F20097DBA1 /* BBSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397541A7F36F20097DBA1 /* BBSTabBarController.m */; };
 		325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */; };
 		3253975B1A7F399E0097DBA1 /* UIColor+BBSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253975A1A7F399E0097DBA1 /* UIColor+BBSColor.m */; };
@@ -22,6 +24,7 @@
 		3253F4CE1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3253F4CD1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib */; };
 		3253F4D11A8C6E1300005BDE /* BBSAbstractButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253F4D01A8C6E1300005BDE /* BBSAbstractButton.m */; };
 		3253F4D41A8CC5B300005BDE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3253F4D31A8CC5B300005BDE /* Localizable.strings */; };
+		3253F4D71A8CD14A00005BDE /* BBSCategorySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */; };
 		325668FD1A89C58100A166E3 /* BBSCategoriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325668FC1A89C58100A166E3 /* BBSCategoriesManager.m */; };
 		325669001A89C67F00A166E3 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 325668FF1A89C67F00A166E3 /* categories.plist */; };
 		325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */; };
@@ -70,6 +73,9 @@
 		324DE0D31A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferDetailSizeItemCell.h; sourceTree = "<group>"; };
 		324DE0D41A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailSizeItemCell.m; sourceTree = "<group>"; };
 		324DE0D51A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferDetailSizeItemCell.xib; sourceTree = "<group>"; };
+		3253891C1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSSideMenuHeaderView.h; sourceTree = "<group>"; };
+		3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSSideMenuHeaderView.m; sourceTree = "<group>"; };
+		3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSSideMenuHeaderView.xib; sourceTree = "<group>"; };
 		325397531A7F36F20097DBA1 /* BBSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSTabBarController.h; sourceTree = "<group>"; };
 		325397541A7F36F20097DBA1 /* BBSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSTabBarController.m; sourceTree = "<group>"; };
 		325397561A7F374B0097DBA1 /* BBSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSSideMenuViewController.h; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 		3253F4CF1A8C6E1300005BDE /* BBSAbstractButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBSAbstractButton.h; path = ../Models/BBSAbstractButton.h; sourceTree = "<group>"; };
 		3253F4D01A8C6E1300005BDE /* BBSAbstractButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBSAbstractButton.m; path = ../Models/BBSAbstractButton.m; sourceTree = "<group>"; };
 		3253F4D31A8CC5B300005BDE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCategorySet.h; sourceTree = "<group>"; };
+		3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCategorySet.m; sourceTree = "<group>"; };
 		325668FB1A89C58100A166E3 /* BBSCategoriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBSCategoriesManager.h; path = ../Classes/BBSCategoriesManager.h; sourceTree = "<group>"; };
 		325668FC1A89C58100A166E3 /* BBSCategoriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBSCategoriesManager.m; path = ../Classes/BBSCategoriesManager.m; sourceTree = "<group>"; };
 		325668FF1A89C67F00A166E3 /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
@@ -173,9 +181,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3253891B1A8DCE7D00DC5E36 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3253891C1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.h */,
+				3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */,
+				3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
 		3253975C1A7F3D310097DBA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3253891B1A8DCE7D00DC5E36 /* SideMenu */,
 				3253F4C91A8C689400005BDE /* OfferDetail */,
 				3253975D1A7F3D450097DBA1 /* BBSSideMenuCell.h */,
 				3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */,
@@ -337,6 +356,8 @@
 				325BC4251A7A002200A11911 /* BBSCategory.m */,
 				325BC4271A7A003000A11911 /* BBSOffer.h */,
 				325BC4281A7A003000A11911 /* BBSOffer.m */,
+				3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */,
+				3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -470,6 +491,7 @@
 				325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */,
 				3253F4D41A8CC5B300005BDE /* Localizable.strings in Resources */,
 				3253F4CE1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib in Resources */,
+				325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */,
 				325BC4011A79EE2500A11911 /* LaunchScreen.xib in Resources */,
 				324DE0D21A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib in Resources */,
 				3258BDFD1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib in Resources */,
@@ -529,6 +551,7 @@
 			files = (
 				325397551A7F36F20097DBA1 /* BBSTabBarController.m in Sources */,
 				3253F4D11A8C6E1300005BDE /* BBSAbstractButton.m in Sources */,
+				3253F4D71A8CD14A00005BDE /* BBSCategorySet.m in Sources */,
 				3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */,
 				3257E2471A88DCFB0094C5F9 /* BBSSearchViewController.m in Sources */,
 				3253976B1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m in Sources */,
@@ -553,6 +576,7 @@
 				325668FD1A89C58100A166E3 /* BBSCategoriesManager.m in Sources */,
 				3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */,
 				325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */,
+				3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */,
 				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
 				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,

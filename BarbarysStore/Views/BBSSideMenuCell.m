@@ -17,9 +17,9 @@
 
 @implementation BBSSideMenuCell
 
-- (void)setCategory:(NSDictionary *)categoryInfo {
-    self.categoryTitleLabel.text = categoryInfo[@"name"];
-    self.categoryId = categoryInfo[@"id"];
+- (void)setCategory:(BBSCategory *)categoryInfo {
+    self.categoryTitleLabel.text = categoryInfo.name;
+    self.categoryId = categoryInfo.categoryId;
 }
 
 
