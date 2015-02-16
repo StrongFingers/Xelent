@@ -39,6 +39,7 @@
 		3257E2441A88CBD80094C5F9 /* BBSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2431A88CBD80094C5F9 /* BBSHomeViewController.m */; };
 		3257E2471A88DCFB0094C5F9 /* BBSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2461A88DCFB0094C5F9 /* BBSSearchViewController.m */; };
 		3258BDFD1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */; };
+		325AA8E31A920818009C1A72 /* XLNCommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 325AA8E21A920818009C1A72 /* XLNCommonMethods.m */; };
 		325BC3F01A79EE2500A11911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3EF1A79EE2500A11911 /* main.m */; };
 		325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3F21A79EE2500A11911 /* AppDelegate.m */; };
 		325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3FA1A79EE2500A11911 /* Main.storyboard */; };
@@ -122,6 +123,8 @@
 		3257E2451A88DCFB0094C5F9 /* BBSSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSSearchViewController.h; sourceTree = "<group>"; };
 		3257E2461A88DCFB0094C5F9 /* BBSSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSSearchViewController.m; sourceTree = "<group>"; };
 		3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBSOfferCollectionCellType2.xib; path = ../ViewControllers/BBSOfferCollectionCellType2.xib; sourceTree = "<group>"; };
+		325AA8E11A920818009C1A72 /* XLNCommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNCommonMethods.h; sourceTree = "<group>"; };
+		325AA8E21A920818009C1A72 /* XLNCommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNCommonMethods.m; sourceTree = "<group>"; };
 		325BC3EA1A79EE2500A11911 /* BarbarysStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarbarysStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325BC3EE1A79EE2500A11911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		325BC3EF1A79EE2500A11911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */,
 				3257E2351A889F4D0094C5F9 /* UIImage+Alpha.h */,
 				3257E2361A889F4D0094C5F9 /* UIImage+Alpha.m */,
+				325AA8E11A920818009C1A72 /* XLNCommonMethods.h */,
+				325AA8E21A920818009C1A72 /* XLNCommonMethods.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 				3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */,
 				325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */,
 				3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */,
+				325AA8E31A920818009C1A72 /* XLNCommonMethods.m in Sources */,
 				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
 				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,

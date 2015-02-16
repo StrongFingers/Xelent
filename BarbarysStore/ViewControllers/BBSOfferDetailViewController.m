@@ -10,6 +10,7 @@
 #import "BBSOfferDetailTopCell.h"
 #import "BBSOfferDetailSizeColorCell.h"
 #import "BBSOfferDetailHeaderView.h"
+#import "XLNCommonMethods.h"
 
 #import <UIImageView+WebCache.h>
 
@@ -53,6 +54,9 @@
     if (indexPath.section == 1) {
         return 225;
     }
+    if (indexPath.section == 2) {
+        return [XLNCommonMethods findHeightForText:self.offer.descriptionText havingWidth:320 andFont:[UIFont systemFontOfSize:18]].height;
+    }
     return 150;
 }
 
@@ -78,6 +82,7 @@
     }
     cell.textLabel.text = indexPath.section == 2 ? self.offer.descriptionText : self.offer.model;
     cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
