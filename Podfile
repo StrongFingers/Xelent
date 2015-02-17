@@ -6,6 +6,7 @@ pod 'TBXML'
 pod 'FMDB'
 pod 'SWRevealViewController'
 pod 'SDWebImage'
+pod 'Realm'
 end
 
 target 'BarbarysStoreTests' do

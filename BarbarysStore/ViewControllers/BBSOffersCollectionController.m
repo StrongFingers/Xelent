@@ -12,12 +12,16 @@
 #import "XLNParser.h"
 #import "BBSOfferDetailViewController.h"
 
+#import <SWRevealViewController.h>
+
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
 @property (nonatomic, strong) NSArray *offers;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *showMenuButton;
+
 - (IBAction)segmentedValueChanged:(id)sender;
 - (IBAction)showSearchController:(id)sender;
 
@@ -27,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    DLog (@"%ld", self.tabBarController.selectedIndex);
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
@@ -38,12 +43,17 @@
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
     [self setNeedsStatusBarAppearanceUpdate];
+    self.showMenuButton.target = self.revealViewController;
+    self.showMenuButton.action = @selector(revealToggle:);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - IBActions
+
 
 #pragma mark - UICollectionViewDataSource
 

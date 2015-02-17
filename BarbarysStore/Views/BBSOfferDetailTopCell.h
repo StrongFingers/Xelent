@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "BBSOffer.h"
 
+@protocol offerDetailTopCellDelegate <NSObject>
+
+- (void)imageTapped:(NSInteger)imageIndex;
+
+@end
+
 @interface BBSOfferDetailTopCell : UITableViewCell
 
-@property (nonatomic, strong, setter=setOffer:) BBSOffer *offer;
+@property (nonatomic, strong) BBSOffer *offer;
+@property (nonatomic, strong) id<offerDetailTopCellDelegate> delegate;
 
-- (void)setOffer:(BBSOffer *)offer;
+- (void)updateElements;
 
 @end

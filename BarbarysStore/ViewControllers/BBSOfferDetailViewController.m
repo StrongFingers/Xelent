@@ -10,11 +10,12 @@
 #import "BBSOfferDetailTopCell.h"
 #import "BBSOfferDetailSizeColorCell.h"
 #import "BBSOfferDetailHeaderView.h"
+#import "BBSPhotoPagingViewController.h"
 #import "XLNCommonMethods.h"
 
 #import <UIImageView+WebCache.h>
 
-@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableDictionary *expandedInfo;
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +69,8 @@
             cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailTopCell" owner:self options:nil][0];
         }
         cell.offer = self.offer;
+        [cell updateElements];
+        cell.delegate = self;
         return cell;
     }
     if (indexPath.section == 1) {
@@ -145,6 +149,16 @@
     if ( ![[self.mainTableView visibleCells] containsObject:firstRow]) {
         [self.mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
+}
+
+#pragma mark - OfferDetailTopCellDelegate
+
+- (void)imageTapped:(NSInteger)imageIndex {
+    BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
+    ctrl.photos = self.offer.pictures;
+    ctrl.currentIndex = imageIndex;
+    [self.navigationController pushViewController:ctrl animated:YES];
+    DLog(@"%ld", imageIndex);
 }
 
 @end

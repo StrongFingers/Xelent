@@ -10,6 +10,7 @@
 #import "BBSOffer.h"
 #import "BBSCategory.h"
 
+#import <Realm.h>
 #import <FMDB.h>
 #import <sqlite3.h>
 
@@ -132,6 +133,13 @@
         }
     }];
     return pictures;
+}
+
+- (void)addToFavorites:(BBSOffer *)offer {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm addObject:offer];
+    [realm commitWriteTransaction];
 }
 
 @end

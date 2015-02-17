@@ -16,7 +16,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="daj-A6-jIa"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="hJo-mH-oDN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQD-N0-oB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +95,7 @@
                                     <segment title="One"/>
                                     <segment title="Multiply"/>
                                 </segments>
+                                <color key="tintColor" red="0.26666668057441711" green="0.46274513006210327" blue="0.58039218187332153" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <action selector="segmentedValueChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="Rrf-ft-O2N"/>
                                 </connections>
@@ -104,6 +105,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="first" id="acW-dT-cKf" userLabel="Offers"/>
                     <navigationItem key="navigationItem" id="mk5-sQ-yfr">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Awt-nG-Yp4">
+                            <connections>
+                                <action selector="showSideMenu:" destination="9pv-A4-QxB" id="Off-s9-yxE"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="dBz-M1-M49">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -114,12 +120,13 @@
                     <connections>
                         <outlet property="offersCollectionView" destination="0uG-cT-geX" id="16j-Fz-flb"/>
                         <outlet property="segmentedControl" destination="72i-pg-x9l" id="Ogg-xw-rTi"/>
+                        <outlet property="showMenuButton" destination="Awt-nG-Yp4" id="cIU-ba-bUy"/>
                         <segue destination="sUj-ol-yMI" kind="showDetail" id="vGP-lZ-9az"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="-497"/>
+            <point key="canvasLocation" x="977" y="-194"/>
         </scene>
         <!--Offer Detail View Controller-->
         <scene sceneID="dL3-XX-CYH">
@@ -147,11 +154,60 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mainTableView" destination="WAf-hE-jkS" id="ls7-OA-2sc"/>
+                        <segue destination="FTa-yu-gq9" kind="push" id="RUZ-6N-jGk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19i-Sp-kGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1519" y="13"/>
+            <point key="canvasLocation" x="1498" y="-194"/>
+        </scene>
+        <!--Photo Paging View Controller-->
+        <scene sceneID="Sox-Jq-9h0">
+            <objects>
+                <viewController storyboardIdentifier="BBSPhotoPagingViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="FTa-yu-gq9" customClass="BBSPhotoPagingViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vPX-5s-eox"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FpE-7z-dfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594" y="480"/>
+        </scene>
+        <!--Photo Content View Controller-->
+        <scene sceneID="HOP-qE-nY5">
+            <objects>
+                <viewController storyboardIdentifier="BBSPhotoContentViewController" automaticallyAdjustsScrollViewInsets="NO" id="bS4-xr-wSL" customClass="BBSPhotoContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3zM-nx-EWS"/>
+                        <viewControllerLayoutGuide type="bottom" id="MUY-4o-JP0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ky5-k9-BaG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa8-NQ-B3B">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gy4-yj-dPe">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                    </imageView>
+                                </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="bS4-xr-wSL" id="AdS-N1-vuX"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageScrollView" destination="Fa8-NQ-B3B" id="RMY-cB-lXr"/>
+                        <outlet property="mainImageView" destination="gy4-yj-dPe" id="1Mi-h1-pk7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2U-2D-ELg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1972" y="480"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="KsJ-02-gSi">
@@ -310,32 +366,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="hCa-Tu-Yug" kind="relationship" relationship="rootViewController" id="5Bl-3y-mwM"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="id3-iF-yjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="530" y="141"/>
-        </scene>
-        <!--Favorites View Controller-->
-        <scene sceneID="vpH-Uw-fW6">
-            <objects>
-                <viewController id="hCa-Tu-Yug" customClass="BBSFavoritesViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qgv-g9-cXY"/>
-                        <viewControllerLayoutGuide type="bottom" id="hzn-5F-M4L"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sXj-wm-Drp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="auK-Wf-ZWC"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oUZ-pa-ID6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="924" y="141"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="JTt-2b-ktF">

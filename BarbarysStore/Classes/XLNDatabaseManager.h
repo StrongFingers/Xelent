@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BBSOffer.h"
 
 @interface XLNDatabaseManager : NSObject
 
@@ -16,5 +17,6 @@
 - (NSArray *)getAllCategories;
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
 - (NSArray *)getPicturesForOfferId:(NSString *)offerId;
+- (void)addToFavorites:(BBSOffer *)offer;
 
 @end

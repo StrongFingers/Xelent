@@ -8,7 +8,7 @@
 
 #import "BBSOfferDetailTopCell.h"
 
-
+#import "XLNDatabaseManager.h"
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferDetailTopCell () <UIScrollViewDelegate>
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIPageControl *imagesPageControl;
 
+- (IBAction)addToFavorites:(id)sender;
 
 @end
 
@@ -30,8 +31,9 @@
     self.imagesScrollView.clipsToBounds = YES;
     [self.imagesScrollView setCanCancelContentTouches:NO];
     self.imagesScrollView.pagingEnabled = YES;
-
     self.imagesScrollView.delegate = self;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    [self.imagesScrollView addGestureRecognizer:tapGesture];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,13 +41,14 @@
     // Configure the view for the selected state
 }
 
-- (void)setOffer:(BBSOffer *)offer {
-    self.imagesPageControl.numberOfPages = [offer.pictures count];
+- (void)updateElements {
+    self.imagesPageControl.numberOfPages = [self.offer.pictures count];
     self.imagesPageControl.currentPage = 0;
-    [self layoutScrollImages:offer.pictures];
-    self.modelLabel.text = offer.model;
-    self.priceLabel.text = offer.price;
+    [self layoutScrollImages:self.offer.pictures];
+    self.modelLabel.text = self.offer.model;
+    self.priceLabel.text = self.offer.price;
 }
+
 
 - (void)layoutScrollImages:(NSArray *)images {
         NSUInteger i;
@@ -82,4 +85,18 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
 }
+
+#pragma mark - IBActions
+
+- (IBAction)addToFavorites:(id)sender {
+    //XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
+    //[dbManager addToFavorites:self.offer];
+}
+
+- (void)imageTapped:(UITapGestureRecognizer *)tapGesture {
+    if ([self.delegate respondsToSelector:@selector(imageTapped:)]) {
+        [self.delegate imageTapped:self.imagesPageControl.currentPage];
+    }
+}
+
 @end
