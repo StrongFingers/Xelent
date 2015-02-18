@@ -154,7 +154,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mainTableView" destination="WAf-hE-jkS" id="ls7-OA-2sc"/>
-                        <segue destination="FTa-yu-gq9" kind="push" id="RUZ-6N-jGk"/>
+                        <segue destination="mPg-bf-Glw" kind="push" id="Tfu-xV-Vpa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19i-Sp-kGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -162,15 +162,14 @@
             <point key="canvasLocation" x="1498" y="-194"/>
         </scene>
         <!--Photo Paging View Controller-->
-        <scene sceneID="Sox-Jq-9h0">
+        <scene sceneID="vBX-Kh-6M6">
             <objects>
-                <viewController storyboardIdentifier="BBSPhotoPagingViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="FTa-yu-gq9" customClass="BBSPhotoPagingViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="vPX-5s-eox"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FpE-7z-dfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="BBSPhotoPagingViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mPg-bf-Glw" customClass="BBSPhotoPagingViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3VS-4D-ahz"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gZq-V6-qHl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1594" y="480"/>
+            <point key="canvasLocation" x="1609" y="480"/>
         </scene>
         <!--Photo Content View Controller-->
         <scene sceneID="HOP-qE-nY5">

@@ -31,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DLog (@"%ld", self.tabBarController.selectedIndex);
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
@@ -45,6 +44,9 @@
     [self setNeedsStatusBarAppearanceUpdate];
     self.showMenuButton.target = self.revealViewController;
     self.showMenuButton.action = @selector(revealToggle:);
+    if ([self.offers count] == 0) {
+        [self.revealViewController revealToggle:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
