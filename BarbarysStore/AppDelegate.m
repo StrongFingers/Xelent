@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BBSSideMenuViewController.h"
 #import "BBSTabBarController.h"
+#import "XLNParser.h"
 
 #import <SWRevealViewController.h>
 
@@ -30,6 +31,9 @@
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.37 blue:0.51 alpha:1]];
+    
+    NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
+    [[XLNParser alloc] ininWithURL:url];
     
     return YES;
 }

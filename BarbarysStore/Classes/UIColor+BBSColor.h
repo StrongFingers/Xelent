@@ -11,5 +11,9 @@
 @interface UIColor (BBSColor)
 
 + (UIColor *)sideMenuBackground;
++ (UIColor *)sideMenuSubBackground;
++ (UIColor *)sideMenuExpandedHeaderTitle;
++ (UIColor *)sideMenuCategorySeparator;
++ (UIColor *)sideMenuSubcategorySeparator;
 
 @end

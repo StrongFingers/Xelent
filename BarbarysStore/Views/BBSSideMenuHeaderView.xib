@@ -20,6 +20,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fCq-ob-vBR">
                     <rect key="frame" x="8" y="2" width="35" height="35"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqI-UH-khG">
+                    <rect key="frame" x="0.0" y="39" width="240" height="1"/>
+                    <color key="backgroundColor" red="0.25098040699958801" green="0.27058824896812439" blue="0.28235295414924622" alpha="1" colorSpace="deviceRGB"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -27,7 +31,7 @@
             <connections>
                 <outlet property="titleLabel" destination="CUK-ll-aje" id="7Dd-AP-5kY"/>
             </connections>
-            <point key="canvasLocation" x="352" y="0.0"/>
+            <point key="canvasLocation" x="352" y="-1.5"/>
         </view>
     </objects>
 </document>

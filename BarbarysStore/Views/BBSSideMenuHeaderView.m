@@ -23,7 +23,7 @@
 - (void)setExpanded:(BOOL)expanded {
     _expanded = expanded;
     if (expanded) {
-        self.titleLabel.textColor = [UIColor colorWithRed:0.64 green:0.64 blue:0.64 alpha:1];
+        self.titleLabel.textColor = [UIColor sideMenuExpandedHeaderTitle];
     } else {
         self.titleLabel.textColor = [UIColor whiteColor];
     }

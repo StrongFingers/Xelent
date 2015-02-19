@@ -204,6 +204,8 @@
 				3253891C1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.h */,
 				3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */,
 				3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */,
+				3253975D1A7F3D450097DBA1 /* BBSSideMenuCell.h */,
+				3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */,
 			);
 			name = SideMenu;
 			sourceTree = "<group>";
@@ -213,8 +215,6 @@
 			children = (
 				3253891B1A8DCE7D00DC5E36 /* SideMenu */,
 				3253F4C91A8C689400005BDE /* OfferDetail */,
-				3253975D1A7F3D450097DBA1 /* BBSSideMenuCell.h */,
-				3253975E1A7F3D450097DBA1 /* BBSSideMenuCell.m */,
 				325397691A7F96A30097DBA1 /* BBSOfferCollectionViewCell.h */,
 				3253976A1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m */,
 				3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */,
@@ -274,6 +274,15 @@
 				3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */,
 			);
 			name = LocalNotifications;
+			sourceTree = "<group>";
+		};
+		325933B31A94A027008824B2 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				325397561A7F374B0097DBA1 /* BBSSideMenuViewController.h */,
+				325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */,
+			);
+			name = SideMenu;
 			sourceTree = "<group>";
 		};
 		325BC3E11A79EE2500A11911 = {
@@ -384,9 +393,8 @@
 		325BC4191A79EECA00A11911 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				325933B31A94A027008824B2 /* SideMenu */,
 				324790BF1A9350F50052BD16 /* PhotoPaging */,
-				325397561A7F374B0097DBA1 /* BBSSideMenuViewController.h */,
-				325397571A7F374B0097DBA1 /* BBSSideMenuViewController.m */,
 				325397661A7F480C0097DBA1 /* BBSOffersCollectionController.h */,
 				325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */,
 				3257E23C1A88CBBA0094C5F9 /* BBSShoppingCartViewController.h */,
