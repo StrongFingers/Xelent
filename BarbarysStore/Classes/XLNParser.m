@@ -81,7 +81,8 @@
                 NSString *pictureUrl = [TBXML textForElement:pictureElement];
                 [pictures addObject:pictureUrl];
             } while ((pictureElement = pictureElement->nextSibling) && [pictureTagName isEqualToString:@"picture"]);
-            offer.pictures = pictures;
+#warning remove comment when success save favorites
+            //offer.pictures = pictures;
             offer.thumbnailUrl = [pictures firstObject];
         }
 

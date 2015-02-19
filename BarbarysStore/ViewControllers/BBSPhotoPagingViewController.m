@@ -8,6 +8,7 @@
 
 #import "BBSPhotoPagingViewController.h"
 #import "BBSPhotoContentViewController.h"
+#import "BBSOffer.h"
 
 @interface BBSPhotoPagingViewController () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
@@ -44,7 +45,7 @@
     
     BBSPhotoContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BBSPhotoContentViewController"];
     pageContentViewController.pageIndex = index;
-    pageContentViewController.imageUrl = self.photos[index];
+    pageContentViewController.imageUrl = ((PictureUrl *)self.photos[index]).url;
     
     return pageContentViewController;
 }

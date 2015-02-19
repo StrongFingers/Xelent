@@ -39,6 +39,9 @@
         [self.revealViewController revealToggleAnimated:YES];
     }];
     
+    RLMResults *results = [BBSOffer allObjects];
+    DLog(@"%@", [results objectAtIndex:0]);
+    
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
     [self setNeedsStatusBarAppearanceUpdate];

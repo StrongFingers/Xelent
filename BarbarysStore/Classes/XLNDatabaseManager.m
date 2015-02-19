@@ -118,17 +118,18 @@
     return offers;
 }
 
-- (NSArray *)getPicturesForOfferId:(NSString *)offerId { 
+- (RLMArray<PictureUrl> *)getPicturesForOfferId:(NSString *)offerId {
     if (!self.db.open) {
         [self.db open];
     }
-    NSMutableArray *pictures = [[NSMutableArray alloc] init];
+    RLMArray<PictureUrl> *pictures = [[RLMArray alloc] initWithObjectClassName:@"PictureUrl"];
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inDatabase:^(FMDatabase *db) {
     NSString *query = [NSString stringWithFormat:@"select * from pictures where offerId = %@", offerId];
         FMResultSet *s = [self.db executeQuery:query];
         while ([s next]) {
-            NSString *url = [s stringForColumnIndex:1];
+            PictureUrl *url = [[PictureUrl alloc] init];
+            url.url = [s stringForColumnIndex:1];
             [pictures addObject:url];
         }
     }];

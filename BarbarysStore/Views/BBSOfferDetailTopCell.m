@@ -50,12 +50,13 @@
 }
 
 
-- (void)layoutScrollImages:(NSArray *)images {
-        NSUInteger i;
+- (void)layoutScrollImages:(RLMArray *)images {
+    NSUInteger i;
     for (i = 0; i < [images count]; i++)
     {
         UIImageView *imageView = [[UIImageView alloc] init];
-        [imageView sd_setImageWithURL:images[i]];
+        NSURL *imageUrl = [NSURL URLWithString:((PictureUrl *)images[i]).url];
+        [imageView sd_setImageWithURL:imageUrl];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         CGRect rect = imageView.frame;
         rect.origin.x = 320 * i;
@@ -89,8 +90,8 @@
 #pragma mark - IBActions
 
 - (IBAction)addToFavorites:(id)sender {
-    //XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
-    //[dbManager addToFavorites:self.offer];
+    XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
+    [dbManager addToFavorites:self.offer];
 }
 
 - (void)imageTapped:(UITapGestureRecognizer *)tapGesture {

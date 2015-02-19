@@ -16,7 +16,7 @@
 - (void)addCategories:(NSArray *)categories;
 - (NSArray *)getAllCategories;
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
-- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
+//- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
 - (void)addToFavorites:(BBSOffer *)offer;
 
 @end
