@@ -143,4 +143,11 @@
     [realm commitWriteTransaction];
 }
 
+- (void)addToShoppingCart:(BBSCartOffer *)offer {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm addObject:offer];
+    [realm commitWriteTransaction];
+}
+
 @end

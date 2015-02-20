@@ -7,13 +7,16 @@
 //
 
 #import "BBSOfferDetailSizeColorCell.h"
-
 #import "BBSOfferDetailSizeItemCell.h"
+#import "XLNDatabaseManager.h"
 
 @interface BBSOfferDetailSizeColorCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *sizeCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *colorCollectionView;
+@property (weak, nonatomic) IBOutlet UIButton *addToCartButton;
+
+- (IBAction)addToShoppingCart:(id)sender;
 
 @end
 
@@ -53,6 +56,10 @@
     CGFloat inset = (collectionView.bounds.size.width - (cellCount * (cellWidth + cellSpacing))) * 0.5;
     inset = MAX(inset, 0.0);
     return UIEdgeInsetsMake(0.0, inset, 0.0, 0.0);
+}
+
+- (IBAction)addToShoppingCart:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil];
 }
 
 @end

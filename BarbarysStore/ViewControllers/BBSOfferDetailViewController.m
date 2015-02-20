@@ -12,6 +12,7 @@
 #import "BBSOfferDetailHeaderView.h"
 #import "BBSPhotoPagingViewController.h"
 #import "XLNCommonMethods.h"
+#import "XLNDatabaseManager.h"
 
 #import <UIImageView+WebCache.h>
 
@@ -27,7 +28,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
-
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
+        BBSCartOffer *cartOffer = [[BBSCartOffer alloc] initWithOffer:self.offer];
+        cartOffer.choosedColor = @"Snow white";
+        cartOffer.size = @"M";
+        cartOffer.quantity = @"1";
+        [dbManager addToShoppingCart:cartOffer];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +59,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 480;
+        return 430;
     }
     if (indexPath.section == 1) {
         return 225;

@@ -38,6 +38,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="offerImageView" destination="QC7-66-X6j" id="zCN-tB-drf"/>
                 <outlet property="offerModelLabel" destination="tWB-oG-aOA" id="rNh-ge-KuT"/>

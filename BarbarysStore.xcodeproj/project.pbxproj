@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		324641111A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */; };
 		324641141A96EDBF001B1D7E /* BBSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */; };
+		324641171A96FC49001B1D7E /* BBSCartOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641161A96FC49001B1D7E /* BBSCartOffer.m */; };
+		3246411A1A970FBA001B1D7E /* BBSShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641191A970FBA001B1D7E /* BBSShoppingCartCell.m */; };
 		324790BE1A9336480052BD16 /* BBSPhotoPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324790BD1A9336480052BD16 /* BBSPhotoPagingViewController.m */; };
 		324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324790C11A93511C0052BD16 /* BBSPhotoContentViewController.m */; };
 		324DE0CD1A8B18A20098ECCD /* BBSOfferDetailTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0CC1A8B18A20098ECCD /* BBSOfferDetailTopCell.xib */; };
@@ -73,6 +75,10 @@
 		324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferCollectionCellType1.xib; sourceTree = "<group>"; };
 		324641121A96EDBF001B1D7E /* BBSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSFavoritesViewController.h; sourceTree = "<group>"; };
 		324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSFavoritesViewController.m; sourceTree = "<group>"; };
+		324641151A96FC49001B1D7E /* BBSCartOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCartOffer.h; sourceTree = "<group>"; };
+		324641161A96FC49001B1D7E /* BBSCartOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCartOffer.m; sourceTree = "<group>"; };
+		324641181A970FBA001B1D7E /* BBSShoppingCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSShoppingCartCell.h; sourceTree = "<group>"; };
+		324641191A970FBA001B1D7E /* BBSShoppingCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSShoppingCartCell.m; sourceTree = "<group>"; };
 		324790BC1A9336480052BD16 /* BBSPhotoPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPhotoPagingViewController.h; sourceTree = "<group>"; };
 		324790BD1A9336480052BD16 /* BBSPhotoPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPhotoPagingViewController.m; sourceTree = "<group>"; };
 		324790C01A93511C0052BD16 /* BBSPhotoContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPhotoContentViewController.h; sourceTree = "<group>"; };
@@ -192,6 +198,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3246411B1A970FDD001B1D7E /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				324641181A970FBA001B1D7E /* BBSShoppingCartCell.h */,
+				324641191A970FBA001B1D7E /* BBSShoppingCartCell.m */,
+			);
+			name = ShoppingCart;
+			sourceTree = "<group>";
+		};
+		3246411C1A970FF0001B1D7E /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				325397691A7F96A30097DBA1 /* BBSOfferCollectionViewCell.h */,
+				3253976A1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m */,
+				324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */,
+				3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */,
+			);
+			name = Catalog;
+			sourceTree = "<group>";
+		};
 		324790BF1A9350F50052BD16 /* PhotoPaging */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,12 +244,10 @@
 		3253975C1A7F3D310097DBA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3246411C1A970FF0001B1D7E /* Catalog */,
+				3246411B1A970FDD001B1D7E /* ShoppingCart */,
 				3253891B1A8DCE7D00DC5E36 /* SideMenu */,
 				3253F4C91A8C689400005BDE /* OfferDetail */,
-				325397691A7F96A30097DBA1 /* BBSOfferCollectionViewCell.h */,
-				3253976A1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m */,
-				324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */,
-				3258BDFC1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -392,6 +416,8 @@
 				325BC4281A7A003000A11911 /* BBSOffer.m */,
 				3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */,
 				3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */,
+				324641151A96FC49001B1D7E /* BBSCartOffer.h */,
+				324641161A96FC49001B1D7E /* BBSCartOffer.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -597,6 +623,7 @@
 				324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
 				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
+				3246411A1A970FBA001B1D7E /* BBSShoppingCartCell.m in Sources */,
 				3253F4CC1A8C68CC00005BDE /* BBSOfferDetailHeaderView.m in Sources */,
 				324DE0D61A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m in Sources */,
 				3257E23E1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m in Sources */,
@@ -611,6 +638,7 @@
 				324DE0D11A8B25580098ECCD /* BBSOfferDetailSizeColorCell.m in Sources */,
 				3257E2441A88CBD80094C5F9 /* BBSHomeViewController.m in Sources */,
 				325668FD1A89C58100A166E3 /* BBSCategoriesManager.m in Sources */,
+				324641171A96FC49001B1D7E /* BBSCartOffer.m in Sources */,
 				3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */,
 				325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */,
 				3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */,
