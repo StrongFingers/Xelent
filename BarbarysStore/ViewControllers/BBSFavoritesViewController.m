@@ -33,13 +33,17 @@
     [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.offers = [NSMutableArray new];
+    self.isMultiplyCell = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.offers removeAllObjects];
     RLMResults *results = [BBSOffer allObjects];
     for (BBSOffer *offer in results) {
         [self.offers addObject:offer];
     }
-    self.isMultiplyCell = NO;
+
     [self.favoritesCollectionView reloadData];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +78,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
     offerDetailVC.offer = self.offers[indexPath.row];
+    offerDetailVC.fromFavorites = YES;
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 

@@ -10,6 +10,18 @@
 
 @implementation UIColor (BBSColor)
 
++ (UIColor *)mainDarkColor {
+    return [UIColor colorWithRed:0.14 green:0.37 blue:0.51 alpha:1];
+}
+
++ (UIColor *)additionalColor {
+    return [UIColor colorWithRed:0.5 green:0.66 blue:0.77 alpha:1];
+}
+
++ (UIColor *)priceColor {
+    return [UIColor colorWithRed:1 green:0.32 blue:0.1 alpha:1];
+}
+
 + (UIColor *)sideMenuBackground {
     return [UIColor colorWithRed:0.23 green:0.25 blue:0.26 alpha:1];
 }

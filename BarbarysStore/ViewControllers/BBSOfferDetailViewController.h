@@ -13,5 +13,7 @@
 @interface BBSOfferDetailViewController : UIViewController
 
 @property (nonatomic, strong) BBSOffer *offer;
+@property (nonatomic, assign) BOOL fromFavorites;
+@property (nonatomic, assign) BOOL fromShoppingCart;
 
 @end

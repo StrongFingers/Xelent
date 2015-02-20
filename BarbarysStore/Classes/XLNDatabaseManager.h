@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BBSOffer.h"
+#import "BBSCartOffer.h"
 
 @interface XLNDatabaseManager : NSObject
 
@@ -18,5 +19,6 @@
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
 //- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
 - (void)addToFavorites:(BBSOffer *)offer;
+- (void)addToShoppingCart:(BBSCartOffer *)offer;
 
 @end

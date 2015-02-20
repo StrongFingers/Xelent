@@ -7,3 +7,12 @@
 
 "favoritesViewController.title" = "Избранное";
 
+"shoppingCartViewController.title" = "Корзина";
+"shoppingCargViewController.summaryPrice" = "Итого: %ld грн.";
+"shoppingCartViewController.takeOrderButton.title" = "Оформить заказ";
+"shoppingCartViewController.historyButton.title" = "История";
+
+"shoppingCartCell.size" = "Размер: %@";
+"shoppingCartCell.color" = "Цвет: %@";
+"shoppingCartCell.quantity" = "Количество: %@";
+

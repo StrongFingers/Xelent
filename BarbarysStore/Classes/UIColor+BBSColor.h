@@ -10,6 +10,9 @@
 
 @interface UIColor (BBSColor)
 
++ (UIColor *)mainDarkColor;
++ (UIColor *)additionalColor;
++ (UIColor *)priceColor;
 + (UIColor *)sideMenuBackground;
 + (UIColor *)sideMenuSubBackground;
 + (UIColor *)sideMenuExpandedHeaderTitle;
