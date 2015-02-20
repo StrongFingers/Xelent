@@ -52,8 +52,8 @@
             [db executeUpdate:@"insert into offers (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
             [db executeUpdate:@"insert into categoriesOffers (offerId, categoryId) values (?, ?)", offer.offerId, offer.categoryId];
             if (offer.pictures) {
-                for (NSString *pictureUrl in offer.pictures) {
-                    [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
+                for (PictureUrl *pictureUrl in offer.pictures) {
+                    [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl.url];
                 }
             }
         }

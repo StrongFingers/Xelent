@@ -75,15 +75,15 @@
         TBXMLElement *pictureElement = [TBXML childElementNamed:@"picture" parentElement:offerElement];
         if (pictureElement) {
             NSString *pictureTagName = [NSString stringWithCString:pictureElement->name encoding:NSUTF8StringEncoding];
-            NSMutableArray *pictures = [[NSMutableArray alloc] init];
+            RLMArray<PictureUrl> *pictures = [[RLMArray alloc] initWithObjectClassName:@"PictureUrl"];
             do {
                 pictureTagName = [NSString stringWithCString:pictureElement->nextSibling->name encoding:NSUTF8StringEncoding];
-                NSString *pictureUrl = [TBXML textForElement:pictureElement];
-                [pictures addObject:pictureUrl];
+                PictureUrl *url = [[PictureUrl alloc] init];
+                url.url = [TBXML textForElement:pictureElement];
+                [pictures addObject:url];
             } while ((pictureElement = pictureElement->nextSibling) && [pictureTagName isEqualToString:@"picture"]);
-#warning remove comment when success save favorites
-            //offer.pictures = pictures;
-            offer.thumbnailUrl = [pictures firstObject];
+            offer.pictures = pictures;
+            offer.thumbnailUrl = ((PictureUrl *)[pictures firstObject]).url;
         }
 
         TBXMLElement *paramElement = [TBXML childElementNamed:@"param" parentElement:offerElement];

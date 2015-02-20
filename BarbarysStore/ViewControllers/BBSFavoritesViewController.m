@@ -1,62 +1,51 @@
 //
-//  BBSOffersCollectionController.m
+//  BBSFavoritesViewController.m
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 2/2/15.
+//  Created by Dmitry Kozlov on 2/20/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 
-#import "BBSOffersCollectionController.h"
+#import "BBSFavoritesViewController.h"
+#import "BBSOffer.h"
 #import "BBSOfferCollectionViewCell.h"
-#import "XLNDatabaseManager.h"
-#import "XLNParser.h"
 #import "BBSOfferDetailViewController.h"
 
-#import <SWRevealViewController.h>
+#import <Realm.h>
 
-@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BBSFavoritesViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
-@property (nonatomic, strong) NSArray *offers;
+@property (weak, nonatomic) IBOutlet UICollectionView *favoritesCollectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, assign) BOOL isMultiplyCell;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *showMenuButton;
 
 - (IBAction)segmentedValueChanged:(id)sender;
-- (IBAction)showSearchController:(id)sender;
 
 @end
 
-@implementation BBSOffersCollectionController
+@implementation BBSFavoritesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = LOC(@"offersViewController.title");
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSDictionary *userInfo = note.userInfo;
-        self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
-        [self.offersCollectionView reloadData];
-        [self.revealViewController revealToggleAnimated:YES];
-    }];
-    if ([self.offers count] == 0) {
-        [self.revealViewController revealToggle:nil];
+    self.navigationItem.title = LOC(@"favoritesViewController.title");
+    [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
+    [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
+    self.offers = [NSMutableArray new];
+    RLMResults *results = [BBSOffer allObjects];
+    for (BBSOffer *offer in results) {
+        [self.offers addObject:offer];
     }
-    [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
-    [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
-    [self setNeedsStatusBarAppearanceUpdate];
-    self.showMenuButton.target = self.revealViewController;
-    self.showMenuButton.action = @selector(revealToggle:);
+    [self.favoritesCollectionView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - IBActions
-
 
 #pragma mark - UICollectionViewDataSource
 
@@ -91,12 +80,7 @@
 - (IBAction)segmentedValueChanged:(id)sender {
     NSNumber *index = @(self.segmentedControl.selectedSegmentIndex);
     self.isMultiplyCell = [index boolValue];
-    [self.offersCollectionView reloadData];
-}
-
-- (IBAction)showSearchController:(id)sender {
-    UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    [self.navigationController pushViewController:searchCtrl animated:YES];
+    [self.favoritesCollectionView reloadData];
 }
 
 @end
