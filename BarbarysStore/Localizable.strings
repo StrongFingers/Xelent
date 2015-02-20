@@ -3,3 +3,7 @@
 "offerDetail.paymentSection.headerTitle" = "Оплата и доставка";
 "offerDetail.changingSection.headerTitle" = "Обмен и возврат";
 
+"offersViewController.title" = "Каталог";
+
+"favoritesViewController.title" = "Избранное";
+

@@ -7,8 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm.h>
 
-@interface BBSOffer : NSObject
+@interface PictureUrl : RLMObject
+
+@property (nonatomic, strong) NSString *url;
+
+@end
+
+RLM_ARRAY_TYPE(PictureUrl)
+
+@interface BBSOffer : RLMObject
 
 @property (nonatomic, strong) NSString *offerId;
 @property (nonatomic, strong) NSString *url;
@@ -22,6 +31,6 @@
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *material;
-@property (nonatomic, strong) NSArray *pictures;
+@property (nonatomic, strong) RLMArray<PictureUrl> *pictures;
 
 @end

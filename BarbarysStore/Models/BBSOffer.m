@@ -8,6 +8,10 @@
 
 #import "BBSOffer.h"
 
+@implementation PictureUrl
+
+@end
+
 @implementation BBSOffer
 
 - (id)init {

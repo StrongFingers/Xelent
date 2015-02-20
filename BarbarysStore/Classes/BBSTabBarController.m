@@ -50,4 +50,8 @@
     return image;
 }
 
+- (void)setViewControllers:(NSArray *)viewControllers {
+    
+}
+
 @end
