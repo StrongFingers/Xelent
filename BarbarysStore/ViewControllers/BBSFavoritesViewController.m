@@ -78,6 +78,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
     offerDetailVC.offer = self.offers[indexPath.row];
+    offerDetailVC.fromFavorites = YES;
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 

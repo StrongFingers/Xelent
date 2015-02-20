@@ -9,6 +9,7 @@
 #import "BBSShoppingCartViewController.h"
 #import "BBSShoppingCartCell.h"
 #import "BBSCartOffer.h"
+#import "BBSOfferDetailViewController.h"
 
 #import <Realm.h>
 
@@ -75,7 +76,10 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
+    offerDetailVC.offer = self.shoppingItems[indexPath.row];
+    offerDetailVC.fromShoppingCart = YES;
+    [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 
 @end

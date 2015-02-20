@@ -768,6 +768,7 @@
 			baseConfigurationReference = 2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pavlo Karatai (Z7249QY6P5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,6 +790,7 @@
 			baseConfigurationReference = 6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pavlo Karatai (V8C2EPCLPJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
