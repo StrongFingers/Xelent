@@ -33,6 +33,7 @@
     self.color = offer.color;
     self.gender = offer.gender;
     self.material = offer.material;
+    self.pictures = offer.pictures;
 }
 
 @end

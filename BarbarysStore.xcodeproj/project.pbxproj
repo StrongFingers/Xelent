@@ -414,10 +414,10 @@
 				325BC4251A7A002200A11911 /* BBSCategory.m */,
 				325BC4271A7A003000A11911 /* BBSOffer.h */,
 				325BC4281A7A003000A11911 /* BBSOffer.m */,
-				3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */,
-				3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */,
 				324641151A96FC49001B1D7E /* BBSCartOffer.h */,
 				324641161A96FC49001B1D7E /* BBSCartOffer.m */,
+				3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */,
+				3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
