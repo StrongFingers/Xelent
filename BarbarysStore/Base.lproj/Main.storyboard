@@ -75,7 +75,7 @@
                             <constraint firstAttribute="bottom" secondItem="0uG-cT-geX" secondAttribute="bottom" id="lbb-h4-ewO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="09663436-24FE-4AF1-89DA-6F87D070201F" id="acW-dT-cKf" userLabel="Offers"/>
+                    <tabBarItem key="tabBarItem" title="" image="8E5EE9F7-366E-44EF-9C3E-D2C4A25FE51E" id="acW-dT-cKf" userLabel="Offers"/>
                     <navigationItem key="navigationItem" id="PuE-4J-C9F">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="XcA-9z-F3X"/>
                     </navigationItem>
@@ -324,11 +324,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5d-L8-AOC">
-                                <rect key="frame" x="0.0" y="391" width="320" height="40"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5d-L8-AOC">
+                                <rect key="frame" x="0.0" y="395" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr6-b9-toA">
-                                        <rect key="frame" x="261" y="5" width="39" height="30"/>
+                                        <rect key="frame" x="170" y="12" width="140" height="25"/>
                                         <state key="normal" title="Order">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -336,17 +336,21 @@
                                             <action selector="orderOffers:" destination="W9f-xb-De6" eventType="touchUpInside" id="n23-CG-h4x"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhA-in-nxD">
-                                        <rect key="frame" x="8" y="9" width="153" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xhA-in-nxD">
+                                        <rect key="frame" x="8" y="14" width="165" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.54509806632995605" green="0.65490198135375977" blue="0.77647066116333008" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DDQ-sv-zKX"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="FdE-mt-gYP"/>
+                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mqr-Xs-3qR">
-                                <rect key="frame" x="0.0" y="64" width="320" height="326"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mqr-Xs-3qR">
+                                <rect key="frame" x="0.0" y="64" width="320" height="332"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="326" id="aWR-8H-CvW"/>
@@ -463,17 +467,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mqr-Xs-3qR" firstAttribute="trailing" secondItem="s5d-L8-AOC" secondAttribute="trailing" id="1R7-s5-f5I"/>
-                            <constraint firstItem="fGe-t1-gNH" firstAttribute="top" secondItem="s5d-L8-AOC" secondAttribute="bottom" id="2Ko-xP-9M9"/>
+                            <constraint firstItem="fGe-t1-gNH" firstAttribute="top" secondItem="s5d-L8-AOC" secondAttribute="bottom" constant="-15" id="2Ko-xP-9M9"/>
                             <constraint firstItem="mqr-Xs-3qR" firstAttribute="leading" secondItem="1LB-dC-EcL" secondAttribute="leading" id="6Ne-pd-av8"/>
                             <constraint firstItem="mqr-Xs-3qR" firstAttribute="leading" secondItem="s5d-L8-AOC" secondAttribute="leading" id="BfV-hO-J2p"/>
+                            <constraint firstItem="fGe-t1-gNH" firstAttribute="top" secondItem="mqr-Xs-3qR" secondAttribute="bottom" constant="35" id="CpP-K0-LI0"/>
                             <constraint firstItem="mqr-Xs-3qR" firstAttribute="top" secondItem="4BX-p4-m1p" secondAttribute="bottom" id="Ebu-Ru-6QE"/>
+                            <constraint firstItem="fGe-t1-gNH" firstAttribute="top" secondItem="mqr-Xs-3qR" secondAttribute="bottom" id="ZEh-zu-uFc"/>
                             <constraint firstItem="s5d-L8-AOC" firstAttribute="top" secondItem="mqr-Xs-3qR" secondAttribute="bottom" constant="1" id="k1c-TM-tHK"/>
                             <constraint firstAttribute="trailing" secondItem="mqr-Xs-3qR" secondAttribute="trailing" id="mtY-DK-V96"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="k1c-TM-tHK"/>
+                                <exclude reference="ZEh-zu-uFc"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Fse-kV-EEM"/>
+                    <navigationItem key="navigationItem" id="Fse-kV-EEM">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Y7e-hD-bdq"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="historyBarButton" destination="Y7e-hD-bdq" id="NwK-Ep-eUv"/>
                         <outlet property="offersTableView" destination="mqr-Xs-3qR" id="72V-7T-p8t"/>
                         <outlet property="orderButton" destination="hr6-b9-toA" id="UNW-Qo-sZ1"/>
                         <outlet property="summaryPriceLabel" destination="xhA-in-nxD" id="EXI-se-jHu"/>
@@ -697,7 +712,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="09663436-24FE-4AF1-89DA-6F87D070201F" width="30" height="30">
+        <image name="8E5EE9F7-366E-44EF-9C3E-D2C4A25FE51E" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ERYbHCUmJygwMzY8P1UkbnVsbNQJCgsMDQ4PEFYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVwc1dOU0Nv
