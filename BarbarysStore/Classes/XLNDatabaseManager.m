@@ -25,8 +25,9 @@
 {
     self = [super init];
     if (self) {
-        NSString *tmpPath = NSTemporaryDirectory();
-        self.path = [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
+        //NSString *tmpPath = NSTemporaryDirectory();
+        //self.path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"db.sqlite"];
+        self.path = [[NSBundle mainBundle] pathForResource:@"db" ofType:@"sqlite"]; // [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
         self.db = [FMDatabase databaseWithPath:self.path];
     }
     return self;
@@ -58,6 +59,9 @@
             }
         }
     }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[[UIAlertView alloc] initWithTitle:nil message:@"Parsing complete" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    });
     DLog(@"done 2");
     FMResultSet *s = [self.db executeQuery:@"select count(*) from offers"];
     while ([s next]) {
