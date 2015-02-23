@@ -27,8 +27,9 @@
 @property (weak, nonatomic) IBOutlet NMRangeSlider *priceSlider;
 @property (weak, nonatomic) IBOutlet UILabel *lowerPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *upperPriceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *singleItemButton;
+@property (weak, nonatomic) IBOutlet UIButton *multiplyItemButton;
 
-- (IBAction)segmentedValueChanged:(id)sender;
 - (IBAction)showSearchController:(id)sender;
 - (IBAction)priceSliderValueChanged:(id)sender;
 
@@ -45,10 +46,12 @@
         self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
         [self.offersCollectionView reloadData];
         [self.revealViewController revealToggleAnimated:YES];
+        self.menuButton.selected = NO;
     }];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
-    self.isMultiplyCell = NO;
+    self.isMultiplyCell = YES;
+    self.multiplyItemButton.selected = YES;
     [self setNeedsStatusBarAppearanceUpdate];
     
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -160,9 +163,14 @@
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 
-- (IBAction)segmentedValueChanged:(id)sender {
-    NSNumber *index = @(self.segmentedControl.selectedSegmentIndex);
-    self.isMultiplyCell = [index boolValue];
+- (IBAction)changePresentView:(id)sender {
+    UIButton *selectedButton = (UIButton *)sender;
+    if (([selectedButton isEqual:self.multiplyItemButton] && self.isMultiplyCell) || ([selectedButton isEqual:self.singleItemButton] && !self.isMultiplyCell)) {
+        return;
+    }
+    self.isMultiplyCell = !self.isMultiplyCell;
+    self.multiplyItemButton.selected = !self.multiplyItemButton.selected;
+    self.singleItemButton.selected = !self.singleItemButton.selected;
     [self.offersCollectionView reloadData];
 }
 
