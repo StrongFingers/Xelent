@@ -12,7 +12,9 @@
 #import "XLNParser.h"
 #import "BBSOfferDetailViewController.h"
 
+#import "UIImage+Alpha.h"
 #import <SWRevealViewController.h>
+#import "NMRangeSlider.h"
 
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -20,10 +22,15 @@
 @property (nonatomic, strong) NSArray *offers;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *showMenuButton;
+@property (nonatomic, strong) UIButton *menuButton;
+@property (nonatomic, strong) UIButton *findButton;
+@property (weak, nonatomic) IBOutlet NMRangeSlider *priceSlider;
+@property (weak, nonatomic) IBOutlet UILabel *lowerPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *upperPriceLabel;
 
 - (IBAction)segmentedValueChanged:(id)sender;
 - (IBAction)showSearchController:(id)sender;
+- (IBAction)priceSliderValueChanged:(id)sender;
 
 @end
 
@@ -39,15 +46,32 @@
         [self.offersCollectionView reloadData];
         [self.revealViewController revealToggleAnimated:YES];
     }];
-    if ([self.offers count] == 0) {
-        [self.revealViewController revealToggle:nil];
-    }
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = NO;
     [self setNeedsStatusBarAppearanceUpdate];
-    self.showMenuButton.target = self.revealViewController;
-    self.showMenuButton.action = @selector(revealToggle:);
+    
+    self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuButton.frame = CGRectMake(0, 0, 30, 30);
+    [self.menuButton setImage:[UIImage imageNamed:@"menuButtonUnactive"] forState:UIControlStateNormal];
+    [self.menuButton setImage:[UIImage imageNamed:@"menuButtonActive"] forState:UIControlStateSelected];
+    [self.menuButton addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.menuButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    self.findButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.findButton.frame = CGRectMake(0, 0, 30, 30);
+    [self.findButton setImage:[UIImage imageNamed:@"findButtonUnactive"] forState:UIControlStateNormal];
+    [self.findButton setImage:[UIImage imageNamed:@"findButtonActive"] forState:UIControlStateSelected];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.findButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    [self customizeControls];
+    [self customizeSlider];
+    
+    if ([self.offers count] == 0) {
+        [self showMenu:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,8 +79,56 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Customize UI
+
+- (void)customizeControls {
+    self.lowerPriceLabel.textColor = [UIColor priceColor];
+    self.upperPriceLabel.textColor = [UIColor priceColor];
+}
+
+- (void)customizeSlider {
+    self.priceSlider.lowerHandleImageNormal = [[UIImage imageNamed:@"slider"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.priceSlider.upperHandleImageNormal = [[UIImage imageNamed:@"slider"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.priceSlider.lowerHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.priceSlider.upperHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.priceSlider.trackBackgroundImage = [[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
+    self.priceSlider.tintColor = [UIColor priceColor];
+    self.priceSlider.minimumValue = 0;
+    self.priceSlider.maximumValue = 100;
+    
+    self.priceSlider.lowerValue = 0;
+    self.priceSlider.upperValue = 100;
+    
+    self.priceSlider.minimumRange = 10;
+    
+    self.lowerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.priceSlider.lowerValue"), (int)self.priceSlider.lowerValue];
+    self.upperPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.priceSlider.upperValue"), (int)self.priceSlider.upperValue];
+}
+
+- (void)updateSliderLabels {
+    CGPoint lowerCenter;
+    lowerCenter.x = (self.priceSlider.lowerCenter.x + self.priceSlider.frame.origin.x);
+    lowerCenter.y = (self.priceSlider.center.y - 25.0f);
+    self.lowerPriceLabel.center = lowerCenter;
+    self.lowerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.priceSlider.lowerValue"), (int)self.priceSlider.lowerValue];
+    
+    CGPoint upperCenter;
+    upperCenter.x = (self.priceSlider.upperCenter.x + self.priceSlider.frame.origin.x);
+    upperCenter.y = (self.priceSlider.center.y - 25.0f);
+    self.upperPriceLabel.center = upperCenter;
+    self.upperPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.priceSlider.upperValue"), (int)self.priceSlider.upperValue];
+}
+
 #pragma mark - IBActions
 
+- (IBAction)showMenu:(id)sender {
+    self.menuButton.selected = !self.menuButton.selected;
+    [self.revealViewController revealToggleAnimated:YES];
+}
+
+- (IBAction)priceSliderValueChanged:(id)sender {
+    [self updateSliderLabels];
+}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -98,5 +170,7 @@
     UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
     [self.navigationController pushViewController:searchCtrl animated:YES];
 }
+
+
 
 @end

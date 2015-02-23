@@ -7,6 +7,7 @@ pod 'FMDB'
 pod 'SWRevealViewController'
 pod 'SDWebImage'
 pod 'Realm'
+pod 'NMRangeSlider'
 end
 
 target 'BarbarysStoreTests' do

@@ -55,17 +55,46 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="HYx-Kn-Dcc"/>
                                 </connections>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="72i-pg-x9l">
-                                <rect key="frame" x="5" y="72" width="104" height="29"/>
-                                <segments>
-                                    <segment title="One"/>
-                                    <segment title="Multiply"/>
-                                </segments>
-                                <color key="tintColor" red="0.26666668057441711" green="0.46274513006210327" blue="0.58039218187332153" alpha="1" colorSpace="deviceRGB"/>
-                                <connections>
-                                    <action selector="segmentedValueChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="Rrf-ft-O2N"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvJ-mh-xtQ">
+                                <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UR-DU-aux">
+                                        <rect key="frame" x="37" y="13" width="30" height="30"/>
+                                        <state key="normal" image="oneItemButton">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="oneItemButtonActive"/>
+                                        <state key="highlighted" image="oneItemButtonHighlighted"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKQ-md-7WX">
+                                        <rect key="frame" x="8" y="13" width="30" height="30"/>
+                                        <state key="normal" image="multiplyItemButton">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="multiplyItemButtonActive"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcm-oS-ReK" customClass="NMRangeSlider">
+                                        <rect key="frame" x="91" y="19" width="208" height="28"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="priceSliderValueChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="8u1-sv-lw8"/>
+                                        </connections>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B64-bR-xdU">
+                                        <rect key="frame" x="91" y="0.0" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tk8-yJ-0HB">
+                                        <rect key="frame" x="225" y="0.0" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647064924240112" green="0.97647064924240112" blue="0.97647064924240112" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -76,13 +105,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="catalogTabIconUnactive" selectedImage="catalogTabIconActive" id="acW-dT-cKf" userLabel="Offers"/>
-                    <navigationItem key="navigationItem" id="PuE-4J-C9F">
-                        <barButtonItem key="leftBarButtonItem" image="menuButtonUnactive" id="XcA-9z-F3X"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="PuE-4J-C9F"/>
                     <connections>
+                        <outlet property="lowerPriceLabel" destination="B64-bR-xdU" id="jxr-Jp-15C"/>
                         <outlet property="offersCollectionView" destination="0uG-cT-geX" id="16j-Fz-flb"/>
-                        <outlet property="segmentedControl" destination="72i-pg-x9l" id="Ogg-xw-rTi"/>
-                        <outlet property="showMenuButton" destination="XcA-9z-F3X" id="eiL-d1-AGJ"/>
+                        <outlet property="priceSlider" destination="Xcm-oS-ReK" id="UE7-dH-NU0"/>
+                        <outlet property="upperPriceLabel" destination="Tk8-yJ-0HB" id="Mp8-eA-vpS"/>
                         <outlet property="view" destination="tsR-hK-woN" id="ZAx-Vb-R2y"/>
                         <segue destination="sUj-ol-yMI" kind="push" id="wuH-jn-cu7"/>
                     </connections>
@@ -714,7 +742,11 @@
     <resources>
         <image name="catalogTabIconActive" width="24" height="21"/>
         <image name="catalogTabIconUnactive" width="24" height="21"/>
-        <image name="menuButtonUnactive" width="17" height="16"/>
+        <image name="multiplyItemButton" width="22" height="22"/>
+        <image name="multiplyItemButtonActive" width="22" height="22"/>
+        <image name="oneItemButton" width="22" height="22"/>
+        <image name="oneItemButtonActive" width="22" height="22"/>
+        <image name="oneItemButtonHighlighted" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wuH-jn-cu7"/>

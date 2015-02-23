@@ -10,6 +10,7 @@
 
 @interface UIImage (Alpha)
 
++ (UIImage *)imageWithColor:(UIColor *)color;
 - (UIImage *)imageByApplyingAlpha:(CGFloat)alpha;
 
 @end

@@ -4,6 +4,8 @@
 "offerDetail.changingSection.headerTitle" = "Обмен и возврат";
 
 "offersViewController.title" = "Каталог";
+"offersViewController.priceSlider.lowerValue" = "от %d ₴";
+"offersViewController.priceSlider.upperValue" = "до %d ₴";
 
 "favoritesViewController.title" = "Избранное";
 

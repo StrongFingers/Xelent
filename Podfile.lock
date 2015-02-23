@@ -4,9 +4,10 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - Realm (0.90.5):
-    - Realm/Headers (= 0.90.5)
-  - Realm/Headers (0.90.5)
+  - NMRangeSlider (1.2.1)
+  - Realm (0.90.6):
+    - Realm/Headers (= 0.90.6)
+  - Realm/Headers (0.90.6)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - FMDB
+  - NMRangeSlider
   - Realm
   - SDWebImage
   - SWRevealViewController
@@ -22,7 +24,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  Realm: aea25534b97be77995650c2339aa6ed010dfcc8a
+  NMRangeSlider: af83627c6da11b39a6147c223f6674b3c57b5b44
+  Realm: 6c3facc11964ab9f828f47de6d0e9bf9c4d9c818
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
   TBXML: a279440030ba55c40e1455cafba3b0a44e1963d4
