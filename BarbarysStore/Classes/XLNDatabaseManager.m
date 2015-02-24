@@ -147,6 +147,13 @@
     [realm commitWriteTransaction];
 }
 
+- (void)removeFromFavorites:(BBSOffer *)offer {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm deleteObject:offer];
+    [realm commitWriteTransaction];
+}
+
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];

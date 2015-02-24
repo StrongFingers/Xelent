@@ -20,5 +20,6 @@
 //- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
 - (void)addToFavorites:(BBSOffer *)offer;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
+- (void)removeFromFavorites:(BBSOffer *)offer;
 
 @end

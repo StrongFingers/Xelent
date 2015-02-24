@@ -154,7 +154,7 @@
     if (!self.isMultiplyCell) {
         return CGSizeMake(300, 380);
     }
-    return CGSizeMake(150, 260);
+    return CGSizeMake(150, 243);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
