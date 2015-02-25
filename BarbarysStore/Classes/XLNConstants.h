@@ -31,3 +31,4 @@
 #define LOC(key) NSLocalizedString((key), @"")
 
 static const NSString *serverXMLUrl = @"http://barbarys.com/aggregator/aggregatorall/yml.xml";
+static const NSString *serverUrl = @"http://api.barbarys.biz/";

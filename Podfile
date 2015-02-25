@@ -8,6 +8,7 @@ pod 'SWRevealViewController'
 pod 'SDWebImage'
 pod 'Realm'
 pod 'NMRangeSlider'
+pod 'AFNetworking'
 end
 
 target 'BarbarysStoreTests' do
