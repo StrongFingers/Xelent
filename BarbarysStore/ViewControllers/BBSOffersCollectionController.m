@@ -11,15 +11,18 @@
 #import "XLNDatabaseManager.h"
 #import "XLNParser.h"
 #import "BBSOfferDetailViewController.h"
+#import "BBSAPIRequest.h"
+#import "BBSOfferManager.h"
 
+#import <MBProgressHUD.h>
 #import "UIImage+Alpha.h"
 #import <SWRevealViewController.h>
 #import "NMRangeSlider.h"
 
-@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BBSAPIRequestDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
-@property (nonatomic, strong) NSMutableArray *offers;
+@property (nonatomic, strong) NSArray *offers;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
 @property (nonatomic, strong) UIButton *menuButton;
@@ -29,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *upperPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *singleItemButton;
 @property (weak, nonatomic) IBOutlet UIButton *multiplyItemButton;
+@property (nonatomic, strong) BBSAPIRequest *offerRequest;
 
 - (IBAction)showSearchController:(id)sender;
 - (IBAction)priceSliderValueChanged:(id)sender;
@@ -41,10 +45,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC(@"offersViewController.title");
+    self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
-        self.offers = [[NSMutableArray alloc] initWithArray:[[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]]];
-        [self.offersCollectionView reloadData];
+        NSString *gender;
+        if ([userInfo[@"gender"] isEqual:@(0)]) {
+            gender = @"women";
+        } else if ([userInfo[@"gender"] isEqual:@(1)]) {
+            gender = @"men";
+        } else {
+            gender = @"children";
+        }
+        [self.offerRequest getCategoryOffers:userInfo[@"categoryId"] gender:gender];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //self.offers = [[NSMutableArray alloc] initWithArray:[[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]]];
+        //[self.offersCollectionView reloadData];
         [self.revealViewController revealToggleAnimated:YES];
         self.menuButton.selected = NO;
     }];
@@ -71,6 +86,7 @@
     
     [self customizeControls];
     [self customizeSlider];
+
     
     if ([self.offers count] == 0) {
         [self showMenu:nil];
@@ -178,6 +194,19 @@
 - (IBAction)showSearchController:(id)sender {
     UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
     [self.navigationController pushViewController:searchCtrl animated:YES];
+}
+
+#pragma mark - BBSAPIRequest delegate
+
+- (void)requestFinished:(id)responseObject sender:(id)sender {
+    DLog(@"%@", responseObject);
+    self.offers = [BBSOfferManager parseCategoryOffers:responseObject[0][@"products"]];
+    [self.offersCollectionView reloadData];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+- (void)requestFinishedWithError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 @end

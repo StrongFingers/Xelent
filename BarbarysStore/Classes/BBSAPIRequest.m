@@ -12,8 +12,7 @@
 
 @implementation BBSAPIRequest
 
-- (id)initWithDelegate:(id<BBSAPIRequestDelegate>)delegate
-{
+- (id)initWithDelegate:(id<BBSAPIRequestDelegate>)delegate {
     self = [super init];
     if (self) {
         self.delegate = delegate;
@@ -106,6 +105,16 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self requestFinishedWithError:error];
     }];
+}
+
+#pragma mark - Methods
+
+- (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender {
+    NSMutableString *url = [NSMutableString stringWithFormat:serverUrl, @"get/category/"];
+    [url appendFormat:@"%@", categoryId];
+    [url appendFormat:@"?product_type=%@", gender];
+    [url appendFormat:@"&api_key=%@", serverAPIKey];
+    [self requestGET:url];
 }
 
 @end
