@@ -52,7 +52,7 @@
     }
     self.offerVendorLabel.text = offer.vendor;
     self.offerModelLabel.text = offer.model;
-    self.offerPriceLabel.text = offer.price;
+    self.offerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), offer.price];
 }
 
 - (IBAction)addToFavorite:(id)sender {

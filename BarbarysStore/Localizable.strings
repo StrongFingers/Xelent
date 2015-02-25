@@ -6,6 +6,7 @@
 "offersViewController.title" = "Каталог";
 "offersViewController.priceSlider.lowerValue" = "от %d ₴";
 "offersViewController.priceSlider.upperValue" = "до %d ₴";
+"offersViewController.price.title" = "%@ грн.";
 
 "favoritesViewController.title" = "Избранное";
 
