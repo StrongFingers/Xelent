@@ -27,13 +27,17 @@
 
 @implementation BBSOfferCollectionViewCell
 
+- (void)awakeFromNib {
+    self.offerVendorLabel.font = [UIFont mediumFont:14];
+    self.offerModelLabel.font = [UIFont lightFont:17];
+    self.offerPriceLabel.font = [UIFont mediumFont:14];
+    self.offerVendorLabel.textColor = [UIColor mainDarkColor];
+    self.offerPriceLabel.textColor = [UIColor priceColor];
+}
+
 - (void)updateOffer:(BBSOffer *)offer {
-    if ([offer isInvalidated]) {
-        DLog(@"INVAL");
-    }
-    _offer = [offer copy];
-    BBSOffer *off = offer;
-    if (![off.thumbnailUrl isEqualToString:@""]) {
+    _offer = offer;
+    if (![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
@@ -56,7 +60,7 @@
     if (!self.favoritesButton.selected) {
         [manager addToFavorites:self.offer];
     } else {
-        [manager removeFromFavorites:self.offer];
+        //[manager removeFromFavorites:self.offer];
     }
     [self updateOffer:self.offer];
 }

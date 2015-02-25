@@ -19,7 +19,7 @@
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
-@property (nonatomic, strong) NSArray *offers;
+@property (nonatomic, strong) NSMutableArray *offers;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
 @property (nonatomic, strong) UIButton *menuButton;
@@ -43,7 +43,7 @@
     self.navigationItem.title = LOC(@"offersViewController.title");
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
-        self.offers = [[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]];
+        self.offers = [[NSMutableArray alloc] initWithArray:[[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]]];
         [self.offersCollectionView reloadData];
         [self.revealViewController revealToggleAnimated:YES];
         self.menuButton.selected = NO;
@@ -179,7 +179,5 @@
     UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
     [self.navigationController pushViewController:searchCtrl animated:YES];
 }
-
-
 
 @end
