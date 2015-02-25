@@ -149,9 +149,11 @@
 
 - (void)removeFromFavorites:(BBSOffer *)offer {
     RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMResults *result = [BBSOffer objectsWhere:[NSString stringWithFormat:@"offerId contains '%@'", offer.offerId]];
     [realm beginWriteTransaction];
-    [realm deleteObject:offer];
+    [realm deleteObjects:result];
     [realm commitWriteTransaction];
+    [realm refresh];
 }
 
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
@@ -159,6 +161,11 @@
     [realm beginWriteTransaction];
     [realm addObject:offer];
     [realm commitWriteTransaction];
+}
+
+- (NSInteger)countOfRows:(BBSOffer *)offer {
+    RLMResults *result = [BBSOffer objectsWhere:[NSString stringWithFormat:@"offerId contains '%@'", offer.offerId]];
+    return [result count];
 }
 
 @end

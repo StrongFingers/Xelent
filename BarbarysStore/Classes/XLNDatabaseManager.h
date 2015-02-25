@@ -21,5 +21,6 @@
 - (void)addToFavorites:(BBSOffer *)offer;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
 - (void)removeFromFavorites:(BBSOffer *)offer;
+- (NSInteger)countOfRows:(BBSOffer *)offer;
 
 @end

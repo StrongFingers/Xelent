@@ -27,25 +27,32 @@
 
 @implementation BBSOfferCollectionViewCell
 
-- (void)setOffer:(BBSOffer *)offer {
+- (void)awakeFromNib {
+    self.offerVendorLabel.font = [UIFont mediumFont:14];
+    self.offerModelLabel.font = [UIFont lightFont:17];
+    self.offerPriceLabel.font = [UIFont mediumFont:14];
+    self.offerVendorLabel.textColor = [UIColor mainDarkColor];
+    self.offerPriceLabel.textColor = [UIColor priceColor];
+}
+
+- (void)updateOffer:(BBSOffer *)offer {
     _offer = offer;
     if (![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
-    RLMResults *result = [BBSOffer objectsWhere:[NSString stringWithFormat:@"offerId contains '%@'", offer.offerId]];
-    if ([result count] > 0) {
-        //[self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonSelected"] forState:UIControlStateNormal];
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    NSInteger count = [manager countOfRows:offer];
+    if (count > 0) {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = YES;
     } else {
-        [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateNormal];
-        //[self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
+        [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = NO;
     }
     self.offerVendorLabel.text = offer.vendor;
     self.offerModelLabel.text = offer.model;
-    self.offerPriceLabel.text = offer.price;
+    self.offerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), offer.price];
 }
 
 - (IBAction)addToFavorite:(id)sender {
@@ -55,6 +62,7 @@
     } else {
         //[manager removeFromFavorites:self.offer];
     }
+    [self updateOffer:self.offer];
 }
 
 @end

@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BBSOffer.h"
 
+@protocol BBSOfferCellDelegate <NSObject>
+
+- (void)refreshOffer:(BBSOffer *)offer cell:(id)cell;
+
+@end
+
 @interface BBSOfferCollectionViewCell : UICollectionViewCell
 
-- (void)setOffer:(BBSOffer *)offer;
+@property (nonatomic, strong) id<BBSOfferCellDelegate> delegate;
+
+- (void)updateOffer:(BBSOffer *)offer;
 
 @end

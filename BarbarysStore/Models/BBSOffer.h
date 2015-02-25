@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm.h>
 
-@interface PictureUrl : RLMObject
+@interface PictureUrl : RLMObject <NSCopying>
 
 @property (nonatomic, strong) NSString *url;
 
@@ -17,7 +17,7 @@
 
 RLM_ARRAY_TYPE(PictureUrl)
 
-@interface BBSOffer : RLMObject
+@interface BBSOffer : RLMObject <NSCopying, NSCoding>
 
 @property (nonatomic, strong) NSString *offerId;
 @property (nonatomic, strong) NSString *url;
