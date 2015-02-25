@@ -11,6 +11,6 @@
 
 @interface BBSOfferCollectionViewCell : UICollectionViewCell
 
-- (void)setOffer:(BBSOffer *)offer;
+- (void)updateOffer:(BBSOffer *)offer;
 
 @end

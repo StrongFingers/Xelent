@@ -110,7 +110,7 @@
                             <constraint firstAttribute="bottom" secondItem="0uG-cT-geX" secondAttribute="bottom" id="lbb-h4-ewO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="catalogTabIconUnactive" selectedImage="catalogTabIconActive" id="acW-dT-cKf" userLabel="Offers"/>
+                    <tabBarItem key="tabBarItem" title="" id="acW-dT-cKf" userLabel="Offers"/>
                     <navigationItem key="navigationItem" id="PuE-4J-C9F"/>
                     <connections>
                         <outlet property="lowerPriceLabel" destination="B64-bR-xdU" id="jxr-Jp-15C"/>
@@ -742,8 +742,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="catalogTabIconActive" width="24" height="21"/>
-        <image name="catalogTabIconUnactive" width="24" height="21"/>
         <image name="multiplyItemButton" width="22" height="22"/>
         <image name="multiplyItemButtonActive" width="22" height="22"/>
         <image name="oneItemButton" width="22" height="22"/>

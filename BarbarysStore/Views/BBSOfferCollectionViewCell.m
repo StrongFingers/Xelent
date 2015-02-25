@@ -27,20 +27,23 @@
 
 @implementation BBSOfferCollectionViewCell
 
-- (void)setOffer:(BBSOffer *)offer {
-    _offer = offer;
-    if (![offer.thumbnailUrl isEqualToString:@""]) {
+- (void)updateOffer:(BBSOffer *)offer {
+    if ([offer isInvalidated]) {
+        DLog(@"INVAL");
+    }
+    _offer = [offer copy];
+    BBSOffer *off = offer;
+    if (![off.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
-    RLMResults *result = [BBSOffer objectsWhere:[NSString stringWithFormat:@"offerId contains '%@'", offer.offerId]];
-    if ([result count] > 0) {
-        //[self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonSelected"] forState:UIControlStateNormal];
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    NSInteger count = [manager countOfRows:offer];
+    if (count > 0) {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = YES;
     } else {
-        [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateNormal];
-        //[self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
+        [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = NO;
     }
     self.offerVendorLabel.text = offer.vendor;
@@ -53,8 +56,9 @@
     if (!self.favoritesButton.selected) {
         [manager addToFavorites:self.offer];
     } else {
-        //[manager removeFromFavorites:self.offer];
+        [manager removeFromFavorites:self.offer];
     }
+    [self updateOffer:self.offer];
 }
 
 @end

@@ -64,7 +64,7 @@
     } else {
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
-    [cell setOffer:self.offers[indexPath.row]];
+    [cell updateOffer:self.offers[indexPath.row]];
     return cell;
 }
 
