@@ -181,7 +181,7 @@
 - (void)imageTapped:(NSInteger)imageIndex {
     if ([self.offer.pictures count] > 0) {
         BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
-        ctrl.photos = self.offer.pictures;
+        ctrl.photos = self.offer.pictures[self.offerColor];
         ctrl.currentIndex = imageIndex;
         [self.navigationController pushViewController:ctrl animated:YES];
     }
@@ -192,6 +192,7 @@
 - (void)requestFinished:(id)responseObject sender:(id)sender {
     DLog(@"%@", responseObject);
     self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
+    self.offer.color = self.offerColor;
     [self.mainTableView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }

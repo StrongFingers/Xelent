@@ -42,9 +42,9 @@
 }
 
 - (void)updateElements {
-    self.imagesPageControl.numberOfPages = [self.offer.pictures count];
+    self.imagesPageControl.numberOfPages = [self.offer.pictures[self.offer.color] count];
     self.imagesPageControl.currentPage = 0;
-    [self layoutScrollImages:self.offer.pictures];
+    [self layoutScrollImages:self.offer.pictures[self.offer.color]];
     self.modelLabel.text = self.offer.model;
     self.priceLabel.text = self.offer.price;
 }

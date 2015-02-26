@@ -45,6 +45,7 @@
         offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
+        offer.color = offerItem[@"color_id"];
         [offers addObject:offer];
     }
     return [offers allObjects];
@@ -97,6 +98,13 @@
             [colors addObject:property[@"property_name"]];
         }*/
     }
+    
+    NSDictionary *images = offerData[@"images"];
+    NSMutableDictionary *pictures = [NSMutableDictionary dictionary];
+    for (NSString *key in images) {
+        [pictures setObject:images[key] forKey:key];
+    }
+    newOffer.pictures = pictures;
     return newOffer;
 }
 

@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *material;
-@property (nonatomic, strong) NSArray *pictures;
+@property (nonatomic, strong) NSDictionary *pictures;
 @property (nonatomic, strong) NSDictionary *sizesType;
 @property (nonatomic, strong) NSDictionary *colorsType;
 
