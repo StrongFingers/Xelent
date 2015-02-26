@@ -10,7 +10,6 @@
 #import "BBSOffer.h"
 #import "BBSCategory.h"
 
-#import <Realm.h>
 #import <FMDB.h>
 #import <sqlite3.h>
 
@@ -55,8 +54,8 @@
             [db executeUpdate:@"insert into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
             [db executeUpdate:@"insert into categoriesOffers (offerId, categoryId) values (?, ?)", offer.offerId, offer.categoryId];
             if (offer.pictures) {
-                for (PictureUrl *pictureUrl in offer.pictures) {
-                    [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl.url];
+                for (NSString *pictureUrl in offer.pictures) {
+                    [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
                 }
             }
         }
@@ -124,18 +123,17 @@
     return offers;
 }
 
-- (RLMArray<PictureUrl> *)getPicturesForOfferId:(NSString *)offerId {
+- (NSArray *)getPicturesForOfferId:(NSString *)offerId {
     if (!self.db.open) {
         [self.db open];
     }
-    RLMArray<PictureUrl> *pictures = [[RLMArray alloc] initWithObjectClassName:@"PictureUrl"];
+    NSMutableArray *pictures = [NSMutableArray array];
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inDatabase:^(FMDatabase *db) {
     NSString *query = [NSString stringWithFormat:@"select * from pictures where offerId = %@", offerId];
         FMResultSet *s = [self.db executeQuery:query];
         while ([s next]) {
-            PictureUrl *url = [[PictureUrl alloc] init];
-            url.url = [s stringForColumnIndex:1];
+            NSString *url = [s stringForColumnIndex:1];
             [pictures addObject:url];
         }
     }];
@@ -147,8 +145,8 @@
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:@"insert into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
         if (offer.pictures) {
-            for (PictureUrl *pictureUrl in offer.pictures) {
-                [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl.url];
+            for (NSString *pictureUrl in offer.pictures) {
+                [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
             }
         }
     }];
@@ -193,10 +191,7 @@
 }
 
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
-    /*RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [realm addObject:offer];
-    [realm commitWriteTransaction];*/
+
 }
 
 - (NSInteger)countOfRows:(BBSOffer *)offer {

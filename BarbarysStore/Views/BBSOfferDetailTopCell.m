@@ -50,12 +50,12 @@
 }
 
 
-- (void)layoutScrollImages:(RLMArray *)images {
+- (void)layoutScrollImages:(NSArray *)images {
     NSUInteger i;
     for (i = 0; i < [images count]; i++)
     {
         UIImageView *imageView = [[UIImageView alloc] init];
-        NSURL *imageUrl = [NSURL URLWithString:((PictureUrl *)images[i]).url];
+        NSURL *imageUrl = [NSURL URLWithString:images[i]];
         [imageView sd_setImageWithURL:imageUrl];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         CGRect rect = imageView.frame;

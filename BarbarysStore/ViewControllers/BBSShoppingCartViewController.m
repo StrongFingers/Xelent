@@ -11,8 +11,6 @@
 #import "BBSCartOffer.h"
 #import "BBSOfferDetailViewController.h"
 
-#import <Realm.h>
-
 @interface BBSShoppingCartViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *offersTableView;
@@ -38,13 +36,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.shoppingItems removeAllObjects];
-    RLMResults *result = [BBSCartOffer allObjects];
+    /*RLMResults *result = [BBSCartOffer allObjects];
     NSInteger price = 0;
     for (BBSCartOffer *offer in result) {
         [self.shoppingItems addObject:offer];
         price += [offer.price integerValue];
     }
-    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];
+    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];*/
     [self.offersTableView reloadData];
 }
 
