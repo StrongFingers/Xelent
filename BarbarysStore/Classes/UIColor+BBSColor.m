@@ -42,4 +42,20 @@
     return [UIColor colorWithRed:0.19 green:0.2 blue:0.2 alpha:1];
 }
 
++ (UIColor *)customDarkGrayColor {
+    return [UIColor colorWithRed:0.486 green:0.482 blue:0.482 alpha:1.000];
+}
+
++ (UIColor *)detailCellBackgroundColor {
+    return [UIColor colorWithWhite:0.976 alpha:1.000];
+}
+
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 @end

@@ -9,6 +9,7 @@
 #import "BBSOfferDetailSizeColorCell.h"
 #import "BBSOfferDetailSizeItemCell.h"
 #import "XLNDatabaseManager.h"
+#import "UIImage+Alpha.h"
 
 @interface BBSOfferDetailSizeColorCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -33,7 +34,11 @@
     [self.sizeCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailSizeItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerSizeItemCell"];
     [self.colorCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailSizeItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerSizeItemCell"];
     self.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
-
+    [self.addToCartButton setTitle:LOC(@"offerDetail.addToShoppingCartButton.title") forState:UIControlStateNormal];
+    [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateHighlighted];
+    [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
+    self.addToCartButton.layer.cornerRadius = 3;
+    self.addToCartButton.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -64,7 +69,7 @@
     if ([collectionView isEqual:self.sizeCollectionView]) {
         [cell updateTypeLabel:self.sizes[indexPath.row]];
     } else {
-        [cell updateTypeLabel:self.colors[indexPath.row]];
+        [cell updateTypeBackgroundColor:self.colors[indexPath.row]];
     }
     return cell;
 }

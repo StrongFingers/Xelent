@@ -18,5 +18,8 @@
 + (UIColor *)sideMenuExpandedHeaderTitle;
 + (UIColor *)sideMenuCategorySeparator;
 + (UIColor *)sideMenuSubcategorySeparator;
++ (UIColor *)colorFromHexString:(NSString *)hexString;
++ (UIColor *)customDarkGrayColor;
++ (UIColor *)detailCellBackgroundColor;
 
 @end

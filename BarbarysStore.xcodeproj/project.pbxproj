@@ -20,6 +20,7 @@
 		324DE0D21A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0D01A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib */; };
 		324DE0D61A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324DE0D41A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m */; };
 		324DE0D71A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0D51A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib */; };
+		32532A871A9F51FD0022A3E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32532A861A9F51FD0022A3E6 /* QuartzCore.framework */; };
 		3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */; };
 		325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */; };
 		325397551A7F36F20097DBA1 /* BBSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325397541A7F36F20097DBA1 /* BBSTabBarController.m */; };
@@ -96,6 +97,7 @@
 		324DE0D31A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferDetailSizeItemCell.h; sourceTree = "<group>"; };
 		324DE0D41A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailSizeItemCell.m; sourceTree = "<group>"; };
 		324DE0D51A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferDetailSizeItemCell.xib; sourceTree = "<group>"; };
+		32532A861A9F51FD0022A3E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3253891C1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSSideMenuHeaderView.h; sourceTree = "<group>"; };
 		3253891D1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSSideMenuHeaderView.m; sourceTree = "<group>"; };
 		3253891F1A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSSideMenuHeaderView.xib; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32532A871A9F51FD0022A3E6 /* QuartzCore.framework in Frameworks */,
 				325BC42F1A7A1B6300A11911 /* libsqlite3.0.dylib in Frameworks */,
 				4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */,
 			);
@@ -197,6 +200,7 @@
 		2E7DD6D565F2862C767B805A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32532A861A9F51FD0022A3E6 /* QuartzCore.framework */,
 				325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */,
 				325BC41F1A79FFF000A11911 /* libsqlite3.dylib */,
 				A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */,

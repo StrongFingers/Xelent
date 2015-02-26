@@ -113,6 +113,7 @@
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor detailCellBackgroundColor];
     return cell;
 }
 

@@ -34,6 +34,8 @@
     self.imagesScrollView.delegate = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imagesScrollView addGestureRecognizer:tapGesture];
+    self.priceLabel.font = [UIFont mediumFont:15];
+    self.modelLabel.font = [UIFont lightFont:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -46,7 +48,7 @@
     self.imagesPageControl.currentPage = 0;
     [self layoutScrollImages:self.offer.pictures[self.offer.color]];
     self.modelLabel.text = self.offer.model;
-    self.priceLabel.text = self.offer.price;
+    self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
 }
 
 

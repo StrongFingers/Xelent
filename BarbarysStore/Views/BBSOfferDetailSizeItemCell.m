@@ -11,6 +11,7 @@
 @interface BBSOfferDetailSizeItemCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedBorderImageView;
 
 @end
 
@@ -18,10 +19,18 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.typeLabel.layer.cornerRadius = self.typeLabel.frame.size.width / 2;
+    self.typeLabel.textColor = [UIColor mainDarkColor];
 }
 
 - (void)updateTypeLabel:(NSString *)typeText {
     self.typeLabel.text = typeText;
+    self.typeLabel.backgroundColor = [UIColor clearColor];
+}
+
+- (void)updateTypeBackgroundColor:(NSString *)colorHex {
+    self.typeLabel.backgroundColor = [UIColor colorFromHexString:colorHex];
+    self.typeLabel.text = @"";
 }
 
 @end

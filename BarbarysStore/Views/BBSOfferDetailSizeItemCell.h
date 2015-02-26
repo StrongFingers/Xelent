@@ -11,5 +11,6 @@
 @interface BBSOfferDetailSizeItemCell : UICollectionViewCell
 
 - (void)updateTypeLabel:(NSString *)typeText;
+- (void)updateTypeBackgroundColor:(NSString *)colorHex;
 
 @end
