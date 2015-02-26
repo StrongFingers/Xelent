@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *sizeCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *colorCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *addToCartButton;
+@property (nonatomic, strong) NSArray *sizes;
+@property (nonatomic, strong) NSArray *colors;
 
 - (IBAction)addToShoppingCart:(id)sender;
 
@@ -40,12 +42,30 @@
     // Configure the view for the selected state
 }
 
+- (void)updateSizes:(NSArray *)sizes {
+    self.sizes = sizes;
+    [self.sizeCollectionView reloadData];
+}
+
+- (void)updateColors:(NSArray *)colors {
+    self.colors = colors;
+    [self.colorCollectionView reloadData];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    if ([collectionView isEqual:self.sizeCollectionView]) {
+        return [self.sizes count];
+    }
+    return [self.colors count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerSizeItemCell" forIndexPath:indexPath];
+    if ([collectionView isEqual:self.sizeCollectionView]) {
+        [cell updateTypeLabel:self.sizes[indexPath.row]];
+    } else {
+        [cell updateTypeLabel:self.colors[indexPath.row]];
+    }
     return cell;
 }
 

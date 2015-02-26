@@ -10,4 +10,6 @@
 
 @interface BBSOfferDetailSizeItemCell : UICollectionViewCell
 
+- (void)updateTypeLabel:(NSString *)typeText;
+
 @end

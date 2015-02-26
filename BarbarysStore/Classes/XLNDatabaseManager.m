@@ -25,8 +25,6 @@
     self = [super init];
     if (self) {
         NSString *tmpPath = NSTemporaryDirectory();
-        //self.path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"db.sqlite"];
-        //self.path = [[NSBundle mainBundle] pathForResource:@"db" ofType:@"sqlite"]; // [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
         self.path = [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
         self.db = [FMDatabase databaseWithPath:self.path];
     }
@@ -249,6 +247,35 @@
         }
     }];
     return count;
+}
+
+- (BBSCartOffer *)cartOfferById:(NSString *)offerId {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    __block BBSCartOffer *offer = [[BBSCartOffer alloc] init];
+    NSString *query = [NSString stringWithFormat:@"select * from shoppingCart where offerId = %@", offerId];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            offer.offerId = [s stringForColumnIndex:0];
+            offer.descriptionText = [s stringForColumnIndex:1];
+            offer.url = [s stringForColumnIndex:3];
+            offer.thumbnailUrl = [s stringForColumnIndex:4];
+            offer.price = [s stringForColumnIndex:5];
+            offer.vendor = [s stringForColumnIndex:7];
+            offer.model = [s stringForColumnIndex:8];
+            offer.color = [s stringForColumnIndex:9];
+            offer.gender = [s stringForColumnIndex:10];
+            offer.material = [s stringForColumnIndex:11];
+            offer.size = [s stringForColumnIndex:12];
+            offer.choosedColor = [s stringForColumnIndex:13];
+            offer.quantity = [s stringForColumnIndex:14];
+            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+        }
+    }];
+    return offer;
 }
 
 @end

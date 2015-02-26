@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BBSOffer.h"
 
 @interface BBSOfferManager : NSObject
 
@@ -16,5 +17,6 @@
 - (void)saveToDB;
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData;
++ (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData;
 
 @end

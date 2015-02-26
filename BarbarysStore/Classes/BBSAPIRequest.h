@@ -24,5 +24,6 @@
 
 - (id)initWithDelegate:(id<BBSAPIRequestDelegate>)delegate;
 - (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender;
+- (void)getOfferById:(NSString *)offerId;
 
 @end

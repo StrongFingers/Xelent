@@ -13,7 +13,6 @@
 		324641141A96EDBF001B1D7E /* BBSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */; };
 		324641171A96FC49001B1D7E /* BBSCartOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641161A96FC49001B1D7E /* BBSCartOffer.m */; };
 		3246411A1A970FBA001B1D7E /* BBSShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641191A970FBA001B1D7E /* BBSShoppingCartCell.m */; };
-		3246411F1A979676001B1D7E /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3246411E1A979676001B1D7E /* db.sqlite */; };
 		324790BE1A9336480052BD16 /* BBSPhotoPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324790BD1A9336480052BD16 /* BBSPhotoPagingViewController.m */; };
 		324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324790C11A93511C0052BD16 /* BBSPhotoContentViewController.m */; };
 		324DE0CD1A8B18A20098ECCD /* BBSOfferDetailTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324DE0CC1A8B18A20098ECCD /* BBSOfferDetailTopCell.xib */; };
@@ -86,7 +85,6 @@
 		324641161A96FC49001B1D7E /* BBSCartOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCartOffer.m; sourceTree = "<group>"; };
 		324641181A970FBA001B1D7E /* BBSShoppingCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSShoppingCartCell.h; sourceTree = "<group>"; };
 		324641191A970FBA001B1D7E /* BBSShoppingCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSShoppingCartCell.m; sourceTree = "<group>"; };
-		3246411E1A979676001B1D7E /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		324790BC1A9336480052BD16 /* BBSPhotoPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPhotoPagingViewController.h; sourceTree = "<group>"; };
 		324790BD1A9336480052BD16 /* BBSPhotoPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPhotoPagingViewController.m; sourceTree = "<group>"; };
 		324790C01A93511C0052BD16 /* BBSPhotoContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPhotoContentViewController.h; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 		325668FE1A89C61800A166E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3246411E1A979676001B1D7E /* db.sqlite */,
 				325668FF1A89C67F00A166E3 /* categories.plist */,
 			);
 			path = Resources;
@@ -566,7 +563,6 @@
 				3253F4D41A8CC5B300005BDE /* Localizable.strings in Resources */,
 				3253F4CE1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib in Resources */,
 				325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */,
-				3246411F1A979676001B1D7E /* db.sqlite in Resources */,
 				325BC4011A79EE2500A11911 /* LaunchScreen.xib in Resources */,
 				324DE0D21A8B25580098ECCD /* BBSOfferDetailSizeColorCell.xib in Resources */,
 				3258BDFD1A80DE1A00EF7992 /* BBSOfferCollectionCellType2.xib in Resources */,

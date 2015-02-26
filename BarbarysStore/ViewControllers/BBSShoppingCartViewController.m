@@ -75,7 +75,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
-    offerDetailVC.offer = self.shoppingItems[indexPath.row];
+    offerDetailVC.offerId = ((BBSOffer *)self.shoppingItems[indexPath.row]).offerId;
     offerDetailVC.fromShoppingCart = YES;
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }

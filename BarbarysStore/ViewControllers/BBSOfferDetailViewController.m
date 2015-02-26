@@ -13,13 +13,19 @@
 #import "BBSPhotoPagingViewController.h"
 #import "XLNCommonMethods.h"
 #import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 
+#import "BBSAPIRequest.h"
 #import <UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
 
-@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate>
+@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate, BBSAPIRequestDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableDictionary *expandedInfo;
+@property (nonatomic, strong) BBSOffer *offer;
+@property (nonatomic, strong) BBSAPIRequest *offerRequest;
+
 @end
 
 @implementation BBSOfferDetailViewController
@@ -28,6 +34,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
+    if (self.fromShoppingCart) {
+        XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+        self.offer = [manager cartOfferById:self.offerId];
+    } else {
+        self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
+        [self.offerRequest getOfferById:self.offerId];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
         XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
         BBSCartOffer *cartOffer = [[BBSCartOffer alloc] initWithOffer:self.offer];
@@ -86,6 +101,8 @@
         if (!cell) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
         }
+        [cell updateSizes:[self.offer.sizesType allKeys]];
+        [cell updateColors:[self.offer.colorsType allKeys]];
         return cell;
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
@@ -169,5 +186,19 @@
         [self.navigationController pushViewController:ctrl animated:YES];
     }
 }
+
+#pragma mark - BBSAPIRequest deletage
+
+- (void)requestFinished:(id)responseObject sender:(id)sender {
+    DLog(@"%@", responseObject);
+    self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
+    [self.mainTableView reloadData];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+- (void)requestFinishedWithError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
 
 @end

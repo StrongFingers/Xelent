@@ -24,5 +24,6 @@
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
 - (NSArray *)getShoppingCart;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
+- (BBSCartOffer *)cartOfferById:(NSString *)offerId;
 
 @end

@@ -8,10 +8,20 @@
 
 #import "BBSOfferDetailSizeItemCell.h"
 
+@interface BBSOfferDetailSizeItemCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+
+@end
+
 @implementation BBSOfferDetailSizeItemCell
 
 - (void)awakeFromNib {
     // Initialization code
+}
+
+- (void)updateTypeLabel:(NSString *)typeText {
+    self.typeLabel.text = typeText;
 }
 
 @end
