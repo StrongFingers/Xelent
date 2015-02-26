@@ -162,11 +162,12 @@
 #pragma mark - OfferDetailTopCellDelegate
 
 - (void)imageTapped:(NSInteger)imageIndex {
-    BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
-    ctrl.photos = self.offer.pictures;
-    ctrl.currentIndex = imageIndex;
-    [self.navigationController pushViewController:ctrl animated:YES];
-    DLog(@"%ld", imageIndex);
+    if ([self.offer.pictures count] > 0) {
+        BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
+        ctrl.photos = self.offer.pictures;
+        ctrl.currentIndex = imageIndex;
+        [self.navigationController pushViewController:ctrl animated:YES];
+    }
 }
 
 @end

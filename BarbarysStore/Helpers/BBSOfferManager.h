@@ -15,4 +15,6 @@
 - (void)addOffer:(id)offer;
 - (void)saveToDB;
 
++ (NSArray *)parseCategoryOffers:(NSArray *)offerData;
+
 @end

@@ -59,7 +59,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *categoryId = ((BBSCategory *)self.category.subcategories[indexPath.row]).categoryId;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateOffers" object:nil userInfo:@{@"categoryId" : categoryId}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"categorySelected" object:nil userInfo:@{@"categoryId" : categoryId}];
 }
 
 
