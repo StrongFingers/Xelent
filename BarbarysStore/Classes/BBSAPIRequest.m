@@ -119,7 +119,7 @@
 
 - (void)getOfferById:(NSString *)offerId {
     NSMutableString *url = [NSMutableString stringWithFormat:serverUrl, @"get/product/"];
-    [url appendFormat:@"%@", offerId];
+    [url appendFormat:@"?id=%@", offerId];
     [url appendFormat:@"&api_key=%@", serverAPIKey];
     [self requestGET:url];
 }
