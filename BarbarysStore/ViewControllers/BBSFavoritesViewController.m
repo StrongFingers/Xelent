@@ -12,8 +12,6 @@
 #import "BBSOfferDetailViewController.h"
 #import "XLNDatabaseManager.h"
 
-#import <Realm.h>
-
 @interface BBSFavoritesViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *favoritesCollectionView;

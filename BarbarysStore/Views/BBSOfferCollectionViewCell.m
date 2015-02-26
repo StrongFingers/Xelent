@@ -9,7 +9,6 @@
 #import "BBSOfferCollectionViewCell.h"
 
 #import "XLNDatabaseManager.h"
-#import <Realm.h>
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferCollectionViewCell ()

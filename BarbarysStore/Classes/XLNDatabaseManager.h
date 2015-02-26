@@ -22,7 +22,7 @@
 - (void)removeFromFavorites:(BBSOffer *)offer;
 - (NSArray *)getFavorites;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
-
+- (NSArray *)getShoppingCart;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
 
 @end
