@@ -60,7 +60,7 @@
     if (!self.favoritesButton.selected) {
         [manager addToFavorites:self.offer];
     } else {
-        //[manager removeFromFavorites:self.offer];
+        [manager removeFromFavorites:self.offer];
     }
     [self updateOffer:self.offer];
 }

@@ -10,6 +10,7 @@
 #import "BBSOffer.h"
 #import "BBSOfferCollectionViewCell.h"
 #import "BBSOfferDetailViewController.h"
+#import "XLNDatabaseManager.h"
 
 #import <Realm.h>
 
@@ -17,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *favoritesCollectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) NSMutableArray *offers;
+@property (nonatomic, strong) NSArray *offers;
 @property (nonatomic, assign) BOOL isMultiplyCell;
 
 - (IBAction)segmentedValueChanged:(id)sender;
@@ -32,17 +33,13 @@
     self.navigationItem.title = LOC(@"favoritesViewController.title");
     [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
-    self.offers = [NSMutableArray new];
+    self.offers = [NSArray new];
     self.isMultiplyCell = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.offers removeAllObjects];
-    RLMResults *results = [BBSOffer allObjects];
-    for (BBSOffer *offer in results) {
-        [self.offers addObject:offer];
-    }
-
+    XLNDatabaseManager *databaseManager = [[XLNDatabaseManager alloc] init];
+    self.offers = [databaseManager getFavorites];
     [self.favoritesCollectionView reloadData];
 }
 

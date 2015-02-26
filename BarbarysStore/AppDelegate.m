@@ -10,6 +10,7 @@
 #import "BBSSideMenuViewController.h"
 #import "BBSTabBarController.h"
 #import "XLNParser.h"
+#import "XLNDatabaseManager.h"
 
 #import <SWRevealViewController.h>
 
@@ -36,6 +37,9 @@
     
     //NSURL *url = [NSURL URLWithString:@"http://barbarys.com/aggregator/aggregatorall/yml.xml"];
     //[[XLNParser alloc] ininWithURL:url];
+    
+    XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
+    [dbManager createDB];
     
     return YES;
 }
