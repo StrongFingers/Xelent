@@ -7,28 +7,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="offerSizeItemCell" id="gTV-IL-0wX" customClass="BBSOfferDetailSizeItemCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="offerColorItemCell" id="mOU-f5-Qjk" customClass="BBSOfferDetailSizeItemCell">
             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-            <autoresizingMask key="autoresizingMask"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectedColor" translatesAutoresizingMaskIntoConstraints="NO" id="KAF-7Z-1bm">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectedColor" translatesAutoresizingMaskIntoConstraints="NO" id="mgh-s5-5Fc">
                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4z2-tn-toq">
-                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-EK-2EB">
+                        <rect key="frame" x="3" y="3" width="24" height="24"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <connections>
-                <outlet property="selectedBorderImageView" destination="KAF-7Z-1bm" id="gHw-pu-adF"/>
-                <outlet property="typeLabel" destination="4z2-tn-toq" id="yAy-G2-vTs"/>
+                <outlet property="colorImageView" destination="5oj-EK-2EB" id="F5i-hr-u8T"/>
+                <outlet property="selectedBorderImageView" destination="mgh-s5-5Fc" id="4Sp-p3-L6d"/>
             </connections>
+            <point key="canvasLocation" x="114" y="154"/>
         </collectionViewCell>
     </objects>
     <resources>

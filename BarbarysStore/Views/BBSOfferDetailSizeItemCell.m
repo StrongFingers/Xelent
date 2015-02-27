@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedBorderImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *colorImageView;
 
 @end
 
@@ -23,14 +24,17 @@
     self.typeLabel.textColor = [UIColor mainDarkColor];
 }
 
-- (void)updateTypeLabel:(NSString *)typeText {
+- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected {
     self.typeLabel.text = typeText;
     self.typeLabel.backgroundColor = [UIColor clearColor];
+    self.selectedBorderImageView.hidden = !isSelected;
 }
 
-- (void)updateTypeBackgroundColor:(NSString *)colorHex {
-    self.typeLabel.backgroundColor = [UIColor colorFromHexString:colorHex];
-    self.typeLabel.text = @"";
+- (void)updateTypeBackgroundColor:(NSString *)colorHex selected:(BOOL)isSelected {
+    self.colorImageView.backgroundColor = [UIColor colorFromHexString:colorHex];
+    self.colorImageView.layer.cornerRadius = self.colorImageView.frame.size.width / 2;
+    self.colorImageView.clipsToBounds = YES;
+    self.selectedBorderImageView.hidden = !isSelected;
 }
 
 @end

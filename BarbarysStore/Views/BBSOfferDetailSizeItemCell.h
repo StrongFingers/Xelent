@@ -10,7 +10,7 @@
 
 @interface BBSOfferDetailSizeItemCell : UICollectionViewCell
 
-- (void)updateTypeLabel:(NSString *)typeText;
-- (void)updateTypeBackgroundColor:(NSString *)colorHex;
+- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected;
+- (void)updateTypeBackgroundColor:(NSString *)colorHex selected:(BOOL)isSelected;
 
 @end

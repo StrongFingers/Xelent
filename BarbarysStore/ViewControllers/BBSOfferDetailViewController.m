@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSMutableDictionary *expandedInfo;
 @property (nonatomic, strong) BBSOffer *offer;
 @property (nonatomic, strong) BBSAPIRequest *offerRequest;
+@property (nonatomic, strong) id shoppingCartNotification;
+@property (nonatomic, strong) id updateSizeColorNotification;
 
 @end
 
@@ -43,7 +45,12 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.shoppingCartNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
         XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
         BBSCartOffer *cartOffer = [[BBSCartOffer alloc] initWithOffer:self.offer];
         cartOffer.choosedColor = @"Snow white";
@@ -51,11 +58,28 @@
         cartOffer.quantity = @"1";
         [dbManager addToShoppingCart:cartOffer];
     }];
+    
+    self.updateSizeColorNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"updateSizeColorSection" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSDictionary *userInfo = note.userInfo;
+        if (userInfo[@"selectedSize"]) {
+            
+        }
+        if (userInfo[@"selectedColor"]) {
+            self.offerColor = userInfo[@"selectedColor"];
+            [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.shoppingCartNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.updateSizeColorNotification];
+    [super viewWillDisappear:animated];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -101,8 +125,18 @@
         if (!cell) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
         }
-        [cell updateSizes:[self.offer.sizesType allKeys]];
-        [cell updateColors:[self.offer.colorsType allKeys]];
+        if (self.offer) {
+            NSMutableArray *sizes = [NSMutableArray array];
+            for (NSDictionary *item in self.offer.colorsType[self.offerColor]) {
+                [sizes addObject:item[@"size_name"]];
+            }
+            [cell updateSizes:sizes];
+            NSMutableDictionary *colors = [NSMutableDictionary dictionary];
+            for (NSString *key in self.offer.colorsType) {
+                [colors setObject:self.offer.colorsType[key][0][@"color_hex"] forKey:key];
+            }
+            [cell updateColors:colors selectedColor:self.offerColor];
+        }
         return cell;
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
@@ -192,6 +226,7 @@
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
     DLog(@"%@", responseObject);
+    self.offer = nil;
     self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
     self.offer.color = self.offerColor;
     [self.mainTableView reloadData];

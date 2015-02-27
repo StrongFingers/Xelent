@@ -11,6 +11,6 @@
 @interface BBSOfferDetailSizeColorCell : UITableViewCell
 
 - (void)updateSizes:(NSArray *)sizes;
-- (void)updateColors:(NSArray *)colors;
+- (void)updateColors:(NSDictionary *)colors selectedColor:(NSString *)colorId;
 
 @end

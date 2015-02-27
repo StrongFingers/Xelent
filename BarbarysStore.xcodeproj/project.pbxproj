@@ -38,6 +38,7 @@
 		325669001A89C67F00A166E3 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 325668FF1A89C67F00A166E3 /* categories.plist */; };
 		325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */; };
 		325669061A8A211500A166E3 /* BBSOfferDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325669051A8A211500A166E3 /* BBSOfferDetailTopCell.m */; };
+		325711A71AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325711A61AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib */; };
 		3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */; };
 		3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */; };
 		3257E2341A887C7B0094C5F9 /* BBSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2331A887C7B0094C5F9 /* BBSNavigationBar.m */; };
@@ -128,6 +129,7 @@
 		325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailViewController.m; sourceTree = "<group>"; };
 		325669041A8A211500A166E3 /* BBSOfferDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferDetailTopCell.h; sourceTree = "<group>"; };
 		325669051A8A211500A166E3 /* BBSOfferDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailTopCell.m; sourceTree = "<group>"; };
+		325711A61AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferDetailColorItemCell.xib; sourceTree = "<group>"; };
 		3257E22B1A886B920094C5F9 /* XLNPreferencesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNPreferencesService.h; sourceTree = "<group>"; };
 		3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNPreferencesService.m; sourceTree = "<group>"; };
 		3257E22F1A88764B0094C5F9 /* XLNLocalNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNLocalNotifications.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				324DE0D31A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.h */,
 				324DE0D41A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m */,
 				324DE0D51A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib */,
+				325711A61AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib */,
 				3253F4CA1A8C68CC00005BDE /* BBSOfferDetailHeaderView.h */,
 				3253F4CB1A8C68CC00005BDE /* BBSOfferDetailHeaderView.m */,
 				3253F4CD1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib */,
@@ -564,6 +567,7 @@
 			files = (
 				324641111A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib in Resources */,
 				325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */,
+				325711A71AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib in Resources */,
 				3253F4D41A8CC5B300005BDE /* Localizable.strings in Resources */,
 				3253F4CE1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib in Resources */,
 				325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */,
