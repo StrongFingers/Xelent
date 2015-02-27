@@ -63,7 +63,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ([collectionView isEqual:self.sizeCollectionView]) {
-        return [self.sizes count];
+        return [self.defaultSizes count];
     }
     return [self.colors count];
 }
@@ -71,8 +71,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView isEqual:self.sizeCollectionView]) {
         BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerSizeItemCell" forIndexPath:indexPath];
-        NSString *currentSize = self.sizes[indexPath.row];
-        [cell updateTypeLabel:currentSize selected:[currentSize isEqualToString:self.selectedSize]];
+        NSString *defaultSize = self.defaultSizes[indexPath.row];
+        //NSString *currentSize = self.sizes[indexPath.row];
+        [cell updateTypeLabel:defaultSize selected:[defaultSize isEqualToString:self.selectedSize] enabled:[self.sizes containsObject:defaultSize]];
         return cell;
     } else {
         BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerColorItemCell" forIndexPath:indexPath];
@@ -93,8 +94,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView isEqual:self.sizeCollectionView]) {
-        NSString *currentSize = self.sizes[indexPath.row];
-        if ([self.selectedSize isEqualToString:currentSize]) {
+        NSString *currentSize = self.defaultSizes[indexPath.row]; // self.sizes[indexPath.row];
+        if ([self.selectedSize isEqualToString:currentSize] || ![self.sizes containsObject:currentSize]) {
             return;
         }
         self.selectedSize = currentSize;

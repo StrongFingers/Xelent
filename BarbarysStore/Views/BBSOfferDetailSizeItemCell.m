@@ -23,14 +23,19 @@
 - (void)awakeFromNib {
     // Initialization code
     self.typeLabel.layer.cornerRadius = self.typeLabel.frame.size.width / 2;
-    self.typeLabel.textColor = [UIColor mainDarkColor];
+
     self.colorView.layer.cornerRadius = self.colorView.frame.size.width / 2;
     self.colorView.clipsToBounds = YES;
 }
 
-- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected {
+- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected enabled:(BOOL)isEnabled {
     self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
     self.typeLabel.backgroundColor = [UIColor clearColor];
+    if (isEnabled) {
+        self.typeLabel.textColor = [UIColor mainDarkColor];
+    } else {
+        self.typeLabel.textColor = [UIColor customDarkGrayColor];
+    }
     self.selectedBorderImageView.hidden = !isSelected;
 }
 
