@@ -37,7 +37,7 @@
 }
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData {
-    NSMutableSet *offers = [[NSMutableSet alloc] init];
+    NSMutableArray *offers = [[NSMutableArray alloc] init];
     for (NSDictionary *offerItem in offerData) {
         BBSOffer *offer = [[BBSOffer alloc] init];
         offer.vendor = offerItem[@"brand"];
@@ -48,7 +48,7 @@
         offer.color = offerItem[@"color_id"];
         [offers addObject:offer];
     }
-    return [offers allObjects];
+    return offers;
 }
 
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData {

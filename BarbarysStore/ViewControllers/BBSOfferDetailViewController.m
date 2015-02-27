@@ -67,6 +67,7 @@
         }
         if (userInfo[@"selectedColor"]) {
             self.selectedColor = userInfo[@"selectedColor"];
+            self.offer.color = self.selectedColor;
             [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         
@@ -230,7 +231,7 @@
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"%@", responseObject);
+    //DLog(@"%@", responseObject);
     self.offer = nil;
     self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
     self.offer.color = self.selectedColor;

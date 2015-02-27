@@ -31,7 +31,8 @@
 }
 
 - (void)updateTypeBackgroundColor:(NSString *)colorHex selected:(BOOL)isSelected {
-    self.colorImageView.backgroundColor = [UIColor colorFromHexString:colorHex];
+    NSArray *colors = [colorHex componentsSeparatedByString:@"-"];
+    self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
     self.colorImageView.layer.cornerRadius = self.colorImageView.frame.size.width / 2;
     self.colorImageView.clipsToBounds = YES;
     self.selectedBorderImageView.hidden = !isSelected;

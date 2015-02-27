@@ -115,7 +115,7 @@
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            //offer.pictures = [self getPicturesForOfferId:offer.offerId];
             [offers addObject:offer];
         }
     }];
@@ -182,7 +182,7 @@
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            //offer.pictures = [self getPicturesForOfferId:offer.offerId];
             [offers addObject:offer];
         }
     }];
@@ -225,7 +225,7 @@
             offer.size = [s stringForColumnIndex:12];
             offer.choosedColor = [s stringForColumnIndex:13];
             offer.quantity = [s stringForColumnIndex:14];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            //offer.pictures = [self getPicturesForOfferId:offer.offerId];
             [offers addObject:offer];
         }
     }];
@@ -238,7 +238,7 @@
         [self.db open];
     }
     __block NSInteger count = 0;
-    NSString *query = [NSString stringWithFormat:@"select count(*) from favorites where offerId = %@", offer.offerId];
+    NSString *query = [NSString stringWithFormat:@"select count(*) from favorites where offerId = %@ and color = %@", offer.offerId, offer.color];
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inDatabase:^(FMDatabase *db) {
         FMResultSet *s = [self.db executeQuery:query];
