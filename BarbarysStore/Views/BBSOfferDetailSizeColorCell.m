@@ -49,9 +49,9 @@
     // Configure the view for the selected state
 }
 
-- (void)updateSizes:(NSArray *)sizes {
+- (void)updateSizes:(NSArray *)sizes selectedSize:(NSString *)selectedSize {
     self.sizes = sizes;
-    self.selectedSize = sizes[0];
+    self.selectedSize = selectedSize;
     [self.sizeCollectionView reloadData];
 }
 

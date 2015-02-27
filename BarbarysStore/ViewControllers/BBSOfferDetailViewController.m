@@ -27,7 +27,7 @@
 @property (nonatomic, strong) BBSAPIRequest *offerRequest;
 @property (nonatomic, strong) id shoppingCartNotification;
 @property (nonatomic, strong) id updateSizeColorNotification;
-
+@property (nonatomic, strong) NSString *selectedSize;
 @end
 
 @implementation BBSOfferDetailViewController
@@ -62,12 +62,14 @@
     self.updateSizeColorNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"updateSizeColorSection" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
         if (userInfo[@"selectedSize"]) {
-            
+            self.selectedSize = userInfo[@"selectedSize"];
+            [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         if (userInfo[@"selectedColor"]) {
-            self.offerColor = userInfo[@"selectedColor"];
+            self.selectedColor = userInfo[@"selectedColor"];
             [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
+        
     }];
 }
 
@@ -126,16 +128,19 @@
             cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
         }
         if (self.offer) {
+            if (!self.selectedSize) {
+                self.selectedSize = self.offer.colorsType[self.selectedColor][0][@"size_name"];
+            }
             NSMutableArray *sizes = [NSMutableArray array];
-            for (NSDictionary *item in self.offer.colorsType[self.offerColor]) {
+            for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
                 [sizes addObject:item[@"size_name"]];
             }
-            [cell updateSizes:sizes];
+            [cell updateSizes:sizes selectedSize:self.selectedSize];
             NSMutableDictionary *colors = [NSMutableDictionary dictionary];
-            for (NSString *key in self.offer.colorsType) {
-                [colors setObject:self.offer.colorsType[key][0][@"color_hex"] forKey:key];
+            for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
+                [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
             }
-            [cell updateColors:colors selectedColor:self.offerColor];
+            [cell updateColors:colors selectedColor:self.selectedColor];
         }
         return cell;
     }
@@ -216,7 +221,7 @@
 - (void)imageTapped:(NSInteger)imageIndex {
     if ([self.offer.pictures count] > 0) {
         BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
-        ctrl.photos = self.offer.pictures[self.offerColor];
+        ctrl.photos = self.offer.pictures[self.selectedColor];
         ctrl.currentIndex = imageIndex;
         [self.navigationController pushViewController:ctrl animated:YES];
     }
@@ -228,7 +233,7 @@
     DLog(@"%@", responseObject);
     self.offer = nil;
     self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
-    self.offer.color = self.offerColor;
+    self.offer.color = self.selectedColor;
     [self.mainTableView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
