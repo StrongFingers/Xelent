@@ -136,6 +136,7 @@
             for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
                 [sizes addObject:item[@"size_name"]];
             }
+            cell.defaultSizes = [self.offer.sizesType allKeys];
             [cell updateSizes:sizes selectedSize:self.selectedSize];
             NSMutableDictionary *colors = [NSMutableDictionary dictionary];
             for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {

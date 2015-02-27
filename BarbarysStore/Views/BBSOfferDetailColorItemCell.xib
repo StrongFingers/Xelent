@@ -17,14 +17,25 @@
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectedColor" translatesAutoresizingMaskIntoConstraints="NO" id="mgh-s5-5Fc">
                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-EK-2EB">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5U-Px-1fR">
                         <rect key="frame" x="3" y="3" width="24" height="24"/>
-                    </imageView>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-EK-2EB">
+                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S1t-Nv-yUq">
+                                <rect key="frame" x="12" y="0.0" width="12" height="24"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <connections>
                 <outlet property="colorImageView" destination="5oj-EK-2EB" id="F5i-hr-u8T"/>
+                <outlet property="colorView" destination="q5U-Px-1fR" id="9i1-Xf-qBy"/>
+                <outlet property="secondColorImageView" destination="S1t-Nv-yUq" id="tmf-6a-GuR"/>
                 <outlet property="selectedBorderImageView" destination="mgh-s5-5Fc" id="4Sp-p3-L6d"/>
             </connections>
             <point key="canvasLocation" x="114" y="154"/>

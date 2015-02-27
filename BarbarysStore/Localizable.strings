@@ -3,6 +3,7 @@
 "offerDetail.paymentSection.headerTitle" = "Оплата и доставка";
 "offerDetail.changingSection.headerTitle" = "Обмен и возврат";
 "offerDetail.addToShoppingCartButton.title" = "Добавить в корзину";
+"offerDetail.sizeAbsent" = "Без размера";
 
 "offersViewController.title" = "Каталог";
 "offersViewController.priceSlider.lowerValue" = "от %d ₴";
