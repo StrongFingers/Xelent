@@ -19,3 +19,31 @@
 "shoppingCartCell.color" = "Цвет: %@";
 "shoppingCartCell.quantity" = "Количество: %@";
 
+"profileViewController.title" = "Мой дисконт";
+"profileViewController.info" = "Что бы начать пользоваться дисконтом нужно указать свои анкетные данные";
+"profileViewController.inputTitle" = "АНКЕНТНЫЕ ДАННЫЕ";
+"profileViewController.name.placeholder" = "ИМЯ";
+"profileViewController.phone.placeholder" = "МОБИЛЬНЫЙ ТЕЛЕФОН";
+"profileViewController.email.placeholder" = "EMAIL";
+"profileViewController.loginButton.title" = "ВОЙТИ В МОЙ ДИСКОНТ";
+
+"discountViewController.title" = "Мой дисконт";
+"discountViewController.info" = "Информация о доступных для вас дисконтах";
+"discountViewController.sumInfoTitle" = "Дисконты суммируются";
+"discountViewController.sumValueTitle" = "Ваша суммарная дисконтная скидка составляет";
+"discountViewController.sumValue" = "%d%%";
+"discountViewController.discount" = "ДИСКОНТ";
+"discountViewController.discountValue" = "%d%%";
+"discountViewController.discountValueTitle" = "скидка";
+"discountViewController.discountShare.title" = "\"look book\"";
+"discountViewController.discountShare.comment" = "За шаринг в соцсети товаров из каталога";
+"discountViewController.discountCollect.title" = "\"накопительный\"";
+
+"discountDetailsViewController.infoTitle" = "Информация о дисконте";
+
+"profileEditViewController.title" = "Редактирование данных";
+"profileEditViewController.infoTitle" = "АНКЕНТНЫЕ ДАННЫЕ";
+"profileEditViewController.name.title" = "ИМЯ";
+"profileEditViewController.phone.title" = "МОБИЛЬНЫЙ ТЕЛЕФОН";
+"profileEditViewController.email.title" = "EMAIL";
+"profileEditViewController.saveButton.title" = "СОХРАНИТЬ ИЗМЕНЕНИЯ";

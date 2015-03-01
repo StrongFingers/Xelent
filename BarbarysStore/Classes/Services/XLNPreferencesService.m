@@ -32,4 +32,13 @@
     return favorites;
 }
 
+- (void)setProfileInfo:(NSDictionary *)profileInfo {
+	[DE setObject:profileInfo forKey:@"profileInfo"];
+	[DE synchronize];
+}
+
+- (NSDictionary *)getProfileInfo {
+	return [DE objectForKey:@"profileInfo"];
+}
+
 @end
