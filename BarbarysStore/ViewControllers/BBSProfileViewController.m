@@ -7,6 +7,8 @@
 //
 
 #import "BBSProfileViewController.h"
+#import "BBSDiscountViewController.h"
+#import "XLNPreferencesService.h"
 
 @interface BBSProfileViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -23,8 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	[self customizeUI];
+	
+	if ([PREF getProfileInfo]) {
+		BBSDiscountViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSDiscountViewController"];
+		[self.navigationController pushViewController:vc animated:NO];
+	}
 }
 
 - (void)customizeUI {
@@ -40,6 +46,10 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
+	NSDictionary *info = @{@"name"	: self.nameTextField.text,
+						   @"phone" : self.phoneTextField.text,
+						   @"email" : self.emailTextField.text};
+	[PREF setProfileInfo:info];
 	[self performSegueWithIdentifier:@"toDiscount" sender:self];
 }
 @end

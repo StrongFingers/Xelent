@@ -15,4 +15,7 @@
 - (void)addItemToFavorites:(id)offer;
 - (NSArray *)getFavorites;
 
+- (void)setProfileInfo:(NSDictionary *)profileInfo;
+- (NSDictionary *)getProfileInfo;
+
 @end

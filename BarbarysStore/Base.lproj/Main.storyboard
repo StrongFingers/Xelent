@@ -384,7 +384,7 @@
         <!--Discount View Controller-->
         <scene sceneID="1X7-Y1-dcW">
             <objects>
-                <viewController id="l2f-Tn-r9P" customClass="BBSDiscountViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BBSDiscountViewController" id="l2f-Tn-r9P" customClass="BBSDiscountViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0iM-xa-jfm"/>
                         <viewControllerLayoutGuide type="bottom" id="Row-00-Hzp"/>

@@ -7,6 +7,7 @@
 //
 
 #import "BBSProfileEditViewController.h"
+#import "XLNPreferencesService.h"
 
 @interface BBSProfileEditViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -26,6 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self customizeUI];
+	
+	NSDictionary *info = [PREF getProfileInfo];
+	self.nameTextField.text = info[@"name"];
+	self.phoneTextField.text = info[@"phone"];
+	self.emailTextField.text = info[@"email"];
 }
 
 - (void)customizeUI {
@@ -40,6 +46,11 @@
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
+	NSDictionary *info = @{@"name"	: self.nameTextField.text,
+						   @"phone" : self.phoneTextField.text,
+						   @"email" : self.emailTextField.text};
+	[PREF setProfileInfo:info];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
