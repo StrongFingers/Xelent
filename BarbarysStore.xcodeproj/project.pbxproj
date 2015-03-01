@@ -60,6 +60,9 @@
 		325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC42C1A7A005D00A11911 /* BBSOfferManager.m */; };
 		325BC42F1A7A1B6300A11911 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */; };
 		4CF9F9E67C90CF4E39E524F4 /* libPods-BarbarysStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */; };
+		844BE4FF1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */; };
+		844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */; };
+		84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84578B551A9F0982007BE782 /* BBSDiscountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,12 @@
 		325BC42C1A7A005D00A11911 /* BBSOfferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferManager.m; sourceTree = "<group>"; };
 		325BC42E1A7A1B6300A11911 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		6F331C20FC8B361382FFFA04 /* Pods-BarbarysStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbarysStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore.release.xcconfig"; sourceTree = "<group>"; };
+		844BE4FD1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSDiscountDetailsViewController.h; sourceTree = "<group>"; };
+		844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSDiscountDetailsViewController.m; sourceTree = "<group>"; };
+		844BE5001AA3AB9B0033EF12 /* BBSProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSProfileEditViewController.h; sourceTree = "<group>"; };
+		844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSProfileEditViewController.m; sourceTree = "<group>"; };
+		84578B541A9F0982007BE782 /* BBSDiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSDiscountViewController.h; sourceTree = "<group>"; };
+		84578B551A9F0982007BE782 /* BBSDiscountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSDiscountViewController.m; sourceTree = "<group>"; };
 		A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarbarysStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -435,6 +444,8 @@
 			children = (
 				325933B31A94A027008824B2 /* SideMenu */,
 				324790BF1A9350F50052BD16 /* PhotoPaging */,
+				84578B541A9F0982007BE782 /* BBSDiscountViewController.h */,
+				84578B551A9F0982007BE782 /* BBSDiscountViewController.m */,
 				325397661A7F480C0097DBA1 /* BBSOffersCollectionController.h */,
 				325397671A7F480C0097DBA1 /* BBSOffersCollectionController.m */,
 				3257E23C1A88CBBA0094C5F9 /* BBSShoppingCartViewController.h */,
@@ -449,6 +460,10 @@
 				325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */,
 				324641121A96EDBF001B1D7E /* BBSFavoritesViewController.h */,
 				324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */,
+				844BE4FD1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.h */,
+				844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */,
+				844BE5001AA3AB9B0033EF12 /* BBSProfileEditViewController.h */,
+				844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -619,6 +634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844BE4FF1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m in Sources */,
 				324641141A96EDBF001B1D7E /* BBSFavoritesViewController.m in Sources */,
 				325397551A7F36F20097DBA1 /* BBSTabBarController.m in Sources */,
 				3253F4D11A8C6E1300005BDE /* BBSAbstractButton.m in Sources */,
@@ -628,9 +644,11 @@
 				3253976B1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m in Sources */,
 				3253975F1A7F3D450097DBA1 /* BBSSideMenuCell.m in Sources */,
 				3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */,
+				84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */,
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
+				844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */,
 				325BC4261A7A002200A11911 /* BBSCategory.m in Sources */,
 				3246411A1A970FBA001B1D7E /* BBSShoppingCartCell.m in Sources */,
 				3253F4CC1A8C68CC00005BDE /* BBSOfferDetailHeaderView.m in Sources */,
