@@ -8,10 +8,6 @@
 
 #import "BBSOffer.h"
 
-@implementation PictureUrl
-
-@end
-
 @implementation BBSOffer
 
 - (id)init {
@@ -32,22 +28,14 @@
     return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-    BBSOffer *newOffer = [[BBSOffer allocWithZone:zone] init];
-    newOffer->_url = [_url copyWithZone:zone];
-    newOffer->_thumbnailUrl = [_thumbnailUrl copyWithZone:zone];
-    newOffer->_offerId = [_offerId copyWithZone:zone];
-    newOffer->_model = [_model copyWithZone:zone];
-    newOffer->_categoryId = [_categoryId copyWithZone:zone];
-    newOffer->_vendor = [_vendor copyWithZone:zone];
-    newOffer->_currency = [_currency copyWithZone:zone];
-    newOffer->_price = [_price copyWithZone:zone];
-    newOffer->_descriptionText = [_descriptionText copyWithZone:zone];
-    newOffer->_color = [_color copyWithZone:zone];
-    newOffer->_gender = [_gender copyWithZone:zone];
-    newOffer->_material = [_material copyWithZone:zone];
-    //newOffer->_pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:_pictures]];
-    return newOffer;
+- (BOOL)isEqual:(BBSOffer *)anObject
+{
+    return [self.offerId isEqual:anObject.offerId];
+}
+
+- (NSUInteger)hash
+{
+    return self.offerId.hash;
 }
 
 #pragma mark - NSCoding

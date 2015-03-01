@@ -37,6 +37,9 @@
     self.categories = [BBSCategoriesManager loadCategories];
     self.subcategories = self.categories[self.categoriesSegmentedControl.selectedSegmentIndex];
     [self.categoryTableView setTableFooterView:[[UIView alloc] init]];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"categorySelected" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateOffers" object:nil userInfo:@{@"categoryId" : note.userInfo[@"categoryId"], @"gender" : @(self.categoriesSegmentedControl.selectedSegmentIndex)}];
+    }];
 }
 
 #pragma mark - Customize

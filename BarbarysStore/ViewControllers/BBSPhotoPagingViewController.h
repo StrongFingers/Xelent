@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Realm.h>
 
 @interface BBSPhotoPagingViewController : UIPageViewController
 
-@property (nonatomic, strong) RLMArray *photos;
+@property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, assign) NSInteger currentIndex;
 
 @end

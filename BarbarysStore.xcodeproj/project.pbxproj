@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		324516D61A9D8BE6009D1EFC /* UIFont+BBSFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 324516D51A9D8BE6009D1EFC /* UIFont+BBSFont.m */; };
+		324516D91A9DAACD009D1EFC /* BBSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 324516D81A9DAACD009D1EFC /* BBSAPIRequest.m */; };
 		324641111A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */; };
 		324641141A96EDBF001B1D7E /* BBSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */; };
 		324641171A96FC49001B1D7E /* BBSCartOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 324641161A96FC49001B1D7E /* BBSCartOffer.m */; };
@@ -79,6 +80,8 @@
 		2DD3F6D3FA7045A957AFC3DD /* Pods-BarbarysStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbarysStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarbarysStore/Pods-BarbarysStore.debug.xcconfig"; sourceTree = "<group>"; };
 		324516D41A9D8BE6009D1EFC /* UIFont+BBSFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BBSFont.h"; sourceTree = "<group>"; };
 		324516D51A9D8BE6009D1EFC /* UIFont+BBSFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBSFont.m"; sourceTree = "<group>"; };
+		324516D71A9DAACD009D1EFC /* BBSAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSAPIRequest.h; sourceTree = "<group>"; };
+		324516D81A9DAACD009D1EFC /* BBSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSAPIRequest.m; sourceTree = "<group>"; };
 		324641101A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferCollectionCellType1.xib; sourceTree = "<group>"; };
 		324641121A96EDBF001B1D7E /* BBSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSFavoritesViewController.h; sourceTree = "<group>"; };
 		324641131A96EDBF001B1D7E /* BBSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSFavoritesViewController.m; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				325AA8E21A920818009C1A72 /* XLNCommonMethods.m */,
 				324516D41A9D8BE6009D1EFC /* UIFont+BBSFont.h */,
 				324516D51A9D8BE6009D1EFC /* UIFont+BBSFont.m */,
+				324516D71A9DAACD009D1EFC /* BBSAPIRequest.h */,
+				324516D81A9DAACD009D1EFC /* BBSAPIRequest.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */,
 				84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */,
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
+				324516D91A9DAACD009D1EFC /* BBSAPIRequest.m in Sources */,
 				324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
 				844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */,

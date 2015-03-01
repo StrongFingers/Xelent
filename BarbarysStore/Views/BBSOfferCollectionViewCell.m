@@ -9,7 +9,6 @@
 #import "BBSOfferCollectionViewCell.h"
 
 #import "XLNDatabaseManager.h"
-#import <Realm.h>
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferCollectionViewCell ()
@@ -29,7 +28,7 @@
 
 - (void)awakeFromNib {
     self.offerVendorLabel.font = [UIFont mediumFont:14];
-    self.offerModelLabel.font = [UIFont lightFont:17];
+    self.offerModelLabel.font = [UIFont lightFont:15];
     self.offerPriceLabel.font = [UIFont mediumFont:14];
     self.offerVendorLabel.textColor = [UIColor mainDarkColor];
     self.offerPriceLabel.textColor = [UIColor priceColor];
@@ -37,7 +36,7 @@
 
 - (void)updateOffer:(BBSOffer *)offer {
     _offer = offer;
-    if (![offer.thumbnailUrl isEqualToString:@""]) {
+    if (offer.thumbnailUrl && ![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
@@ -60,7 +59,7 @@
     if (!self.favoritesButton.selected) {
         [manager addToFavorites:self.offer];
     } else {
-        //[manager removeFromFavorites:self.offer];
+        [manager removeFromFavorites:self.offer];
     }
     [self updateOffer:self.offer];
 }

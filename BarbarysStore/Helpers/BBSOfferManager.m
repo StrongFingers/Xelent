@@ -35,4 +35,19 @@
     [dbManager createDB];
     [dbManager addOffers:self.offers];
 }
+
++ (NSArray *)parseCategoryOffers:(NSArray *)offerData {
+    NSMutableSet *offers = [[NSMutableSet alloc] init];
+    for (NSDictionary *offerItem in offerData) {
+        BBSOffer *offer = [[BBSOffer alloc] init];
+        offer.vendor = offerItem[@"brand"];
+        offer.thumbnailUrl = offerItem[@"image"];
+        offer.price = offerItem[@"price"];
+        offer.offerId = offerItem[@"product_id"];
+        offer.model = offerItem[@"product_name"];
+        [offers addObject:offer];
+    }
+    return [offers allObjects];
+}
+
 @end

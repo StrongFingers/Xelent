@@ -45,7 +45,7 @@
     
     BBSPhotoContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BBSPhotoContentViewController"];
     pageContentViewController.pageIndex = index;
-    pageContentViewController.imageUrl = ((PictureUrl *)self.photos[index]).url;
+    pageContentViewController.imageUrl = self.photos[index];
     
     return pageContentViewController;
 }

@@ -723,7 +723,7 @@
                                             <action selector="orderOffers:" destination="W9f-xb-De6" eventType="touchUpInside" id="n23-CG-h4x"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xhA-in-nxD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xhA-in-nxD">
                                         <rect key="frame" x="8" y="14" width="165" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -915,11 +915,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aEA-fU-rJS">
-                                <rect key="frame" x="5" y="0.0" width="310" height="480"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aEA-fU-rJS">
+                                <rect key="frame" x="5" y="4" width="310" height="480"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="DlH-MM-3uM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="475" id="DlH-MM-3uM"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="310" id="yAj-FQ-ikn"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="N4g-pa-oef">
@@ -940,7 +940,7 @@
                             <constraint firstItem="aEA-fU-rJS" firstAttribute="top" secondItem="wqV-ZK-d0l" secondAttribute="bottom" id="01M-NZ-VmM"/>
                             <constraint firstAttribute="trailing" secondItem="aEA-fU-rJS" secondAttribute="trailing" constant="5" id="0AU-fU-ObO"/>
                             <constraint firstItem="aEA-fU-rJS" firstAttribute="leading" secondItem="rDc-9Z-QzU" secondAttribute="leading" constant="5" id="FAz-QI-oZg"/>
-                            <constraint firstItem="aEA-fU-rJS" firstAttribute="top" secondItem="rDc-9Z-QzU" secondAttribute="topMargin" id="YrC-fd-eI3"/>
+                            <constraint firstItem="aEA-fU-rJS" firstAttribute="top" secondItem="rDc-9Z-QzU" secondAttribute="topMargin" constant="5" id="YrC-fd-eI3"/>
                             <constraint firstAttribute="bottom" secondItem="aEA-fU-rJS" secondAttribute="bottom" id="zwo-og-4W6"/>
                         </constraints>
                         <variation key="default">

@@ -10,15 +10,14 @@
 #import "BBSShoppingCartCell.h"
 #import "BBSCartOffer.h"
 #import "BBSOfferDetailViewController.h"
-
-#import <Realm.h>
+#import "XLNDatabaseManager.h"
 
 @interface BBSShoppingCartViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *offersTableView;
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 @property (weak, nonatomic) IBOutlet UILabel *summaryPriceLabel;
-@property (nonatomic, strong) NSMutableArray *shoppingItems;
+@property (nonatomic, strong) NSArray *shoppingItems;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *historyBarButton;
 
 - (IBAction)orderOffers:(id)sender;
@@ -37,11 +36,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.shoppingItems removeAllObjects];
-    RLMResults *result = [BBSCartOffer allObjects];
+    XLNDatabaseManager *databaseManager = [[XLNDatabaseManager alloc] init];
+    self.shoppingItems = [databaseManager getShoppingCart];
     NSInteger price = 0;
-    for (BBSCartOffer *offer in result) {
-        [self.shoppingItems addObject:offer];
+    for (BBSOffer *offer in self.shoppingItems) {
         price += [offer.price integerValue];
     }
     self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];
