@@ -176,7 +176,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
-    offerDetailVC.offer = self.offers[indexPath.row];
+    offerDetailVC.offerId = ((BBSOffer *)self.offers[indexPath.row]).offerId;
+    offerDetailVC.selectedColor = ((BBSOffer *)self.offers[indexPath.row]).color;
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 

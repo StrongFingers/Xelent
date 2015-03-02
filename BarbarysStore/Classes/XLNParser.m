@@ -43,8 +43,8 @@
     
     XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
     [dbManager createDB];
-    [dbManager addCategories:categories];
-    [dbManager addOffers:offers];
+    //[dbManager addCategories:categories];
+    //[dbManager addOffers:offers];
 }
 
 - (NSArray *)getOffers:(TBXMLElement *)offersElement {

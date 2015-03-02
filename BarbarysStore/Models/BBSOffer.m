@@ -57,6 +57,8 @@
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
         self.pictures = [decoder decodeObjectForKey:@"pictures"];
+        self.colorsType = [decoder decodeObjectForKey:@"colorsType"];
+        self.sizesType = [decoder decodeObjectForKey:@"sizesType"];
     }
     return self;
 }
@@ -76,6 +78,8 @@
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];
     [encoder encodeObject:self.pictures forKey:@"pictures"];
+    [encoder encodeObject:self.colorsType forKey:@"colorsType"];
+    [encoder encodeObject:self.sizesType forKey:@"sizesType"];
 }
 
 @end

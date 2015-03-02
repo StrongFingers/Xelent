@@ -26,6 +26,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.offerBrandLabel.font = [UIFont mediumFont:15];
+    self.priceLabel.font = [UIFont mediumFont:15];
+    self.offerTypeLabel.font = [UIFont lightFont:12];
     self.offerBrandLabel.textColor = [UIColor mainDarkColor];
     self.priceLabel.textColor = [UIColor priceColor];
 }
@@ -44,7 +47,7 @@
     self.sizeLabel.attributedText = [self setBoldSubstring:[NSString stringWithFormat:LOC(@"shoppingCartCell.size"), offer.size]];
     self.colorLabel.attributedText = [self setBoldSubstring:[NSString stringWithFormat:LOC(@"shoppingCartCell.color"), offer.choosedColor]];
     self.quantityLabel.attributedText = [self setBoldSubstring:[NSString stringWithFormat:LOC(@"shoppingCartCell.quantity"), offer.quantity]];
-    self.priceLabel.text = offer.price;
+    self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), offer.price];
 }
 
 - (NSAttributedString *)setBoldSubstring:(NSString *)outputString {
@@ -53,11 +56,11 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@":" options:kNilOptions error:nil];
     
     NSRange range = NSMakeRange(0, outputString.length);
-    
+    [mutableAttributedString setAttributes:@{NSFontAttributeName : [UIFont lightFont:12]} range:NSMakeRange(0, [outputString length])];
     [regex enumerateMatchesInString:outputString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSInteger length = [outputString length] - [result rangeAtIndex:0].location - 1;
         NSRange subStringRange = NSMakeRange([result rangeAtIndex:0].location + 1, length);
-        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:subStringRange];
+        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:subStringRange];
     }];
     return mutableAttributedString;
 }

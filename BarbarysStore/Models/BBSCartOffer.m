@@ -34,6 +34,8 @@
     self.gender = offer.gender;
     self.material = offer.material;
     self.pictures = offer.pictures;
+    self.colorsType = offer.colorsType;
+    self.sizesType = offer.sizesType;
 }
 
 @end

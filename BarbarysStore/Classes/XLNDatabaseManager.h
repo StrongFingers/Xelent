@@ -13,16 +13,16 @@
 @interface XLNDatabaseManager : NSObject
 
 - (void)createDB;
-- (void)addOffers:(NSArray *)offers;
-- (void)addCategories:(NSArray *)categories;
 - (NSArray *)getAllCategories;
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
 //- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
 - (void)addToFavorites:(BBSOffer *)offer;
 - (void)removeFromFavorites:(BBSOffer *)offer;
+- (void)updateFavorite:(BBSOffer *)offer;
 - (NSArray *)getFavorites;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
 - (NSArray *)getShoppingCart;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
+- (BBSCartOffer *)cartOfferById:(NSString *)offerId;
 
 @end

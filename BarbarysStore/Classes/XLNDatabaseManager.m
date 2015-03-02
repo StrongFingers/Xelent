@@ -25,8 +25,6 @@
     self = [super init];
     if (self) {
         NSString *tmpPath = NSTemporaryDirectory();
-        //self.path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"db.sqlite"];
-        //self.path = [[NSBundle mainBundle] pathForResource:@"db" ofType:@"sqlite"]; // [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
         self.path = [tmpPath stringByAppendingPathComponent:@"db.sqlite"];
         self.db = [FMDatabase databaseWithPath:self.path];
     }
@@ -41,59 +39,8 @@
     if (![self.db open]) {
         return;
     }
-    [self.db executeUpdate:@"create table favorites(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text)"];
-    [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text)"];
-    [self.db executeUpdate:@"create table categories(categoryId text, name text, parentId text)"];
-    [self.db executeUpdate:@"create table categoriesOffers(offerId text, categoryId text)"];
-    [self.db executeUpdate:@"create table pictures(offerId text, pictureUrl text)"];
-}
-
-- (void)addOffers:(NSArray *)offers {
-    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
-    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        for (BBSOffer *offer in offers) {
-            [db executeUpdate:@"insert into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
-            [db executeUpdate:@"insert into categoriesOffers (offerId, categoryId) values (?, ?)", offer.offerId, offer.categoryId];
-            if (offer.pictures) {
-                for (NSString *pictureUrl in offer.pictures) {
-                    [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
-                }
-            }
-        }
-    }];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[[UIAlertView alloc] initWithTitle:nil message:@"Parsing complete" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    });
-    DLog(@"done 2");
-    FMResultSet *s = [self.db executeQuery:@"select count(*) from favorites"];
-    while ([s next]) {
-        DLog(@"%d", [s intForColumnIndex:0]);
-        //retrieve values for each record*
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"parsingEnded" object:nil];
-}
-
-- (void)addCategories:(NSArray *)categories {
-    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
-    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        for (BBSCategory *category in categories) {
-            [db executeUpdate:@"insert into categories (categoryId, name, parentId) values (?, ?, ?)", category.categoryId, category.name, category.parentId];
-        }
-    }];
-}
-
-- (NSArray *)getAllCategories {
-    if (!self.db.open) {
-        [self.db open];
-    }
-    FMResultSet *s = [self.db executeQuery:@"select * from categories"];
-    NSMutableArray *categories = [[NSMutableArray alloc] init];
-    while ([s next]) {
-        NSString *categoryId = [s stringForColumnIndex:0];
-        NSString *categoryName = [s stringForColumnIndex:1];
-        [categories addObject:@{@"id" : categoryId, @"name" : categoryName}];
-    }
-    return categories;
+    [self.db executeUpdate:@"create table favorites(offerId text, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob)"];
+    [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
 }
 
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId {
@@ -117,7 +64,7 @@
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            //offer.pictures = [self getPicturesForOfferId:offer.offerId];
             [offers addObject:offer];
         }
     }];
@@ -144,22 +91,21 @@
 - (void)addToFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"insert into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material];
-        if (offer.pictures) {
-            for (NSString *pictureUrl in offer.pictures) {
-                [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
-            }
-        }
+        [db executeUpdate:@"replace into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
     }];
 }
 
 - (void)removeFromFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        if (offer.pictures) {
-            [db executeUpdate:[NSString stringWithFormat:@"delete from pictures where offerId = %@", offer.offerId]];
-        }
-        [db executeUpdate:[NSString stringWithFormat:@"delete from favorites where offerId = %@", offer.offerId]];
+        [db executeUpdate:[NSString stringWithFormat:@"delete from favorites where offerId = %@ and color = %@", offer.offerId, offer.color]];
+    }];
+}
+
+- (void)updateFavorite:(BBSOffer *)offer {
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"update favorites set offerId=?, colors=?, sizes=?, pictures=? where offerId=? and color=?", offer.offerId, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures], offer.offerId, offer.color];
     }];
 }
 
@@ -184,7 +130,9 @@
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:12]];
+            offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:13]];
+            offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:14]];
             [offers addObject:offer];
         }
     }];
@@ -194,12 +142,7 @@
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity];
-        if (offer.pictures) {
-            for (NSString *pictureUrl in offer.pictures) {
-                [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
-            }
-        }
+        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
     }];
 }
 
@@ -227,7 +170,9 @@
             offer.size = [s stringForColumnIndex:12];
             offer.choosedColor = [s stringForColumnIndex:13];
             offer.quantity = [s stringForColumnIndex:14];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:15]];
+            offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:16]];
+            offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:17]];
             [offers addObject:offer];
         }
     }];
@@ -240,7 +185,7 @@
         [self.db open];
     }
     __block NSInteger count = 0;
-    NSString *query = [NSString stringWithFormat:@"select count(*) from favorites where offerId = %@", offer.offerId];
+    NSString *query = [NSString stringWithFormat:@"select count(*) from favorites where offerId = %@ and color = %@", offer.offerId, offer.color];
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inDatabase:^(FMDatabase *db) {
         FMResultSet *s = [self.db executeQuery:query];
@@ -249,6 +194,37 @@
         }
     }];
     return count;
+}
+
+- (BBSCartOffer *)cartOfferById:(NSString *)offerId {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    __block BBSCartOffer *offer = [[BBSCartOffer alloc] init];
+    NSString *query = [NSString stringWithFormat:@"select * from shoppingCart where offerId = %@", offerId];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            offer.offerId = [s stringForColumnIndex:0];
+            offer.descriptionText = [s stringForColumnIndex:1];
+            offer.url = [s stringForColumnIndex:3];
+            offer.thumbnailUrl = [s stringForColumnIndex:4];
+            offer.price = [s stringForColumnIndex:5];
+            offer.vendor = [s stringForColumnIndex:7];
+            offer.model = [s stringForColumnIndex:8];
+            offer.color = [s stringForColumnIndex:9];
+            offer.gender = [s stringForColumnIndex:10];
+            offer.material = [s stringForColumnIndex:11];
+            offer.size = [s stringForColumnIndex:12];
+            offer.choosedColor = [s stringForColumnIndex:13];
+            offer.quantity = [s stringForColumnIndex:14];
+            offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:15]];
+            offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:16]];
+            offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:17]];
+        }
+    }];
+    return offer;
 }
 
 @end

@@ -139,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="483" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WAf-hE-jkS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="483" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WAf-hE-jkS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -714,8 +714,9 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5d-L8-AOC">
                                 <rect key="frame" x="0.0" y="395" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr6-b9-toA">
-                                        <rect key="frame" x="170" y="12" width="140" height="25"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr6-b9-toA">
+                                        <rect key="frame" x="170" y="7" width="140" height="35"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="Order">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -751,7 +752,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sui-RO-xou">
-                                                    <rect key="frame" x="8" y="0.0" width="90" height="120"/>
+                                                    <rect key="frame" x="8" y="0.0" width="90" height="119"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="4CT-wf-N4v"/>
                                                     </constraints>
@@ -809,7 +810,7 @@
                                                 <constraint firstItem="tE2-92-F4u" firstAttribute="top" secondItem="zZs-NE-O3U" secondAttribute="bottom" constant="5" id="8nk-rt-SHS"/>
                                                 <constraint firstItem="7N1-ge-ZcE" firstAttribute="top" secondItem="QKx-VL-JkF" secondAttribute="topMargin" id="9h6-rI-fLq"/>
                                                 <constraint firstItem="zZs-NE-O3U" firstAttribute="leading" secondItem="tE2-92-F4u" secondAttribute="leading" id="Bpe-eo-d9i"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="sui-RO-xou" secondAttribute="bottom" constant="-9" id="Ejn-gt-MtB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="sui-RO-xou" secondAttribute="bottom" constant="-8" id="Ejn-gt-MtB"/>
                                                 <constraint firstItem="Q45-GT-8kw" firstAttribute="top" secondItem="tE2-92-F4u" secondAttribute="bottom" constant="13" id="RmT-fi-bOQ"/>
                                                 <constraint firstItem="Q45-GT-8kw" firstAttribute="leading" secondItem="DQX-wg-KGD" secondAttribute="leading" id="VlP-LX-YSG"/>
                                                 <constraint firstItem="B29-NC-EEu" firstAttribute="trailing" secondItem="QKx-VL-JkF" secondAttribute="trailingMargin" id="WcI-Lb-NEG"/>
@@ -870,12 +871,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Fse-kV-EEM">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Y7e-hD-bdq"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Fse-kV-EEM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="historyBarButton" destination="Y7e-hD-bdq" id="NwK-Ep-eUv"/>
                         <outlet property="offersTableView" destination="mqr-Xs-3qR" id="72V-7T-p8t"/>
                         <outlet property="orderButton" destination="hr6-b9-toA" id="UNW-Qo-sZ1"/>
                         <outlet property="summaryPriceLabel" destination="xhA-in-nxD" id="EXI-se-jHu"/>

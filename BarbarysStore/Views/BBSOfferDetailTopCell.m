@@ -8,7 +8,7 @@
 
 #import "BBSOfferDetailTopCell.h"
 
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferDetailTopCell () <UIScrollViewDelegate>
@@ -34,6 +34,8 @@
     self.imagesScrollView.delegate = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imagesScrollView addGestureRecognizer:tapGesture];
+    self.priceLabel.font = [UIFont mediumFont:15];
+    self.modelLabel.font = [UIFont lightFont:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,13 +44,19 @@
 }
 
 - (void)updateElements {
-    self.imagesPageControl.numberOfPages = [self.offer.pictures count];
+    if (!self.offer) {
+        return;
+    }
+    self.imagesPageControl.numberOfPages = [self.offer.pictures[self.offer.color] count];
     self.imagesPageControl.currentPage = 0;
-    [self layoutScrollImages:self.offer.pictures];
+    if (!self.offer.pictures) {
+        [self layoutScrollImages:@[self.offer.thumbnailUrl]];
+    } else {
+        [self layoutScrollImages:self.offer.pictures[self.offer.color]];
+    }
     self.modelLabel.text = self.offer.model;
-    self.priceLabel.text = self.offer.price;
+    self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
 }
-
 
 - (void)layoutScrollImages:(NSArray *)images {
     NSUInteger i;
@@ -90,8 +98,13 @@
 #pragma mark - IBActions
 
 - (IBAction)addToFavorites:(id)sender {
-    XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
-    [dbManager addToFavorites:self.offer];
+    self.addToFavoritesButton.selected = !self.addToFavoritesButton.selected;
+    BBSOfferManager *dbManager = [[BBSOfferManager alloc] init];
+    if (self.addToFavoritesButton.selected) {
+        [dbManager updateOfferInFavorites:self.offer state:offerAdd];
+    } else {
+        [dbManager updateOfferInFavorites:self.offer state:offerDelete];
+    }
 }
 
 - (void)imageTapped:(UITapGestureRecognizer *)tapGesture {
