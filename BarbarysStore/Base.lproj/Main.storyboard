@@ -520,12 +520,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Fse-kV-EEM">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Y7e-hD-bdq"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Fse-kV-EEM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="historyBarButton" destination="Y7e-hD-bdq" id="NwK-Ep-eUv"/>
                         <outlet property="offersTableView" destination="mqr-Xs-3qR" id="72V-7T-p8t"/>
                         <outlet property="orderButton" destination="hr6-b9-toA" id="UNW-Qo-sZ1"/>
                         <outlet property="summaryPriceLabel" destination="xhA-in-nxD" id="EXI-se-jHu"/>

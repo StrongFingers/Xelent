@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 @property (weak, nonatomic) IBOutlet UILabel *summaryPriceLabel;
 @property (nonatomic, strong) NSArray *shoppingItems;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *historyBarButton;
 
 - (IBAction)orderOffers:(id)sender;
 @end
@@ -30,13 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = LOC(@"shoppingCartViewController.title");
-    [self.orderButton setTitle:LOC(@"shoppingCartViewController.takeOrderButton.title") forState:UIControlStateNormal];
-    self.historyBarButton.title = LOC(@"shoppingCartViewController.historyButton.title");
-    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateHighlighted];
-    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
-    self.orderButton.layer.cornerRadius = 3;
-    self.orderButton.clipsToBounds = YES;
+    [self customizeUI];
     self.shoppingItems = [[NSMutableArray alloc] init];
     [self.offersTableView setTableFooterView:[UIView new]];
 }
@@ -55,6 +48,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Customisation
+
+- (void)customizeUI {
+    self.navigationItem.title = LOC(@"shoppingCartViewController.title");
+    [self.orderButton setTitle:LOC(@"shoppingCartViewController.takeOrderButton.title") forState:UIControlStateNormal];
+    UIButton *historyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    historyButton.frame = CGRectMake(0, 0, 68, 25);
+    [historyButton setTitle:LOC(@"shoppingCartViewController.historyButton.title") forState:UIControlStateNormal];
+    [historyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [historyButton setTitleColor:[UIColor priceColor] forState:UIControlStateHighlighted];
+    historyButton.titleLabel.font = [UIFont mediumFont:14];
+    [historyButton setBackgroundImage:[UIImage imageNamed:@"historyButton"] forState:UIControlStateNormal];
+    [historyButton setBackgroundImage:[UIImage imageNamed:@"historyButtonActive"] forState:UIControlStateHighlighted];
+    UIBarButtonItem *historyBarButton = [[UIBarButtonItem alloc] initWithCustomView:historyButton];
+    self.navigationItem.rightBarButtonItem = historyBarButton;
+    
+    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateHighlighted];
+    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
+    self.orderButton.layer.cornerRadius = 3;
+    self.orderButton.clipsToBounds = YES;
 }
 
 #pragma mark - IBActions
