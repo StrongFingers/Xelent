@@ -18,6 +18,7 @@
 //- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
 - (void)addToFavorites:(BBSOffer *)offer;
 - (void)removeFromFavorites:(BBSOffer *)offer;
+- (void)updateFavorite:(BBSOffer *)offer;
 - (NSArray *)getFavorites;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
 - (NSArray *)getShoppingCart;

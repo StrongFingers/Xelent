@@ -30,12 +30,6 @@
     return self;
 }
 
-- (void)saveToDB {
-    XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
-    [dbManager createDB];
-    //[dbManager addOffers:self.offers];
-}
-
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData {
     NSMutableArray *offers = [[NSMutableArray alloc] init];
     for (NSDictionary *offerItem in offerData) {
@@ -106,6 +100,26 @@
     }
     newOffer.pictures = pictures;
     return newOffer;
+}
+
+- (void)updateOfferInFavorites:(BBSOffer *)offer state:(offerState)state {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    switch (state) {
+        case offerAdd:
+            [manager addToFavorites:offer];
+            break;
+        case offerDelete:
+            [manager removeFromFavorites:offer];
+            break;
+        case offerUpdate:
+            [manager updateFavorite:offer];
+            break;
+    }
+}
+
+- (NSInteger)countOfRows:(BBSOffer *)offer {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    return [manager countOfRows:offer];
 }
 
 @end

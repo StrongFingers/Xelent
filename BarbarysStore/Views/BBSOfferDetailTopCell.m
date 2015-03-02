@@ -44,13 +44,19 @@
 }
 
 - (void)updateElements {
+    if (!self.offer) {
+        return;
+    }
     self.imagesPageControl.numberOfPages = [self.offer.pictures[self.offer.color] count];
     self.imagesPageControl.currentPage = 0;
-    [self layoutScrollImages:self.offer.pictures[self.offer.color]];
+    if (!self.offer.pictures) {
+        [self layoutScrollImages:@[self.offer.thumbnailUrl]];
+    } else {
+        [self layoutScrollImages:self.offer.pictures[self.offer.color]];
+    }
     self.modelLabel.text = self.offer.model;
     self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
 }
-
 
 - (void)layoutScrollImages:(NSArray *)images {
     NSUInteger i;

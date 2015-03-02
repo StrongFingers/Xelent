@@ -8,7 +8,7 @@
 
 #import "BBSOfferCollectionViewCell.h"
 
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferCollectionViewCell ()
@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offerPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favoritesButton;
 @property (nonatomic, strong) BBSOffer *offer;
-
+@property (nonatomic, strong) BBSOfferManager *manager;
 - (IBAction)addToFavorite:(id)sender;
 
 @end
@@ -27,6 +27,7 @@
 @implementation BBSOfferCollectionViewCell
 
 - (void)awakeFromNib {
+    self.manager = [[BBSOfferManager alloc] init];
     self.offerVendorLabel.font = [UIFont mediumFont:14];
     self.offerModelLabel.font = [UIFont lightFont:15];
     self.offerPriceLabel.font = [UIFont mediumFont:14];
@@ -40,8 +41,7 @@
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
     }
-    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
-    NSInteger count = [manager countOfRows:offer];
+    NSInteger count = [self.manager countOfRows:offer];
     if (count > 0) {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = YES;
@@ -55,12 +55,7 @@
 }
 
 - (IBAction)addToFavorite:(id)sender {
-    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
-    if (!self.favoritesButton.selected) {
-        [manager addToFavorites:self.offer];
-    } else {
-        [manager removeFromFavorites:self.offer];
-    }
+    [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer];
 }
 

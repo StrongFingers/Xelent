@@ -241,12 +241,18 @@
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
     //DLog(@"%@", responseObject);
-    self.offer = nil;
-    self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
-    self.offer.offerId = self.offerId;
-    self.offer.color = self.selectedColor;
-    self.offer.thumbnailUrl = self.offer.pictures[self.selectedColor][0];
-    [self.mainTableView reloadData];
+    if (!self.fromFavorites) {
+        self.offer = nil;
+        self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
+        self.offer.offerId = self.offerId;
+        self.offer.color = self.selectedColor;
+        self.offer.thumbnailUrl = self.offer.pictures[self.selectedColor][0];
+        [self.mainTableView reloadData];
+        BBSOfferManager *manager = [[BBSOfferManager alloc] init];
+        if ([manager countOfRows:self.offer] > 0) {
+            [manager updateOfferInFavorites:self.offer state:offerUpdate];
+        }
+    }
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
