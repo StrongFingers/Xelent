@@ -98,7 +98,7 @@
 - (void)removeFromFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:[NSString stringWithFormat:@"delete from favorites where offerId = %@", offer.offerId]];
+        [db executeUpdate:[NSString stringWithFormat:@"delete from favorites where offerId = %@ and color = %@", offer.offerId, offer.color]];
     }];
 }
 

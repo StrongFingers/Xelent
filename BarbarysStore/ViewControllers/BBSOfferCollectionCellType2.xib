@@ -43,6 +43,8 @@
                         <state key="normal" image="favoritesButtonBig">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="favoritesButtonBigSelected"/>
+                        <state key="highlighted" image="favoritesButtonBigActive"/>
                         <connections>
                             <action selector="addToFavorite:" destination="X3W-Dk-gBu" eventType="touchUpInside" id="b1H-Ga-tHv"/>
                         </connections>
@@ -65,5 +67,7 @@
     <resources>
         <image name="cellType2Background" width="304" height="450"/>
         <image name="favoritesButtonBig" width="24" height="22"/>
+        <image name="favoritesButtonBigActive" width="24" height="22"/>
+        <image name="favoritesButtonBigSelected" width="25" height="24"/>
     </resources>
 </document>

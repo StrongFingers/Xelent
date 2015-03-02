@@ -8,7 +8,7 @@
 
 #import "BBSOfferDetailTopCell.h"
 
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferDetailTopCell () <UIScrollViewDelegate>
@@ -98,8 +98,13 @@
 #pragma mark - IBActions
 
 - (IBAction)addToFavorites:(id)sender {
-    XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
-    [dbManager addToFavorites:self.offer];
+    self.addToFavoritesButton.selected = !self.addToFavoritesButton.selected;
+    BBSOfferManager *dbManager = [[BBSOfferManager alloc] init];
+    if (self.addToFavoritesButton.selected) {
+        [dbManager updateOfferInFavorites:self.offer state:offerAdd];
+    } else {
+        [dbManager updateOfferInFavorites:self.offer state:offerDelete];
+    }
 }
 
 - (void)imageTapped:(UITapGestureRecognizer *)tapGesture {
