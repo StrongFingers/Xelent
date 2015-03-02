@@ -12,6 +12,8 @@
 #import "BBSOfferDetailViewController.h"
 #import "XLNDatabaseManager.h"
 
+#import "UIImage+Alpha.h"
+
 @interface BBSShoppingCartViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *offersTableView;
@@ -31,6 +33,10 @@
     self.navigationItem.title = LOC(@"shoppingCartViewController.title");
     [self.orderButton setTitle:LOC(@"shoppingCartViewController.takeOrderButton.title") forState:UIControlStateNormal];
     self.historyBarButton.title = LOC(@"shoppingCartViewController.historyButton.title");
+    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateHighlighted];
+    [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
+    self.orderButton.layer.cornerRadius = 3;
+    self.orderButton.clipsToBounds = YES;
     self.shoppingItems = [[NSMutableArray alloc] init];
     [self.offersTableView setTableFooterView:[UIView new]];
 }
