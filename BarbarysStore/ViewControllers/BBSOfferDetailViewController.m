@@ -39,13 +39,12 @@
     if (self.fromShoppingCart) {
         XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
         self.offer = [manager cartOfferById:self.offerId];
+        self.selectedColor = self.offer.color;
     } else {
         self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
         [self.offerRequest getOfferById:self.offerId];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {

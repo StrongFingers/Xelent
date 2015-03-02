@@ -40,10 +40,7 @@
         return;
     }
     [self.db executeUpdate:@"create table favorites(offerId text, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob)"];
-    [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text)"];
-    [self.db executeUpdate:@"create table categories(categoryId text, name text, parentId text)"];
-    [self.db executeUpdate:@"create table categoriesOffers(offerId text, categoryId text)"];
-    [self.db executeUpdate:@"create table pictures(offerId text, pictureUrl text)"];
+    [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
 }
 
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId {
@@ -138,12 +135,7 @@
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity];
-        if (offer.pictures) {
-            for (NSString *pictureUrl in offer.pictures) {
-                [db executeUpdate:@"insert into pictures (offerId, pictureUrl) values (?, ?)", offer.offerId, pictureUrl];
-            }
-        }
+        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
     }];
 }
 
@@ -171,7 +163,9 @@
             offer.size = [s stringForColumnIndex:12];
             offer.choosedColor = [s stringForColumnIndex:13];
             offer.quantity = [s stringForColumnIndex:14];
-            //offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:15]];
+            offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:16]];
+            offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:17]];
             [offers addObject:offer];
         }
     }];
@@ -218,7 +212,9 @@
             offer.size = [s stringForColumnIndex:12];
             offer.choosedColor = [s stringForColumnIndex:13];
             offer.quantity = [s stringForColumnIndex:14];
-            offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:15]];
+            offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:16]];
+            offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:17]];
         }
     }];
     return offer;
