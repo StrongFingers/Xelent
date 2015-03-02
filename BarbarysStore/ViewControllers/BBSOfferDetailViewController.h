@@ -17,4 +17,6 @@
 @property (nonatomic, assign) BOOL fromFavorites;
 @property (nonatomic, assign) BOOL fromShoppingCart;
 
+- (void)updateOffer:(BBSOffer *)offer;
+
 @end

@@ -85,6 +85,15 @@
     [super viewWillDisappear:animated];
 }
 
+#pragma mark - Methods
+
+- (void)updateOffer:(BBSOffer *)offer {
+    _offer = offer;
+    self.selectedColor = offer.color;
+}
+
+#pragma mark - TableView Datasource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 6;
 }
@@ -235,7 +244,9 @@
     //DLog(@"%@", responseObject);
     self.offer = nil;
     self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
+    self.offer.offerId = self.offerId;
     self.offer.color = self.selectedColor;
+    self.offer.thumbnailUrl = self.offer.pictures[self.selectedColor][0];
     [self.mainTableView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }

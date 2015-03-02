@@ -33,7 +33,7 @@
 - (void)saveToDB {
     XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
     [dbManager createDB];
-    [dbManager addOffers:self.offers];
+    //[dbManager addOffers:self.offers];
 }
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData {
