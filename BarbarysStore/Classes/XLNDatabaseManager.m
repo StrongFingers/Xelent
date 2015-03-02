@@ -33,8 +33,8 @@
 
 - (void)createDB {
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:nil]) {
-        [[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];
-        //return;
+        //[[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];
+        return;
     }
     if (![self.db open]) {
         return;
