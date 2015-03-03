@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[[self revealViewController] panGestureRecognizer];
+    [[self revealViewController] tapGestureRecognizer];
     UIImage* tabBarBackground = [self imageFromColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBackgroundImage:[tabBarBackground imageByApplyingAlpha:0.95]];
     [[UITabBar appearance] setShadowImage:[self imageFromColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]]];

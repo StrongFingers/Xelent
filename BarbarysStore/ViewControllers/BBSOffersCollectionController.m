@@ -19,7 +19,7 @@
 #import <SWRevealViewController.h>
 #import "NMRangeSlider.h"
 
-@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BBSAPIRequestDelegate>
+@interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BBSAPIRequestDelegate, SWRevealViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
 @property (nonatomic, strong) NSArray *offers;
@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.revealViewController.delegate = self;
     self.navigationItem.title = LOC(@"offersViewController.title");
     self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -58,8 +59,6 @@
         }
         [self.offerRequest getCategoryOffers:userInfo[@"categoryId"] gender:gender];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        //self.offers = [[NSMutableArray alloc] initWithArray:[[[XLNDatabaseManager alloc] init] getOffersByCategoryId:userInfo[@"categoryId"]]];
-        //[self.offersCollectionView reloadData];
         [self.revealViewController revealToggleAnimated:YES];
         self.menuButton.selected = NO;
     }];
@@ -195,6 +194,13 @@
 - (IBAction)showSearchController:(id)sender {
     UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];
     [self.navigationController pushViewController:searchCtrl animated:YES];
+}
+
+#pragma mark - SWRevealViewController delegate
+
+- (BOOL)revealControllerTapGestureShouldBegin:(SWRevealViewController *)revealController {
+    self.menuButton.selected = !self.menuButton.selected;
+    return YES;
 }
 
 #pragma mark - BBSAPIRequest delegate
