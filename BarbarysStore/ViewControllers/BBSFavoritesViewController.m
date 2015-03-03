@@ -10,9 +10,9 @@
 #import "BBSOffer.h"
 #import "BBSOfferCollectionViewCell.h"
 #import "BBSOfferDetailViewController.h"
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 
-@interface BBSFavoritesViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BBSFavoritesViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BBSOfferCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *favoritesCollectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -36,14 +36,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    XLNDatabaseManager *databaseManager = [[XLNDatabaseManager alloc] init];
-    self.offers = [databaseManager getFavorites];
-    [self.favoritesCollectionView reloadData];
+    [self updateFavorites];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Methods
+
+- (void)updateFavorites {
+    BBSOfferManager *offerManager = [[BBSOfferManager alloc] init];
+    self.offers = [offerManager getFavorites];
+    [self.favoritesCollectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -60,6 +66,7 @@
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
     [cell updateOffer:self.offers[indexPath.row]];
+    cell.delegate = self;
     return cell;
 }
 
@@ -82,6 +89,12 @@
     NSNumber *index = @(self.segmentedControl.selectedSegmentIndex);
     self.isMultiplyCell = [index boolValue];
     [self.favoritesCollectionView reloadData];
+}
+
+#pragma mark - BBSOfferCell defelate
+
+- (void)refreshOffers {
+    [self updateFavorites];
 }
 
 @end

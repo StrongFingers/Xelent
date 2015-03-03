@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 - (void)addOffer:(id)offer;
 - (void)updateOfferInFavorites:(BBSOffer *)offer state:(offerState)state;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
+- (NSArray *)getFavorites;
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData;
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData;

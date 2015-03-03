@@ -92,6 +92,10 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.offersCollectionView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

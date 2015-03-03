@@ -122,4 +122,9 @@
     return [manager countOfRows:offer];
 }
 
+- (NSArray *)getFavorites {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    return [manager getFavorites];
+}
+
 @end

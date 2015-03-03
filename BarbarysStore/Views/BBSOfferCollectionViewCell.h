@@ -11,7 +11,9 @@
 
 @protocol BBSOfferCellDelegate <NSObject>
 
+@optional
 - (void)refreshOffer:(BBSOffer *)offer cell:(id)cell;
+- (void)refreshOffers;
 
 @end
 

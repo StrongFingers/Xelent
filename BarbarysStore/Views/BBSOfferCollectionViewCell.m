@@ -57,6 +57,9 @@
 - (IBAction)addToFavorite:(id)sender {
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer];
+    if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
+        [self.delegate refreshOffers];
+    }
 }
 
 @end
