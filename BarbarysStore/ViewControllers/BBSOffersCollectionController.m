@@ -18,11 +18,12 @@
 #import "UIImage+Alpha.h"
 #import <SWRevealViewController.h>
 #import "NMRangeSlider.h"
+#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
 @interface BBSOffersCollectionController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BBSAPIRequestDelegate, SWRevealViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *offersCollectionView;
-@property (nonatomic, strong) NSArray *offers;
+@property (nonatomic, strong) NSMutableArray *offers;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isMultiplyCell;
 @property (nonatomic, strong) UIButton *menuButton;
@@ -33,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *singleItemButton;
 @property (weak, nonatomic) IBOutlet UIButton *multiplyItemButton;
 @property (nonatomic, strong) BBSAPIRequest *offerRequest;
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, strong) NSString *selectedCategory;
+@property (nonatomic, strong) NSString *selectedGender;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 - (IBAction)showSearchController:(id)sender;
 - (IBAction)priceSliderValueChanged:(id)sender;
@@ -45,23 +50,50 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.revealViewController.delegate = self;
-    self.navigationItem.title = LOC(@"offersViewController.title");
     self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserverForName:@"updateOffers" object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSDictionary *userInfo = note.userInfo;
-        NSString *gender;
+        [self.offers removeAllObjects];
+        self.currentPage = 1;
         if ([userInfo[@"gender"] isEqual:@(0)]) {
-            gender = @"women";
+            self.selectedGender = @"women";
         } else if ([userInfo[@"gender"] isEqual:@(1)]) {
-            gender = @"men";
+            self.selectedGender = @"men";
         } else {
-            gender = @"children";
+            self.selectedGender = @"children";
         }
-        [self.offerRequest getCategoryOffers:userInfo[@"categoryId"] gender:gender];
+        self.selectedCategory = userInfo[@"categoryId"];
+        [self.offerRequest getCategoryOffers:self.selectedCategory gender:self.selectedGender page:self.currentPage];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self.revealViewController revealToggleAnimated:YES];
         self.menuButton.selected = NO;
     }];
+
+    [self customizeControls];
+    [self customizeSlider];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadNewOffers) forControlEvents:UIControlEventValueChanged];
+    self.offersCollectionView.bottomRefreshControl = self.refreshControl;
+    
+    if ([self.offers count] == 0) {
+        [self showMenu:nil];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.offersCollectionView reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Customize UI
+
+- (void)customizeControls {
+    self.navigationItem.title = LOC(@"offersViewController.title");
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType1" bundle:nil] forCellWithReuseIdentifier:@"offerCollectionCell"];
     [self.offersCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.isMultiplyCell = YES;
@@ -83,27 +115,6 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.findButton];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    [self customizeControls];
-    [self customizeSlider];
-
-    
-    if ([self.offers count] == 0) {
-        [self showMenu:nil];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.offersCollectionView reloadData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Customize UI
-
-- (void)customizeControls {
     self.lowerPriceLabel.textColor = [UIColor priceColor];
     self.upperPriceLabel.textColor = [UIColor priceColor];
 }
@@ -150,6 +161,18 @@
 
 - (IBAction)priceSliderValueChanged:(id)sender {
     [self updateSliderLabels];
+}
+
+#pragma mark - Methods
+
+- (void)loadNewOffers {
+    if (self.currentPage > 0) {
+        [self.offerRequest getCategoryOffers:self.selectedCategory gender:self.selectedGender page:self.currentPage];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.refreshControl endRefreshing];
+        });
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -210,8 +233,18 @@
 #pragma mark - BBSAPIRequest delegate
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    //DLog(@"%@", responseObject);
-    self.offers = [BBSOfferManager parseCategoryOffers:responseObject[0][@"products"]];
+    DLog(@"%@", responseObject);
+    [self.refreshControl endRefreshing];
+    NSInteger allPages = [responseObject[0][@"pages_all"] integerValue];
+    if (self.currentPage < allPages) {
+        self.currentPage++;
+    } else {
+        self.currentPage = -1;
+    }
+    if (!self.offers) {
+        self.offers = [NSMutableArray array];
+    }
+    [self.offers addObjectsFromArray:[BBSOfferManager parseCategoryOffers:responseObject[0][@"products"]]];
     [self.offersCollectionView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }

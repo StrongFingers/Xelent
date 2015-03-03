@@ -109,11 +109,12 @@
 
 #pragma mark - Methods
 
-- (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender {
+- (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender page:(NSInteger)page {
     NSMutableString *url = [NSMutableString stringWithFormat:serverUrl, @"get/category/"];
     [url appendFormat:@"%@", categoryId];
     [url appendFormat:@"?product_type=%@", gender];
     [url appendFormat:@"&api_key=%@", serverAPIKey];
+    [url appendFormat:@"&page=%ld", page];
     [self requestGET:url];
 }
 

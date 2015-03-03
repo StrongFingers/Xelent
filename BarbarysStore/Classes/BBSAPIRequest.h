@@ -23,7 +23,7 @@
 @property (nonatomic, strong) id<BBSAPIRequestDelegate> delegate;
 
 - (id)initWithDelegate:(id<BBSAPIRequestDelegate>)delegate;
-- (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender;
+- (void)getCategoryOffers:(NSString *)categoryId gender:(NSString *)gender page:(NSInteger)page;
 - (void)getOfferById:(NSString *)offerId;
 
 @end

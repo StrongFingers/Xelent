@@ -77,7 +77,11 @@
     } else {
         BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerColorItemCell" forIndexPath:indexPath];
         NSString *currentColorHex = self.colors[[self.colors allKeys][indexPath.row]];
+        if ([currentColorHex isEqual:[NSNull null]]) {
+            currentColorHex = @"000000";
+        }
         NSAssert(![currentColorHex isEqual:[NSNull null]], @"Color hex is Null");
+
         [cell updateTypeBackgroundColor:currentColorHex selected:[currentColorHex isEqualToString:self.selectedColor]];
         return cell;
     }
