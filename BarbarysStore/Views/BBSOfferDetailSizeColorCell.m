@@ -72,12 +72,12 @@
     if ([collectionView isEqual:self.sizeCollectionView]) {
         BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerSizeItemCell" forIndexPath:indexPath];
         NSString *defaultSize = self.defaultSizes[indexPath.row];
-        //NSString *currentSize = self.sizes[indexPath.row];
         [cell updateTypeLabel:defaultSize selected:[defaultSize isEqualToString:self.selectedSize] enabled:[self.sizes containsObject:defaultSize]];
         return cell;
     } else {
         BBSOfferDetailSizeItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"offerColorItemCell" forIndexPath:indexPath];
         NSString *currentColorHex = self.colors[[self.colors allKeys][indexPath.row]];
+        NSAssert(![currentColorHex isEqual:[NSNull null]], @"Color hex is Null");
         [cell updateTypeBackgroundColor:currentColorHex selected:[currentColorHex isEqualToString:self.selectedColor]];
         return cell;
     }

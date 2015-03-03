@@ -56,6 +56,11 @@
     }
     self.modelLabel.text = self.offer.model;
     self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
+    BBSOfferManager *dbManager = [[BBSOfferManager alloc] init];
+    NSInteger count = [dbManager countOfRows:self.offer];
+    if (count > 0) {
+        self.addToFavoritesButton.selected = YES;
+    }
 }
 
 - (void)layoutScrollImages:(NSArray *)images {

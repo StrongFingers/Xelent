@@ -240,7 +240,7 @@
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    //DLog(@"%@", responseObject);
+    DLog(@"%@", responseObject);
     if (!self.fromFavorites) {
         self.offer = nil;
         self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];

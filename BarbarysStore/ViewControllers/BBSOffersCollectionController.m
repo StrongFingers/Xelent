@@ -210,7 +210,7 @@
 #pragma mark - BBSAPIRequest delegate
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"%@", responseObject);
+    //DLog(@"%@", responseObject);
     self.offers = [BBSOfferManager parseCategoryOffers:responseObject[0][@"products"]];
     [self.offersCollectionView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
