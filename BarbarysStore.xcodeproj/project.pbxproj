@@ -511,6 +511,7 @@
 				325BC3E81A79EE2500A11911 /* Resources */,
 				A4E92659E1E4F55E2347B908 /* Copy Pods Resources */,
 				3250DA441AA5720900378267 /* Autoincrement build */,
+				3229CE451AA5743D00488A27 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -622,6 +623,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3229CE451AA5743D00488A27 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/CrashlyticsFramework/Crashlytics.framework/run 5160aff135d1eeb3ab1ce005c131cbefc33b2fe2 9466c6f34e58ae168ca246f59195da3df61555ddc09c5f94d7802f8386236b75";
+		};
 		3250DA441AA5720900378267 /* Autoincrement build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,7 +649,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then\n\nset -o errexit\nset -o nounset\n\n# Get info.plist path\nINFO_PLIST=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Info\"\nAPP_SHORT_VERSION_PLIST=`/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${INFOPLIST_FILE}\"`\nDOT=\".\"\n\n# Get git commit number from HEAD's branch\nVERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" rev-list HEAD | wc -l)\n\n# Trim spaces\nVERSION=$(echo \"${VERSION}\" | sed -e 's/^[ \\t]*//')\n\n# Concatenate short version and commit count\nVERSION=$APP_SHORT_VERSION_PLIST$DOT$VERSION\n\n# DEBUG\necho \"VERSION: ${VERSION}\"\n\n# Write to plist\ndefaults write $INFO_PLIST CFBundleVersion $VERSION\n\nfi";
+			shellScript = "#${PROJECT_DIR}/scripts/bump_build_no.sh \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 		A4E92659E1E4F55E2347B908 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -826,6 +841,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BarbarysStore/Resources",
+					"$(PROJECT_DIR)/BarbarysStore",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;
@@ -848,6 +864,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BarbarysStore/Resources",
+					"$(PROJECT_DIR)/BarbarysStore",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BarbarysStore/PrefixHeader.pch;

@@ -9,6 +9,7 @@ pod 'SDWebImage'
 pod 'NMRangeSlider'
 pod 'AFNetworking'
 pod 'MBProgressHUD'
+pod 'CrashlyticsFramework'
 end
 
 target 'BarbarysStoreTests' do

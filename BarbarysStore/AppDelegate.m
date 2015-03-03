@@ -14,6 +14,8 @@
 
 #import <SWRevealViewController.h>
 
+#import <Crashlytics/Crashlytics.h>
+
 @interface AppDelegate ()
 
 @end
@@ -40,6 +42,8 @@
     
     XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
     [dbManager createDB];
+    
+    [Crashlytics startWithAPIKey:@"5160aff135d1eeb3ab1ce005c131cbefc33b2fe2"];
     
     return YES;
 }
