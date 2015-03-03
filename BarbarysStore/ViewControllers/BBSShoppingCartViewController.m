@@ -10,7 +10,7 @@
 #import "BBSShoppingCartCell.h"
 #import "BBSCartOffer.h"
 #import "BBSOfferDetailViewController.h"
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 
 #import "UIImage+Alpha.h"
 
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 @property (weak, nonatomic) IBOutlet UILabel *summaryPriceLabel;
 @property (nonatomic, strong) NSArray *shoppingItems;
+@property (nonatomic, strong) BBSOfferManager *offerManager;
 
 - (IBAction)orderOffers:(id)sender;
 @end
@@ -32,17 +33,11 @@
     [self customizeUI];
     self.shoppingItems = [[NSMutableArray alloc] init];
     [self.offersTableView setTableFooterView:[UIView new]];
+    self.offerManager = [[BBSOfferManager alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    XLNDatabaseManager *databaseManager = [[XLNDatabaseManager alloc] init];
-    self.shoppingItems = [databaseManager getShoppingCart];
-    NSInteger price = 0;
-    for (BBSOffer *offer in self.shoppingItems) {
-        price += [offer.price integerValue];
-    }
-    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];
-    [self.offersTableView reloadData];
+    [self updateCartData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +67,18 @@
     self.orderButton.clipsToBounds = YES;
 }
 
+#pragma mark - Methods
+
+- (void)updateCartData {
+    self.shoppingItems = [self.offerManager getShoppingCart];
+    NSInteger price = 0;
+    for (BBSOffer *offer in self.shoppingItems) {
+        price += [offer.price integerValue];
+    }
+    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];
+    [self.offersTableView reloadData];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)orderOffers:(id)sender {
@@ -90,6 +97,19 @@
     }
     [cell setOffer:self.shoppingItems[indexPath.row]];
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.offerManager removeFromShoppingCart:self.shoppingItems[indexPath.row]];
+        [self updateCartData];
+    }
 }
 
 #pragma mark - UITableViewDelegate

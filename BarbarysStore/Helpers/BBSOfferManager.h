@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BBSOffer.h"
-
+#import "BBSCartOffer.h"
 typedef enum : NSUInteger {
     offerAdd,
     offerDelete,
@@ -23,6 +23,9 @@ typedef enum : NSUInteger {
 - (void)updateOfferInFavorites:(BBSOffer *)offer state:(offerState)state;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
 - (NSArray *)getFavorites;
+- (NSArray *)getShoppingCart;
+- (void)removeFromShoppingCart:(BBSCartOffer *)offer;
+- (void)addToShoppingCart:(BBSCartOffer *)offer;
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData;
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData;

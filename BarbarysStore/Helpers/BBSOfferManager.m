@@ -127,4 +127,19 @@
     return [manager getFavorites];
 }
 
+- (NSArray *)getShoppingCart {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    return [manager getShoppingCart];
+}
+
+- (void)addToShoppingCart:(BBSCartOffer *)offer {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    [manager addToShoppingCart:offer];
+}
+
+- (void)removeFromShoppingCart:(BBSCartOffer *)offer {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    [manager removeFromShoppingCart:offer];
+}
+
 @end

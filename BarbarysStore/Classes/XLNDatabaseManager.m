@@ -146,6 +146,13 @@
     }];
 }
 
+- (void)removeFromShoppingCart:(BBSCartOffer *)offer {
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:[NSString stringWithFormat:@"delete from shoppingCart where offerId = %@ and color = %@", offer.offerId, offer.color]];
+    }];
+}
+
 - (NSArray *)getShoppingCart {
     if (!self.db.open) {
         [self.db open];
