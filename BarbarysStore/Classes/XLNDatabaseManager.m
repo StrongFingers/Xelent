@@ -105,7 +105,7 @@
 - (void)updateFavorite:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"update favorites set offerId=?, colors=?, sizes=?, pictures=? where offerId=? and color=?", offer.offerId, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures], offer.offerId, offer.color];
+        [db executeUpdate:@"update favorites set offerId=?, description=?, colors=?, sizes=?, pictures=? where offerId=? and color=?", offer.offerId, offer.descriptionText, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures], offer.offerId, offer.color];
     }];
 }
 

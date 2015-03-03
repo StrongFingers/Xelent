@@ -168,8 +168,8 @@
 		325BC41D1A79F44900A11911 /* XLNConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLNConstants.h; sourceTree = "<group>"; };
 		325BC41E1A79F48C00A11911 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		325BC41F1A79FFF000A11911 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		325BC4211A7A000900A11911 /* XLNDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNDatabaseManager.h; sourceTree = "<group>"; };
-		325BC4221A7A000900A11911 /* XLNDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNDatabaseManager.m; sourceTree = "<group>"; };
+		325BC4211A7A000900A11911 /* XLNDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XLNDatabaseManager.h; path = ../Classes/XLNDatabaseManager.h; sourceTree = "<group>"; };
+		325BC4221A7A000900A11911 /* XLNDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XLNDatabaseManager.m; path = ../Classes/XLNDatabaseManager.m; sourceTree = "<group>"; };
 		325BC4241A7A002200A11911 /* BBSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCategory.h; sourceTree = "<group>"; };
 		325BC4251A7A002200A11911 /* BBSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCategory.m; sourceTree = "<group>"; };
 		325BC4271A7A003000A11911 /* BBSOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOffer.h; sourceTree = "<group>"; };
@@ -413,8 +413,6 @@
 				325BC41D1A79F44900A11911 /* XLNConstants.h */,
 				325BC41A1A79EEE300A11911 /* XLNParser.h */,
 				325BC41B1A79EEE300A11911 /* XLNParser.m */,
-				325BC4211A7A000900A11911 /* XLNDatabaseManager.h */,
-				325BC4221A7A000900A11911 /* XLNDatabaseManager.m */,
 				325397531A7F36F20097DBA1 /* BBSTabBarController.h */,
 				325397541A7F36F20097DBA1 /* BBSTabBarController.m */,
 				325397591A7F399E0097DBA1 /* UIColor+BBSColor.h */,
@@ -484,6 +482,8 @@
 				325668FC1A89C58100A166E3 /* BBSCategoriesManager.m */,
 				325BC42B1A7A005D00A11911 /* BBSOfferManager.h */,
 				325BC42C1A7A005D00A11911 /* BBSOfferManager.m */,
+				325BC4211A7A000900A11911 /* XLNDatabaseManager.h */,
+				325BC4221A7A000900A11911 /* XLNDatabaseManager.m */,
 			);
 			name = Managers;
 			path = Helpers;
