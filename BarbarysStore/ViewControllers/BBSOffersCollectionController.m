@@ -200,7 +200,7 @@
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
     BBSOffer *offer = self.offers[indexPath.row];
-    [cell updateOffer:offer];
+    [cell updateOffer:offer isMultiplyCell:self.isMultiplyCell];
     return cell;
 }
 

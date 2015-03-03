@@ -21,6 +21,6 @@
 
 @property (nonatomic, strong) id<BBSOfferCellDelegate> delegate;
 
-- (void)updateOffer:(BBSOffer *)offer;
+- (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell;
 
 @end

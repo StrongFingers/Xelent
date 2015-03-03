@@ -79,7 +79,7 @@
     } else {
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
-    [cell updateOffer:self.offers[indexPath.row]];
+    [cell updateOffer:self.offers[indexPath.row] isMultiplyCell:self.isMultiplyCell];
     cell.delegate = self;
     return cell;
 }
