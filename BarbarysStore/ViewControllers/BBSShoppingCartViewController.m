@@ -65,6 +65,7 @@
     [self.orderButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
     self.orderButton.layer.cornerRadius = 3;
     self.orderButton.clipsToBounds = YES;
+    self.offersTableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
 }
 
 #pragma mark - Methods

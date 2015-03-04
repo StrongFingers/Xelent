@@ -116,7 +116,7 @@
 }
 
 - (IBAction)addToShoppingCart:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil userInfo:@{}];
 }
 
 @end
