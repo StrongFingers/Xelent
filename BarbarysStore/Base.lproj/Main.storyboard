@@ -36,8 +36,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-cT-geX">
-                                <rect key="frame" x="5" y="64" width="310" height="416"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-cT-geX">
+                                <rect key="frame" x="6" y="64" width="310" height="416"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="310" id="7aV-E8-rRq"/>
@@ -79,20 +79,20 @@
                                             <action selector="changePresentView:" destination="9pv-A4-QxB" eventType="touchUpInside" id="w77-c9-bdf"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcm-oS-ReK" customClass="NMRangeSlider">
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcm-oS-ReK" customClass="NMRangeSlider">
                                         <rect key="frame" x="91" y="19" width="208" height="28"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="priceSliderValueChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="8u1-sv-lw8"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B64-bR-xdU">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B64-bR-xdU">
                                         <rect key="frame" x="91" y="0.0" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tk8-yJ-0HB">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tk8-yJ-0HB">
                                         <rect key="frame" x="225" y="0.0" width="74" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -913,11 +913,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aEA-fU-rJS">
-                                <rect key="frame" x="5" y="4" width="310" height="480"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aEA-fU-rJS">
+                                <rect key="frame" x="5" y="64" width="310" height="416"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="475" id="DlH-MM-3uM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="416" id="DlH-MM-3uM"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="310" id="yAj-FQ-ikn"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="N4g-pa-oef">
@@ -932,6 +932,35 @@
                                     <outlet property="delegate" destination="EcQ-u6-k79" id="edd-Bq-ncP"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9G-dS-L2D">
+                                <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQ5-ZE-KzU">
+                                        <rect key="frame" x="37" y="13" width="30" height="30"/>
+                                        <state key="normal" image="oneItemButton">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="oneItemButtonActive"/>
+                                        <state key="highlighted" image="oneItemButtonHighlighted"/>
+                                        <connections>
+                                            <action selector="changePresentView:" destination="9pv-A4-QxB" eventType="touchUpInside" id="N1w-EE-Lrh"/>
+                                            <action selector="changePresentView:" destination="EcQ-u6-k79" eventType="touchUpInside" id="aV9-2S-syE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOX-Rf-ild">
+                                        <rect key="frame" x="8" y="13" width="30" height="30"/>
+                                        <state key="normal" image="multiplyItemButton">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="multiplyItemButtonActive"/>
+                                        <connections>
+                                            <action selector="changePresentView:" destination="EcQ-u6-k79" eventType="touchUpInside" id="UZA-ic-wt0"/>
+                                            <action selector="changePresentView:" destination="9pv-A4-QxB" eventType="touchUpInside" id="oXa-4L-9yz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647064920000004" green="0.97647064920000004" blue="0.97647064920000004" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -939,17 +968,21 @@
                             <constraint firstAttribute="trailing" secondItem="aEA-fU-rJS" secondAttribute="trailing" constant="5" id="0AU-fU-ObO"/>
                             <constraint firstItem="aEA-fU-rJS" firstAttribute="leading" secondItem="rDc-9Z-QzU" secondAttribute="leading" constant="5" id="FAz-QI-oZg"/>
                             <constraint firstItem="aEA-fU-rJS" firstAttribute="top" secondItem="rDc-9Z-QzU" secondAttribute="topMargin" constant="5" id="YrC-fd-eI3"/>
+                            <constraint firstItem="aEA-fU-rJS" firstAttribute="top" secondItem="wqV-ZK-d0l" secondAttribute="bottom" id="c8n-Lm-TiX"/>
                             <constraint firstAttribute="bottom" secondItem="aEA-fU-rJS" secondAttribute="bottom" id="zwo-og-4W6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="01M-NZ-VmM"/>
+                                <exclude reference="YrC-fd-eI3"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hfE-Wt-aCF"/>
                     <connections>
                         <outlet property="favoritesCollectionView" destination="aEA-fU-rJS" id="bSk-ew-boe"/>
+                        <outlet property="multiplyItemButton" destination="wOX-Rf-ild" id="BSf-LF-MUa"/>
+                        <outlet property="singleItemButton" destination="AQ5-ZE-KzU" id="AxN-Xw-ZN6"/>
                         <segue destination="sUj-ol-yMI" kind="push" id="rcE-gt-zHg"/>
                     </connections>
                 </viewController>

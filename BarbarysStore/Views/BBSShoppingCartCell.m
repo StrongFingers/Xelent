@@ -42,7 +42,7 @@
 - (void)setOffer:(BBSCartOffer *)offer {
     NSURL *imageUrl = [NSURL URLWithString:offer.thumbnailUrl];
     [self.offerImageView sd_setImageWithURL:imageUrl];
-    self.offerBrandLabel.text = offer.vendor;
+    self.offerBrandLabel.text = offer.brand;
     self.offerTypeLabel.text = offer.model;
     self.sizeLabel.attributedText = [self setBoldSubstring:[NSString stringWithFormat:LOC(@"shoppingCartCell.size"), offer.size]];
     self.colorLabel.attributedText = [self setBoldSubstring:[NSString stringWithFormat:LOC(@"shoppingCartCell.color"), offer.choosedColor]];

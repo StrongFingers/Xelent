@@ -17,7 +17,7 @@
         self.offerId = @"";
         self.model = @"";
         self.categoryId = @"";
-        self.vendor = @"";
+        self.brand = @"";
         self.currency = @"";
         self.price = @"";
         self.descriptionText = @"";
@@ -49,7 +49,7 @@
         self.offerId = [decoder decodeObjectForKey:@"offerId"];
         self.model = [decoder decodeObjectForKey:@"model"];
         self.categoryId = [decoder decodeObjectForKey:@"categoryId"];
-        self.vendor = [decoder decodeObjectForKey:@"vendor"];
+        self.brand = [decoder decodeObjectForKey:@"vendor"];
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
         self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
@@ -70,7 +70,7 @@
     [encoder encodeObject:self.offerId forKey:@"offerId"];
     [encoder encodeObject:self.model forKey:@"model"];
     [encoder encodeObject:self.categoryId forKey:@"categoryId"];
-    [encoder encodeObject:self.vendor forKey:@"vendor"];
+    [encoder encodeObject:self.brand forKey:@"vendor"];
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
     [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];

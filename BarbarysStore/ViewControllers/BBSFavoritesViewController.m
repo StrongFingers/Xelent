@@ -16,10 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *favoritesCollectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIButton *singleItemButton;
+@property (weak, nonatomic) IBOutlet UIButton *multiplyItemButton;
 @property (nonatomic, strong) NSArray *offers;
 @property (nonatomic, assign) BOOL isMultiplyCell;
-
-- (IBAction)segmentedValueChanged:(id)sender;
 
 @end
 
@@ -33,6 +33,7 @@
     [self.favoritesCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferCollectionCellType2" bundle:nil] forCellWithReuseIdentifier:@"offerCellType2"];
     self.offers = [NSArray new];
     self.isMultiplyCell = YES;
+    self.multiplyItemButton.selected = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,6 +53,19 @@
     [self.favoritesCollectionView reloadData];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)changePresentView:(id)sender {
+    UIButton *selectedButton = (UIButton *)sender;
+    if (([selectedButton isEqual:self.multiplyItemButton] && self.isMultiplyCell) || ([selectedButton isEqual:self.singleItemButton] && !self.isMultiplyCell)) {
+        return;
+    }
+    self.isMultiplyCell = !self.isMultiplyCell;
+    self.multiplyItemButton.selected = !self.multiplyItemButton.selected;
+    self.singleItemButton.selected = !self.singleItemButton.selected;
+    [self.favoritesCollectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -65,7 +79,7 @@
     } else {
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
-    [cell updateOffer:self.offers[indexPath.row]];
+    [cell updateOffer:self.offers[indexPath.row] isMultiplyCell:self.isMultiplyCell];
     cell.delegate = self;
     return cell;
 }

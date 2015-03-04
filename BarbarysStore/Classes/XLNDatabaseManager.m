@@ -59,7 +59,7 @@
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
-            offer.vendor = [s stringForColumnIndex:7];
+            offer.brand = [s stringForColumnIndex:7];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
@@ -91,7 +91,7 @@
 - (void)addToFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"replace into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
+        [db executeUpdate:@"replace into favorites (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
     }];
 }
 
@@ -125,7 +125,7 @@
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
-            offer.vendor = [s stringForColumnIndex:7];
+            offer.brand = [s stringForColumnIndex:7];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
@@ -142,7 +142,7 @@
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.vendor, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
+        [db executeUpdate:@"insert into shoppingCart (offerId, description, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
     }];
 }
 
@@ -169,7 +169,7 @@
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
-            offer.vendor = [s stringForColumnIndex:7];
+            offer.brand = [s stringForColumnIndex:7];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];
@@ -218,7 +218,7 @@
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
-            offer.vendor = [s stringForColumnIndex:7];
+            offer.brand = [s stringForColumnIndex:7];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];

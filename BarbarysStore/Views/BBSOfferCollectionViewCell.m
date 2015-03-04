@@ -35,11 +35,12 @@
     self.offerPriceLabel.textColor = [UIColor priceColor];
 }
 
-- (void)updateOffer:(BBSOffer *)offer {
+- (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell {
     _offer = offer;
     if (offer.thumbnailUrl && ![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
-        [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
+        NSString *placeholderImage = isMultiplyCell ? @"placeholderForDownloadingImage" : @"placeholderForDownloadingImageBig";
+        [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:[[UIImage imageNamed:placeholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
     NSInteger count = [self.manager countOfRows:offer];
     if (count > 0) {
@@ -49,14 +50,14 @@
         [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = NO;
     }
-    self.offerVendorLabel.text = offer.vendor;
+    self.offerVendorLabel.text = offer.brand;
     self.offerModelLabel.text = offer.model;
     self.offerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), offer.price];
 }
 
 - (IBAction)addToFavorite:(id)sender {
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
-    [self updateOffer:self.offer];
+    [self updateOffer:self.offer isMultiplyCell:YES];
     if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
         [self.delegate refreshOffers];
     }

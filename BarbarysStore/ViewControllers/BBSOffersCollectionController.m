@@ -163,6 +163,17 @@
     [self updateSliderLabels];
 }
 
+- (IBAction)changePresentView:(id)sender {
+    UIButton *selectedButton = (UIButton *)sender;
+    if (([selectedButton isEqual:self.multiplyItemButton] && self.isMultiplyCell) || ([selectedButton isEqual:self.singleItemButton] && !self.isMultiplyCell)) {
+        return;
+    }
+    self.isMultiplyCell = !self.isMultiplyCell;
+    self.multiplyItemButton.selected = !self.multiplyItemButton.selected;
+    self.singleItemButton.selected = !self.singleItemButton.selected;
+    [self.offersCollectionView reloadData];
+}
+
 #pragma mark - Methods
 
 - (void)loadNewOffers {
@@ -189,7 +200,7 @@
         cell = (BBSOfferCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"offerCellType2" forIndexPath:indexPath];
     }
     BBSOffer *offer = self.offers[indexPath.row];
-    [cell updateOffer:offer];
+    [cell updateOffer:offer isMultiplyCell:self.isMultiplyCell];
     return cell;
 }
 
@@ -207,16 +218,7 @@
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 
-- (IBAction)changePresentView:(id)sender {
-    UIButton *selectedButton = (UIButton *)sender;
-    if (([selectedButton isEqual:self.multiplyItemButton] && self.isMultiplyCell) || ([selectedButton isEqual:self.singleItemButton] && !self.isMultiplyCell)) {
-        return;
-    }
-    self.isMultiplyCell = !self.isMultiplyCell;
-    self.multiplyItemButton.selected = !self.multiplyItemButton.selected;
-    self.singleItemButton.selected = !self.singleItemButton.selected;
-    [self.offersCollectionView reloadData];
-}
+
 
 - (IBAction)showSearchController:(id)sender {
     UIViewController *searchCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController"];

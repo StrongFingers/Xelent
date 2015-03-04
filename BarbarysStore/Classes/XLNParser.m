@@ -64,7 +64,7 @@
         TBXMLElement *categoryElement = [TBXML childElementNamed:@"categoryId" parentElement:offerElement];
         offer.categoryId = [TBXML textForElement:categoryElement];
         TBXMLElement *vendorElement = [TBXML childElementNamed:@"vendor" parentElement:offerElement];
-        offer.vendor = [TBXML textForElement:vendorElement];
+        offer.brand = [TBXML textForElement:vendorElement];
         TBXMLElement *modelElement = [TBXML childElementNamed:@"model" parentElement:offerElement];
         offer.model = [TBXML textForElement:modelElement];
         TBXMLElement *descriptionElement = [TBXML childElementNamed:@"description" parentElement:offerElement];
