@@ -23,7 +23,7 @@
 }
 
 + (UIColor *)sideMenuBackground {
-    return [UIColor colorWithRed:0.23 green:0.25 blue:0.26 alpha:1];
+    return [UIColor colorWithRed:0.24 green:0.26 blue:0.27 alpha:1];
 }
 
 + (UIColor *)sideMenuSubBackground {
@@ -35,7 +35,7 @@
 }
 
 + (UIColor *)sideMenuCategorySeparator {
-    return [UIColor colorWithRed:0.25 green:0.27 blue:0.28 alpha:1];
+    return [UIColor colorWithRed:0.28 green:0.3 blue:0.31 alpha:1];
 }
 
 + (UIColor *)sideMenuSubcategorySeparator {

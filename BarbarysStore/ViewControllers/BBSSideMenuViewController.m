@@ -45,9 +45,8 @@
 #pragma mark - Customize
 
 - (void)customizeUI {
-    [self.view setBackgroundColor:[UIColor sideMenuBackground]];
+    [self.view setBackgroundColor:[UIColor sideMenuCategorySeparator]];
     [self.categoryTableView setBackgroundColor:[UIColor sideMenuBackground]];
-    [self.categoryTableView setSeparatorColor:[UIColor sideMenuCategorySeparator]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,7 +132,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger maxHeight = self.categoryTableView.frame.size.height - 120;
+    NSInteger maxHeight = self.categoryTableView.frame.size.height - 130;
     NSInteger rowHeight = [((BBSCategorySet *)self.subcategories.subcategories[indexPath.section]).subcategories count] * 25;
     return MIN(maxHeight, rowHeight + 15);
 }
