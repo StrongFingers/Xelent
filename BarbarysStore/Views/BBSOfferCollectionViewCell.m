@@ -50,7 +50,7 @@
         [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = NO;
     }
-    self.offerVendorLabel.text = offer.vendor;
+    self.offerVendorLabel.text = offer.brand;
     self.offerModelLabel.text = offer.model;
     self.offerPriceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), offer.price];
 }

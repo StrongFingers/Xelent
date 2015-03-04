@@ -108,16 +108,29 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 430;
+    switch (indexPath.section) {
+        case 0:
+            return 430;
+            break;
+        case 1:
+            return 225;
+            break;
+        case 2:
+            return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:18]].height;
+            break;
+        case 3:
+            return 150;
+            break;
+        case 4:
+            return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.deliveryText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            break;
+        case 5:
+            return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.returnText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            break;
+        default:
+            return 0;
+            break;
     }
-    if (indexPath.section == 1) {
-        return 225;
-    }
-    if (indexPath.section == 2) {
-        return [XLNCommonMethods findHeightForText:self.offer.descriptionText havingWidth:320 andFont:[UIFont systemFontOfSize:18]].height;
-    }
-    return 150;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -158,9 +171,24 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
-    cell.textLabel.text = indexPath.section == 2 ? self.offer.descriptionText : self.offer.model;
+    cell.textLabel.font = [UIFont lightFont:15];
+    switch (indexPath.section) {
+        case 2:
+            cell.textLabel.font = [UIFont lightFont:17];
+            cell.textLabel.attributedText = self.offer.descriptionText;
+            break;
+        case 3:
+            cell.textLabel.text = self.offer.model;
+            break;
+        case 4:
+            cell.textLabel.text = LOC(@"offerDetail.deliveryText");
+            break;
+        case 5:
+            cell.textLabel.text = LOC(@"offerDetail.returnText");
+            break;
+    }
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor detailCellBackgroundColor];
     return cell;

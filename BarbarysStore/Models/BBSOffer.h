@@ -16,9 +16,9 @@
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *currency;
 @property (nonatomic, strong) NSString *categoryId;
-@property (nonatomic, strong) NSString *vendor;
+@property (nonatomic, strong) NSString *brand;
 @property (nonatomic, strong) NSString *model;
-@property (nonatomic, strong) NSString *descriptionText;
+@property (nonatomic, strong) NSAttributedString *descriptionText;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *material;

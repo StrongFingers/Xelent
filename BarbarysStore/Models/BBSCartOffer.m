@@ -26,7 +26,7 @@
     self.offerId = offer.offerId;
     self.model = offer.model;
     self.categoryId = offer.categoryId;
-    self.vendor = offer.vendor;
+    self.brand = offer.brand;
     self.currency = offer.currency;
     self.price = offer.price;
     self.descriptionText = offer.descriptionText;

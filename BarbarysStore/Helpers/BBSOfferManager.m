@@ -34,7 +34,7 @@
     NSMutableArray *offers = [[NSMutableArray alloc] init];
     for (NSDictionary *offerItem in offerData) {
         BBSOffer *offer = [[BBSOffer alloc] init];
-        offer.vendor = offerItem[@"brand"];
+        offer.brand = offerItem[@"brand"];
         offer.thumbnailUrl = offerItem[@"image"];
         offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
@@ -47,7 +47,7 @@
 
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData {
     BBSOffer *newOffer = [[BBSOffer alloc] init];
-    newOffer.descriptionText = offerData[@"product_description"];
+    //newOffer.descriptionText = offerData[@"product_description"];
     newOffer.model = offerData[@"product_name"];
     newOffer.price = offerData[@"product_price"];
     
@@ -80,19 +80,26 @@
     newOffer.sizesType = sizes;
     newOffer.colorsType = colors;
     
+    NSString *tmpDescription = [offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    tmpDescription = [tmpDescription stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+    NSMutableAttributedString *attDescription = [[NSMutableAttributedString alloc] initWithString:tmpDescription];
     NSArray *properties = offerData[@"properties"];
     for (NSDictionary *property in properties) {
         if ([property[@"property_type"] isEqualToString:@"brand"]) {
-            newOffer.vendor = property[@"property_name"];
+            newOffer.brand = property[@"property_name"];
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [attDescription appendAttributedString:attTmpString];
         }
-        /*if ([property[@"property_type"] isEqualToString:@"size"]) {
-            [sizes addObject:property[@"property_name"]];
+        if ([property[@"property_type"] isEqualToString:@"country_production"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [attDescription appendAttributedString:attTmpString];
         }
-        if ([property[@"property_type"] isEqualToString:@"color"]) {
-            [colors addObject:property[@"property_name"]];
-        }*/
     }
-    
+    newOffer.descriptionText = attDescription;
     NSDictionary *images = offerData[@"images"];
     NSMutableDictionary *pictures = [NSMutableDictionary dictionary];
     for (NSString *key in images) {
