@@ -18,6 +18,7 @@
 "shoppingCargViewController.summaryPrice" = "Итого: %ld грн.";
 "shoppingCartViewController.takeOrderButton.title" = "Оформить заказ";
 "shoppingCartViewController.historyButton.title" = "История";
+"shoppingCartViewController.deleteButton.title" = "Удалить";
 
 "shoppingCartCell.size" = "Размер: %@";
 "shoppingCartCell.color" = "Цвет: %@";
