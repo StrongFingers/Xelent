@@ -116,7 +116,7 @@
 }
 
 - (IBAction)addToShoppingCart:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil userInfo:@{}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil userInfo:@{@"color" : [self.colors allKeysForObject:self.selectedColor][0], @"size" : self.selectedSize}];
 }
 
 @end

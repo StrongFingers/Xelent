@@ -60,7 +60,7 @@
     [regex enumerateMatchesInString:outputString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSInteger length = [outputString length] - [result rangeAtIndex:0].location - 1;
         NSRange subStringRange = NSMakeRange([result rangeAtIndex:0].location + 1, length);
-        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:subStringRange];
+        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont mediumFont:13] range:subStringRange];
     }];
     return mutableAttributedString;
 }

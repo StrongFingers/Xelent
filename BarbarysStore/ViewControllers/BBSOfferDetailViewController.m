@@ -52,8 +52,9 @@
     self.shoppingCartNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
         XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
         BBSCartOffer *cartOffer = [[BBSCartOffer alloc] initWithOffer:self.offer];
-        cartOffer.choosedColor = @"Snow white";
-        cartOffer.size = @"M";
+        NSString *colorId = note.userInfo[@"color"];
+        cartOffer.choosedColor = self.offer.colorsType[colorId][0][@"color_name"];
+        cartOffer.size = note.userInfo[@"size"];
         cartOffer.quantity = @"1";
         [dbManager addToShoppingCart:cartOffer];
     }];
