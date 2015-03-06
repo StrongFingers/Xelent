@@ -41,6 +41,7 @@
     }
     [self.db executeUpdate:@"create table favorites(offerId text, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob)"];
     [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, description text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
+    [self.db executeUpdate:@"create table history (id integer primary key, date text, summaryPrice text, saleValue text, offers blob)"];
 }
 
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId {
@@ -232,6 +233,34 @@
         }
     }];
     return offer;
+}
+
+- (void)addToHistory:(BBSHistoryItem *)historyItem {
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"insert into history (date, summaryPrice, saleValue, offers) values (?, ?, ?, ?)", historyItem.createDate, historyItem.summaryPrice, historyItem.saleValue, [NSKeyedArchiver archivedDataWithRootObject:historyItem.offers]];
+    }];
+}
+
+- (NSArray *)loadFromHistory {
+    if (!self.db.open) {
+        [self.db open];
+    }
+    NSMutableArray *offers = [[NSMutableArray alloc] init];
+    NSString *query = [NSString stringWithFormat:@"select * from history"];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            __block BBSHistoryItem *offer = [[BBSHistoryItem alloc] init];
+            offer.createDate = [s stringForColumnIndex:1];
+            offer.summaryPrice = [s stringForColumnIndex:2];
+            offer.saleValue = [s stringForColumnIndex:3];
+            offer.offers = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:4]];
+            [offers addObject:offer];
+        }
+    }];
+    return offers;
 }
 
 @end

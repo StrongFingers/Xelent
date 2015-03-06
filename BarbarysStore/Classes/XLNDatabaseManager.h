@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BBSOffer.h"
 #import "BBSCartOffer.h"
+#import "BBSHistoryItem.h"
 
 @interface XLNDatabaseManager : NSObject
 
@@ -23,5 +24,7 @@
 - (NSArray *)getShoppingCart;
 - (NSInteger)countOfRows:(BBSOffer *)offer;
 - (BBSCartOffer *)cartOfferById:(NSString *)offerId;
+- (void)addToHistory:(BBSHistoryItem *)historyItem;
+- (NSArray *)loadFromHistory;
 
 @end

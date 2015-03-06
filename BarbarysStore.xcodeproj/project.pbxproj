@@ -38,6 +38,10 @@
 		325669001A89C67F00A166E3 /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 325668FF1A89C67F00A166E3 /* categories.plist */; };
 		325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */; };
 		325669061A8A211500A166E3 /* BBSOfferDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325669051A8A211500A166E3 /* BBSOfferDetailTopCell.m */; };
+		325685471AA80FAF00631DEB /* BBSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325685461AA80FAF00631DEB /* BBSHistoryViewController.m */; };
+		3256854B1AA8128C00631DEB /* BBSHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256854A1AA8128C00631DEB /* BBSHistoryCell.m */; };
+		3256854D1AA8197E00631DEB /* BBSHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3256854C1AA8197E00631DEB /* BBSHistorySectionHeader.xib */; };
+		325685501AA8269100631DEB /* BBSHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256854F1AA8269100631DEB /* BBSHistoryItem.m */; };
 		325711A71AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325711A61AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib */; };
 		3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */; };
 		3257E2311A88764B0094C5F9 /* XLNLocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257E2301A88764B0094C5F9 /* XLNLocalNotifications.m */; };
@@ -132,6 +136,13 @@
 		325669021A89FDE600A166E3 /* BBSOfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailViewController.m; sourceTree = "<group>"; };
 		325669041A8A211500A166E3 /* BBSOfferDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferDetailTopCell.h; sourceTree = "<group>"; };
 		325669051A8A211500A166E3 /* BBSOfferDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailTopCell.m; sourceTree = "<group>"; };
+		325685451AA80FAF00631DEB /* BBSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSHistoryViewController.h; sourceTree = "<group>"; };
+		325685461AA80FAF00631DEB /* BBSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSHistoryViewController.m; sourceTree = "<group>"; };
+		325685491AA8128C00631DEB /* BBSHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSHistoryCell.h; sourceTree = "<group>"; };
+		3256854A1AA8128C00631DEB /* BBSHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSHistoryCell.m; sourceTree = "<group>"; };
+		3256854C1AA8197E00631DEB /* BBSHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSHistorySectionHeader.xib; sourceTree = "<group>"; };
+		3256854E1AA8269100631DEB /* BBSHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSHistoryItem.h; sourceTree = "<group>"; };
+		3256854F1AA8269100631DEB /* BBSHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSHistoryItem.m; sourceTree = "<group>"; };
 		325711A61AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferDetailColorItemCell.xib; sourceTree = "<group>"; };
 		3257E22B1A886B920094C5F9 /* XLNPreferencesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNPreferencesService.h; sourceTree = "<group>"; };
 		3257E22C1A886B920094C5F9 /* XLNPreferencesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNPreferencesService.m; sourceTree = "<group>"; };
@@ -265,6 +276,7 @@
 		3253975C1A7F3D310097DBA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				325685481AA8127800631DEB /* History */,
 				3246411C1A970FF0001B1D7E /* Catalog */,
 				3246411B1A970FDD001B1D7E /* ShoppingCart */,
 				3253891B1A8DCE7D00DC5E36 /* SideMenu */,
@@ -308,6 +320,16 @@
 				325668FF1A89C67F00A166E3 /* categories.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		325685481AA8127800631DEB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				325685491AA8128C00631DEB /* BBSHistoryCell.h */,
+				3256854A1AA8128C00631DEB /* BBSHistoryCell.m */,
+				3256854C1AA8197E00631DEB /* BBSHistorySectionHeader.xib */,
+			);
+			name = History;
 			sourceTree = "<group>";
 		};
 		3257E22A1A886B920094C5F9 /* Services */ = {
@@ -442,6 +464,8 @@
 				324641161A96FC49001B1D7E /* BBSCartOffer.m */,
 				3253F4D51A8CD14A00005BDE /* BBSCategorySet.h */,
 				3253F4D61A8CD14A00005BDE /* BBSCategorySet.m */,
+				3256854E1AA8269100631DEB /* BBSHistoryItem.h */,
+				3256854F1AA8269100631DEB /* BBSHistoryItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,6 +495,8 @@
 				844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */,
 				844BE5001AA3AB9B0033EF12 /* BBSProfileEditViewController.h */,
 				844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */,
+				325685451AA80FAF00631DEB /* BBSHistoryViewController.h */,
+				325685461AA80FAF00631DEB /* BBSHistoryViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -585,6 +611,7 @@
 				324641111A96ED7A001B1D7E /* BBSOfferCollectionCellType1.xib in Resources */,
 				325BC3FC1A79EE2500A11911 /* Main.storyboard in Resources */,
 				325711A71AA0358D00E572C7 /* BBSOfferDetailColorItemCell.xib in Resources */,
+				3256854D1AA8197E00631DEB /* BBSHistorySectionHeader.xib in Resources */,
 				3253F4D41A8CC5B300005BDE /* Localizable.strings in Resources */,
 				3253F4CE1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib in Resources */,
 				325389201A8DCEB100DC5E36 /* BBSSideMenuHeaderView.xib in Resources */,
@@ -678,11 +705,13 @@
 				325397551A7F36F20097DBA1 /* BBSTabBarController.m in Sources */,
 				3253F4D11A8C6E1300005BDE /* BBSAbstractButton.m in Sources */,
 				3253F4D71A8CD14A00005BDE /* BBSCategorySet.m in Sources */,
+				325685471AA80FAF00631DEB /* BBSHistoryViewController.m in Sources */,
 				3257E22D1A886B920094C5F9 /* XLNPreferencesService.m in Sources */,
 				3257E2471A88DCFB0094C5F9 /* BBSSearchViewController.m in Sources */,
 				3253976B1A7F96A30097DBA1 /* BBSOfferCollectionViewCell.m in Sources */,
 				3253975F1A7F3D450097DBA1 /* BBSSideMenuCell.m in Sources */,
 				3257E2371A889F4D0094C5F9 /* UIImage+Alpha.m in Sources */,
+				325685501AA8269100631DEB /* BBSHistoryItem.m in Sources */,
 				84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */,
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				324516D91A9DAACD009D1EFC /* BBSAPIRequest.m in Sources */,
@@ -695,6 +724,7 @@
 				324DE0D61A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.m in Sources */,
 				3257E23E1A88CBBA0094C5F9 /* BBSShoppingCartViewController.m in Sources */,
 				325BC4231A7A000900A11911 /* XLNDatabaseManager.m in Sources */,
+				3256854B1AA8128C00631DEB /* BBSHistoryCell.m in Sources */,
 				324790BE1A9336480052BD16 /* BBSPhotoPagingViewController.m in Sources */,
 				325BC3F31A79EE2500A11911 /* AppDelegate.m in Sources */,
 				3257E2411A88CBC50094C5F9 /* BBSProfileViewController.m in Sources */,

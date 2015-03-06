@@ -149,4 +149,14 @@
     [manager removeFromShoppingCart:offer];
 }
 
+- (void)addToHistory:(BBSHistoryItem *)historyItem {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    [manager addToHistory:historyItem];
+}
+
+- (NSArray *)loadFromHistory {
+    XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+    return [manager loadFromHistory];
+}
+
 @end
