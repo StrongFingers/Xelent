@@ -29,15 +29,6 @@ PODS:
     - FMDB/common
   - Masonry (0.6.1)
   - MBProgressHUD (0.9.1)
-  - MWFeedParser (1.0.1):
-    - MWFeedParser/FeedParser (= 1.0.1)
-    - MWFeedParser/NSDate+InternetDateTime (= 1.0.1)
-    - MWFeedParser/NSString+HTML (= 1.0.1)
-  - MWFeedParser/FeedParser (1.0.1):
-    - MWFeedParser/NSDate+InternetDateTime
-    - MWFeedParser/NSString+HTML
-  - MWFeedParser/NSDate+InternetDateTime (1.0.1)
-  - MWFeedParser/NSString+HTML (1.0.1)
   - NMRangeSlider (1.2.1)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -50,7 +41,6 @@ DEPENDENCIES:
   - CCBottomRefreshControl
   - FMDB
   - MBProgressHUD
-  - MWFeedParser
   - NMRangeSlider
   - SDWebImage
   - SWRevealViewController
@@ -62,7 +52,6 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a

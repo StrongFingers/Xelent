@@ -9,7 +9,6 @@
 #import "BBSOfferManager.h"
 #import "XLNDatabaseManager.h"
 #import "StripHTMLCategory.h"
-#import <MWFeedParser/NSString+HTML.h>
 @interface BBSOfferManager ()
 
 @property (nonatomic, strong) NSArray *offers;

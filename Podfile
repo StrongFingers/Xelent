@@ -11,7 +11,6 @@ pod 'AFNetworking'
 pod 'MBProgressHUD'
 #pod 'CrashlyticsFramework'
 pod 'CCBottomRefreshControl'
-pod 'MWFeedParser'
 end
 
 target 'BarbarysStoreTests' do
