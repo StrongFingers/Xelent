@@ -121,7 +121,7 @@
             break;
         case 3:
            // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            return [XLNCommonMethods findHeightForText:[self.offer.sv_brandDescription string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.sv_brandDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
             //return 100;
             break;
         case 4:
@@ -184,7 +184,9 @@
             cell.textLabel.text = self.offer.descriptionText_nonAtributed;
             break;
         case 3:
-           // cell.textLabel.text = self.offer.brand.description;
+            
+            
+            
             cell.textLabel.text = self.offer.sv_brandDescription;
 
             break;

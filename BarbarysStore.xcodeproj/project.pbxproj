@@ -69,6 +69,7 @@
 		844BE4FF1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */; };
 		844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */; };
 		84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84578B551A9F0982007BE782 /* BBSDiscountViewController.m */; };
+		9A55F9101B48485A00AE3CC4 /* StripHTMLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A55F90F1B48485A00AE3CC4 /* StripHTMLCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +196,8 @@
 		844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSProfileEditViewController.m; sourceTree = "<group>"; };
 		84578B541A9F0982007BE782 /* BBSDiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSDiscountViewController.h; sourceTree = "<group>"; };
 		84578B551A9F0982007BE782 /* BBSDiscountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSDiscountViewController.m; sourceTree = "<group>"; };
+		9A55F90E1B48485A00AE3CC4 /* StripHTMLCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StripHTMLCategory.h; sourceTree = "<group>"; };
+		9A55F90F1B48485A00AE3CC4 /* StripHTMLCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StripHTMLCategory.m; sourceTree = "<group>"; };
 		A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarbarysStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -449,6 +452,8 @@
 				324516D51A9D8BE6009D1EFC /* UIFont+BBSFont.m */,
 				324516D71A9DAACD009D1EFC /* BBSAPIRequest.h */,
 				324516D81A9DAACD009D1EFC /* BBSAPIRequest.m */,
+				9A55F90E1B48485A00AE3CC4 /* StripHTMLCategory.h */,
+				9A55F90F1B48485A00AE3CC4 /* StripHTMLCategory.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				325669031A89FDE600A166E3 /* BBSOfferDetailViewController.m in Sources */,
 				3253891E1A8DCE9800DC5E36 /* BBSSideMenuHeaderView.m in Sources */,
 				325AA8E31A920818009C1A72 /* XLNCommonMethods.m in Sources */,
+				9A55F9101B48485A00AE3CC4 /* StripHTMLCategory.m in Sources */,
 				325397681A7F480C0097DBA1 /* BBSOffersCollectionController.m in Sources */,
 				325BC42D1A7A005D00A11911 /* BBSOfferManager.m in Sources */,
 				325BC4291A7A003000A11911 /* BBSOffer.m in Sources */,

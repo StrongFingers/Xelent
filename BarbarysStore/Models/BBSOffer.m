@@ -24,7 +24,7 @@
         self.color = @"";
         self.gender = @"";
         self.material = @"";
-        self.sv_brandDescription = @" elsewhere";
+        self.sv_brandDescription = @"";
        // self.sv_productComposition = @"";
     }
     return self;

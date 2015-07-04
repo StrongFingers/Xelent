@@ -8,7 +8,7 @@
 
 #import "BBSOfferManager.h"
 #import "XLNDatabaseManager.h"
-
+#import "StripHTMLCategory.h"
 @interface BBSOfferManager ()
 
 @property (nonatomic, strong) NSArray *offers;
@@ -55,18 +55,23 @@
     newOffer.price = offerData[@"product_price"];
     
     //changed
+//    NSArray *sv_brandDescription = offerData[@"brand"];
+//    NSString *brandDescriptions = [NSString string];
+//    for (NSDictionary *brand in sv_brandDescription){
+//        NSString *sv_brand_about_description = @"brand_about_description";
+//        NSString *meta_key = @"meta_key";
+//
+//        if ([sv_brandDescription[brand] ] == sv_brand_about_description){
+//            brandDescriptions=[brand valueForKey:meta_value];
+//        } ;//else {brandDescriptions= @"NOT SUCCEED";};
+//    }
     NSArray *sv_brandDescription = offerData[@"brand"];
-    NSString *brandDescriptions = [NSString string];
-    for (NSDictionary *brand in sv_brandDescription){
-        NSString *sv_brand_about_description = @"brand_about_description";
-        NSString *meta_key = @"meta_key";
-        NSString *meta_value = @"meta_value";
-        if ([brand valueForKey:meta_key] == sv_brand_about_description){
-            brandDescriptions=[brand valueForKey:meta_value];
-        } ;//else {brandDescriptions= @"NOT SUCCEED";};
-    }
-    
-    newOffer.sv_brandDescription = brandDescriptions;
+    NSString *brandDescriptions = @"";
+    NSString *meta_value = @"meta_value";
+    brandDescriptions = [sv_brandDescription[1] objectForKey:meta_value];
+
+    newOffer.sv_brandDescription =brandDescriptions;
+
     
     NSArray *items = offerData[@"items"];
     NSMutableDictionary *sizes = [NSMutableDictionary dictionary];
