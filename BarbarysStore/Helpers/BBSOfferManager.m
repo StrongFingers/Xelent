@@ -9,6 +9,7 @@
 #import "BBSOfferManager.h"
 #import "XLNDatabaseManager.h"
 #import "StripHTMLCategory.h"
+#import <MWFeedParser/NSString+HTML.h>
 @interface BBSOfferManager ()
 
 @property (nonatomic, strong) NSArray *offers;
@@ -53,24 +54,13 @@
     //newOffer.descriptionText = offerData[@"product_description"];
     newOffer.model = offerData[@"product_name"];
     newOffer.price = offerData[@"product_price"];
-    
-    //changed
-//    NSArray *sv_brandDescription = offerData[@"brand"];
-//    NSString *brandDescriptions = [NSString string];
-//    for (NSDictionary *brand in sv_brandDescription){
-//        NSString *sv_brand_about_description = @"brand_about_description";
-//        NSString *meta_key = @"meta_key";
-//
-//        if ([sv_brandDescription[brand] ] == sv_brand_about_description){
-//            brandDescriptions=[brand valueForKey:meta_value];
-//        } ;//else {brandDescriptions= @"NOT SUCCEED";};
-//    }
     NSArray *sv_brandDescription = offerData[@"brand"];
+
     NSString *brandDescriptions = @"";
     NSString *meta_value = @"meta_value";
     brandDescriptions = [sv_brandDescription[1] objectForKey:meta_value];
-
-    newOffer.sv_brandDescription =brandDescriptions;
+    newOffer.sv_brandDescription = [brandDescriptions stringByStrippingHTML:brandDescriptions];
+    //newOffer.sv_brandDescription =[brandDescriptions stringByConvertingHTMLToPlainText];
 
     
     NSArray *items = offerData[@"items"];
