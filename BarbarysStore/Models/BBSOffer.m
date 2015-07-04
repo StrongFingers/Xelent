@@ -20,10 +20,12 @@
         self.brand = @"";
         self.currency = @"";
         self.price = @"";
-        self.descriptionText = @"";
+        self.descriptionText = (NSAttributedString*) @"";
         self.color = @"";
         self.gender = @"";
         self.material = @"";
+        self.sv_brandDescription = @" elsewhere";
+       // self.sv_productComposition = @"";
     }
     return self;
 }
@@ -59,6 +61,7 @@
         self.pictures = [decoder decodeObjectForKey:@"pictures"];
         self.colorsType = [decoder decodeObjectForKey:@"colorsType"];
         self.sizesType = [decoder decodeObjectForKey:@"sizesType"];
+        self.sv_brandDescription = [decoder decodeObjectForKey:@"sv_brand_descryption"];
     }
     return self;
 }
@@ -80,6 +83,8 @@
     [encoder encodeObject:self.pictures forKey:@"pictures"];
     [encoder encodeObject:self.colorsType forKey:@"colorsType"];
     [encoder encodeObject:self.sizesType forKey:@"sizesType"];
+    [encoder encodeObject:self.sv_brandDescription forKey:@"sv_brand_description"];
+  //  [encoder encodeObject:self.sv_productComposition forKey:@"product_composition"];
 }
 
 @end

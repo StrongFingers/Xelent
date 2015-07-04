@@ -69,7 +69,8 @@
         offer.model = [TBXML textForElement:modelElement];
         TBXMLElement *descriptionElement = [TBXML childElementNamed:@"description" parentElement:offerElement];
         if (descriptionElement) {
-            offer.descriptionText = [TBXML textForElement:descriptionElement];
+           // offer.descriptionText = [TBXML textForElement:descriptionElement];
+            offer.descriptionText_nonAtributed = [TBXML textForElement:descriptionElement];
         }
         
         TBXMLElement *pictureElement = [TBXML childElementNamed:@"picture" parentElement:offerElement];

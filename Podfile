@@ -9,7 +9,7 @@ pod 'SDWebImage'
 pod 'NMRangeSlider'
 pod 'AFNetworking'
 pod 'MBProgressHUD'
-pod 'CrashlyticsFramework'
+#pod 'CrashlyticsFramework'
 pod 'CCBottomRefreshControl'
 end
 

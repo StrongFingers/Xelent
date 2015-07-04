@@ -29,6 +29,7 @@
     self.brand = offer.brand;
     self.currency = offer.currency;
     self.price = offer.price;
+    self.sv_brandDescription = offer.sv_brandDescription;
     self.descriptionText = offer.descriptionText;
     self.color = offer.color;
     self.gender = offer.gender;

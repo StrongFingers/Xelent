@@ -39,6 +39,9 @@
         offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
+        //changed
+       // offer.sv_brandDescription = offerItem[@""];
+       // offer.sv_productComposition = offerItem[@""];
         offer.color = offerItem[@"color_id"];
         [offers addObject:offer];
     }
@@ -51,6 +54,20 @@
     newOffer.model = offerData[@"product_name"];
     newOffer.price = offerData[@"product_price"];
     
+    //changed
+    NSArray *sv_brandDescription = offerData[@"brand"];
+    NSString *brandDescriptions = [NSString string];
+    for (NSDictionary *brand in sv_brandDescription){
+        NSString *sv_brand_about_description = @"brand_about_description";
+        NSString *meta_key = @"meta_key";
+        NSString *meta_value = @"meta_value";
+        if ([brand valueForKey:meta_key] == sv_brand_about_description){
+            brandDescriptions=[brand valueForKey:meta_value];
+        } ;//else {brandDescriptions= @"NOT SUCCEED";};
+    }
+    
+    newOffer.sv_brandDescription = brandDescriptions;
+    
     NSArray *items = offerData[@"items"];
     NSMutableDictionary *sizes = [NSMutableDictionary dictionary];
     NSMutableDictionary *colors = [NSMutableDictionary dictionary];
@@ -60,7 +77,7 @@
             NSMutableArray *sizeItems = [NSMutableArray array];
             [sizeItems addObject:item];
             [sizes setObject:sizeItems forKey:sizeName];
-        } else {
+        } else {//probably here issue with wrong sizes
             NSMutableArray *sizeItems = sizes[sizeName];
             [sizeItems addObject:item];
             [sizes setObject:sizeItems forKey:sizeName];
@@ -79,7 +96,7 @@
     }
     newOffer.sizesType = sizes;
     newOffer.colorsType = colors;
-    
+
     NSString *tmpDescription = [offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
     tmpDescription = [tmpDescription stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
     NSMutableAttributedString *attDescription = [[NSMutableAttributedString alloc] initWithString:tmpDescription];

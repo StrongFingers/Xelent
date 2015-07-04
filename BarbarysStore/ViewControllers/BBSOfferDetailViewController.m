@@ -120,7 +120,9 @@
             return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:18]].height;
             break;
         case 3:
-            return 150;
+           // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.sv_brandDescription string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            //return 100;
             break;
         case 4:
             return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.deliveryText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
@@ -173,13 +175,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
     cell.textLabel.font = [UIFont lightFont:15];
+    
+    //Next switch load an text to expanding cells of detail offer card
     switch (indexPath.section) {
         case 2:
             cell.textLabel.font = [UIFont lightFont:17];
-            cell.textLabel.attributedText = self.offer.descriptionText;
+          //  cell.textLabel.attributedText = self.offer.descriptionText;
+            cell.textLabel.text = self.offer.descriptionText_nonAtributed;
             break;
         case 3:
-            cell.textLabel.text = self.offer.model;
+           // cell.textLabel.text = self.offer.brand.description;
+            cell.textLabel.text = self.offer.sv_brandDescription;
+
             break;
         case 4:
             cell.textLabel.text = LOC(@"offerDetail.deliveryText");

@@ -21,6 +21,7 @@
 @implementation XLNDatabaseManager
 
 - (instancetype)init
+//init and open DB from path
 {
     self = [super init];
     if (self) {
@@ -220,6 +221,8 @@
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
             offer.brand = [s stringForColumnIndex:7];
+            //changed
+            offer.sv_brandDescription = [s stringForColumnIndex:6];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];
             offer.gender = [s stringForColumnIndex:10];

@@ -23,7 +23,6 @@ PODS:
   - CCBottomRefreshControl (0.3.1):
     - ReactiveCocoa (<= 2.0.0)
     - UIView+TKGeometry
-  - CrashlyticsFramework (2.2.9)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -50,7 +49,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - CCBottomRefreshControl
-  - CrashlyticsFramework
   - FMDB
   - MBProgressHUD
   - NMRangeSlider
@@ -59,16 +57,15 @@ DEPENDENCIES:
   - TBXML
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  CCBottomRefreshControl: 919ae5ac102b421da37fcda0ae40dd2cf625b1c7
-  CrashlyticsFramework: 013bae3c30d5b9bfad1aa10008e155e18473984c
-  FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  NMRangeSlider: af83627c6da11b39a6147c223f6674b3c57b5b44
-  ReactiveCocoa: 27cc8d4b5baa6460881f961131ce917813538929
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
-  TBXML: a279440030ba55c40e1455cafba3b0a44e1963d4
-  UIView+TKGeometry: 60a88dcf2af8420175cb1c789a02d6254ebb89a7
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  CCBottomRefreshControl: e56c9f08a23941327dc9ba1398b03cf347541acd
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
+  ReactiveCocoa: c5347d7b1c348d22a85800e14e89da84c5254cfb
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
+  TBXML: 9f9dadb239f2f2af1dadb87fe43a0ce6e479379a
+  UIView+TKGeometry: bef0d7727753910d66d6fa51a3128ae6908047ef
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.2
