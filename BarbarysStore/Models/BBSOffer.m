@@ -20,11 +20,11 @@
         self.brand = @"";
         self.currency = @"";
         self.price = @"";
-        self.descriptionText = (NSAttributedString*) @"";
+        self.sv_descriptionText = (NSAttributedString*) @"";
         self.color = @"";
         self.gender = @"";
         self.material = @"";
-        self.sv_brandDescription = @"";
+        self.brandAboutDescription = @"";
        // self.sv_productComposition = @"";
     }
     return self;
@@ -54,14 +54,14 @@
         self.brand = [decoder decodeObjectForKey:@"vendor"];
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
-        self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
+        self.sv_descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
         self.pictures = [decoder decodeObjectForKey:@"pictures"];
         self.colorsType = [decoder decodeObjectForKey:@"colorsType"];
         self.sizesType = [decoder decodeObjectForKey:@"sizesType"];
-        self.sv_brandDescription = [decoder decodeObjectForKey:@"sv_brand_descryption"];
+        self.brandAboutDescription = [decoder decodeObjectForKey:@"sv_brand_descryption"];
     }
     return self;
 }
@@ -76,14 +76,14 @@
     [encoder encodeObject:self.brand forKey:@"vendor"];
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
-    [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
+    [encoder encodeObject:self.sv_descriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];
     [encoder encodeObject:self.pictures forKey:@"pictures"];
     [encoder encodeObject:self.colorsType forKey:@"colorsType"];
     [encoder encodeObject:self.sizesType forKey:@"sizesType"];
-    [encoder encodeObject:self.sv_brandDescription forKey:@"sv_brand_description"];
+    [encoder encodeObject:self.brandAboutDescription forKey:@"sv_brand_description"];
   //  [encoder encodeObject:self.sv_productComposition forKey:@"product_composition"];
 }
 

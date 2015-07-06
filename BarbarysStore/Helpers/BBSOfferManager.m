@@ -8,7 +8,6 @@
 
 #import "BBSOfferManager.h"
 #import "XLNDatabaseManager.h"
-#import "StripHTMLCategory.h"
 @interface BBSOfferManager ()
 
 @property (nonatomic, strong) NSArray *offers;
@@ -39,9 +38,6 @@
         offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
-        //changed
-       // offer.sv_brandDescription = offerItem[@""];
-       // offer.sv_productComposition = offerItem[@""];
         offer.color = offerItem[@"color_id"];
         [offers addObject:offer];
     }
@@ -50,17 +46,19 @@
 
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData {
     BBSOffer *newOffer = [[BBSOffer alloc] init];
-    //newOffer.descriptionText = offerData[@"product_description"];
     newOffer.model = offerData[@"product_name"];
     newOffer.price = offerData[@"product_price"];
-    NSArray *sv_brandDescription = offerData[@"brand"];
-
+    
     NSString *brandDescriptions = @"";
     NSString *meta_value = @"meta_value";
-    brandDescriptions = [sv_brandDescription[1] objectForKey:meta_value];
-    newOffer.sv_brandDescription = [brandDescriptions stringByStrippingHTML:brandDescriptions];
-    //newOffer.sv_brandDescription =[brandDescriptions stringByConvertingHTMLToPlainText];
-
+    
+    NSArray *brandOfferData = offerData[@"brand"];
+    for (NSDictionary *brand in brandOfferData) {
+        if ([brand[@"meta_key"]  isEqual: @"brand_about_description"]) {
+            brandDescriptions =[brand objectForKey:meta_value];
+        }
+    }
+    newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
     
     NSArray *items = offerData[@"items"];
     NSMutableDictionary *sizes = [NSMutableDictionary dictionary];
@@ -91,26 +89,63 @@
     newOffer.sizesType = sizes;
     newOffer.colorsType = colors;
 
-    NSString *tmpDescription = [offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-    tmpDescription = [tmpDescription stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
-    NSMutableAttributedString *attDescription = [[NSMutableAttributedString alloc] initWithString:tmpDescription];
+    NSString *concreteOfferDescription = [[offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+    NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
     NSArray *properties = offerData[@"properties"];
     for (NSDictionary *property in properties) {
         if ([property[@"property_type"] isEqualToString:@"brand"]) {
             newOffer.brand = property[@"property_name"];
-            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
-            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
-            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
-            [attDescription appendAttributedString:attTmpString];
+            NSString *brandString = [NSString stringWithFormat:@"\n\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brandString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brandString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
         }
         if ([property[@"property_type"] isEqualToString:@"country_production"]) {
             NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
             NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
             [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
-            [attDescription appendAttributedString:attTmpString];
+            [atributedDescription appendAttributedString:attTmpString];
         }
+        if ([property[@"property_type"] isEqualToString:@"material"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        if ([property[@"property_type"] isEqualToString:@"style"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        if ([property[@"property_type"] isEqualToString:@"fashion"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        if ([property[@"property_type"] isEqualToString:@"texture"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        if ([property[@"property_type"] isEqualToString:@"season"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        if ([property[@"property_type"] isEqualToString:@"lens_colour"]) {
+            NSString *brantString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brantString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
+            [atributedDescription appendAttributedString:attTmpString];
+        }
+        
     }
-    newOffer.descriptionText = attDescription;
+
+    newOffer.sv_descriptionText = atributedDescription;
     NSDictionary *images = offerData[@"images"];
     NSMutableDictionary *pictures = [NSMutableDictionary dictionary];
     for (NSString *key in images) {

@@ -70,7 +70,7 @@
         TBXMLElement *descriptionElement = [TBXML childElementNamed:@"description" parentElement:offerElement];
         if (descriptionElement) {
            // offer.descriptionText = [TBXML textForElement:descriptionElement];
-            offer.descriptionText_nonAtributed = [TBXML textForElement:descriptionElement];
+            offer.sv_descriptionText = (NSAttributedString *)[TBXML textForElement:descriptionElement];
         }
         
         TBXMLElement *pictureElement = [TBXML childElementNamed:@"picture" parentElement:offerElement];

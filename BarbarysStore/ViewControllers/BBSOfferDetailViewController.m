@@ -117,11 +117,11 @@
             return 225;
             break;
         case 2:
-            return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:18]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.sv_descriptionText string] havingWidth:320 andFont:[UIFont lightFont:18]].height;
             break;
         case 3:
            // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            return [XLNCommonMethods findHeightForText:[self.offer.sv_brandDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
             //return 100;
             break;
         case 4:
@@ -180,14 +180,13 @@
     switch (indexPath.section) {
         case 2:
             cell.textLabel.font = [UIFont lightFont:17];
-          //  cell.textLabel.attributedText = self.offer.descriptionText;
-            cell.textLabel.text = self.offer.descriptionText_nonAtributed;
+            cell.textLabel.attributedText = self.offer.sv_descriptionText;
             break;
         case 3:
             
             
             
-            cell.textLabel.text = self.offer.sv_brandDescription;
+            cell.textLabel.text = self.offer.brandAboutDescription;
 
             break;
         case 4:

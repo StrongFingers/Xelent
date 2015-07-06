@@ -18,11 +18,11 @@
 @property (nonatomic, strong) NSString *categoryId;
 @property (nonatomic, strong) NSString *brand;
 //changed
-@property (nonatomic, strong) NSString *sv_brandDescription;
+@property (nonatomic, strong) NSString *brandAboutDescription;
 @property (nonatomic, strong) NSString *sv_productComposition;
 @property (nonatomic, strong) NSString *model;
-@property (nonatomic, strong) NSAttributedString *descriptionText;
-@property (nonatomic, strong) NSString *descriptionText_nonAtributed;
+@property (nonatomic, strong) NSAttributedString *sv_descriptionText;
+
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *material;
