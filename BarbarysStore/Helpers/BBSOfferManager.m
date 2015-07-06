@@ -51,13 +51,15 @@
     
     NSString *brandDescriptions = @"";
     NSString *meta_value = @"meta_value";
-    
     NSArray *brandOfferData = offerData[@"brand"];
-    for (NSDictionary *brand in brandOfferData) {
-        if ([brand[@"meta_key"]  isEqual: @"brand_about_description"]) {
-            brandDescriptions =[brand objectForKey:meta_value];
+    if ( brandOfferData != NULL){
+        for (NSDictionary *brand in brandOfferData) {
+            if ([brand[@"meta_key"]  isEqual: @"brand_about_description"]) {
+                brandDescriptions =[brand objectForKey:meta_value];
+            }
         }
-    }
+    } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
+    
     newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
     
     NSArray *items = offerData[@"items"];
@@ -88,7 +90,7 @@
     }
     newOffer.sizesType = sizes;
     newOffer.colorsType = colors;
-
+    
     NSString *concreteOfferDescription = [[offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
     NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
     NSArray *properties = offerData[@"properties"];
@@ -144,8 +146,8 @@
         }
         
     }
-
-    newOffer.sv_descriptionText = atributedDescription;
+    newOffer.descriptionText = atributedDescription;
+    
     NSDictionary *images = offerData[@"images"];
     NSMutableDictionary *pictures = [NSMutableDictionary dictionary];
     for (NSString *key in images) {
@@ -154,7 +156,6 @@
     newOffer.pictures = pictures;
     return newOffer;
 }
-
 - (void)updateOfferInFavorites:(BBSOffer *)offer state:(offerState)state {
     XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
     switch (state) {

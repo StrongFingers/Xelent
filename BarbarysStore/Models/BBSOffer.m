@@ -20,7 +20,7 @@
         self.brand = @"";
         self.currency = @"";
         self.price = @"";
-        self.sv_descriptionText = (NSAttributedString*) @"";
+        self.descriptionText = (NSAttributedString*) @"";
         self.color = @"";
         self.gender = @"";
         self.material = @"";
@@ -54,7 +54,7 @@
         self.brand = [decoder decodeObjectForKey:@"vendor"];
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
-        self.sv_descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
+        self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
@@ -76,7 +76,7 @@
     [encoder encodeObject:self.brand forKey:@"vendor"];
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
-    [encoder encodeObject:self.sv_descriptionText forKey:@"descriptionText"];
+    [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];

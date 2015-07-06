@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSString *brandAboutDescription;
 @property (nonatomic, strong) NSString *sv_productComposition;
 @property (nonatomic, strong) NSString *model;
-@property (nonatomic, strong) NSAttributedString *sv_descriptionText;
+@property (nonatomic, strong) NSAttributedString *descriptionText;
 
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
