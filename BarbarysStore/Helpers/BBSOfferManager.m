@@ -75,7 +75,7 @@
             NSMutableArray *sizeItems = sizes[sizeName];
             [sizeItems addObject:item];
             [sizes setObject:sizeItems forKey:sizeName];
-        }
+        } //overwrite when find size that already in dictionary.WHY?
         
         NSString *colorId = item[@"color_id"];
         if (!colors[colorId]) {
@@ -91,14 +91,69 @@
     newOffer.sizesType = sizes;
     newOffer.colorsType = colors;
     
-    NSString *concreteOfferDescription = [[offerData[@"product_description"] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+    NSString *concreteOfferDescription = @"";
+    if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [[[concreteOfferDescription stringByAppendingString:offerData[@"product_description"]] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+        }
+    
+    //NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
+    NSArray *properties = offerData[@"properties"];
+    if (properties)
+    {for (NSDictionary *property in properties)
+         {
+            if ([property[@"property_type"] isEqualToString:@"brand"])
+            {
+                    newOffer.brand = property[@"property_name"];
+                    NSString *brandString = [NSString stringWithFormat:@"\n\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                    concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
+            }
+            if ([property[@"property_type"] isEqualToString:@"country_production"]) {
+                NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+            }
+            if ([property[@"property_type"] isEqualToString:@"material"]) {
+                NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+            }
+             if ([property[@"property_type"] isEqualToString:@"style"]) {
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+
+             }
+             if ([property[@"property_type"] isEqualToString:@"fashion"]) {
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+
+             }
+             if ([property[@"property_type"] isEqualToString:@"texture"]) {
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+
+             }
+             if ([property[@"property_type"] isEqualToString:@"season"]) {
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+
+             }
+             if ([property[@"property_type"] isEqualToString:@"lens_colour"]) {
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
+
+             }
+ 
+             
+        }
+    }
+    newOffer.descriptionText2 =concreteOfferDescription;
+    
+    
+    /*
     NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
     NSArray *properties = offerData[@"properties"];
-    for (NSDictionary *property in properties) {
+    if (properties) {for (NSDictionary *property in properties) {
         if ([property[@"property_type"] isEqualToString:@"brand"]) {
             newOffer.brand = property[@"property_name"];
             NSString *brandString = [NSString stringWithFormat:@"\n\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
-            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brandString attributes:@{NSFontAttributeName : [UIFont lightFont:15]}];
+            NSMutableAttributedString *attTmpString = [[NSMutableAttributedString alloc] initWithString:brandString attributes:@{NSFontAttributeName : [UIFont lightFont:18]}];
             [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brandString rangeOfString:@":"].location)];
             [atributedDescription appendAttributedString:attTmpString];
         }
@@ -144,18 +199,25 @@
             [attTmpString addAttribute:NSFontAttributeName value:[UIFont mediumFont:15] range:NSMakeRange(0, [brantString rangeOfString:@":"].location)];
             [atributedDescription appendAttributedString:attTmpString];
         }
+     newOffer.descriptionText = atributedDescription;
+
+*/
         
-    }
-    newOffer.descriptionText = atributedDescription;
     
+
+
+    
+       
     NSDictionary *images = offerData[@"images"];
     NSMutableDictionary *pictures = [NSMutableDictionary dictionary];
     for (NSString *key in images) {
         [pictures setObject:images[key] forKey:key];
-    }
+        }
     newOffer.pictures = pictures;
     return newOffer;
 }
+
+
 - (void)updateOfferInFavorites:(BBSOffer *)offer state:(offerState)state {
     XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
     switch (state) {

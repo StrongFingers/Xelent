@@ -21,11 +21,11 @@
         self.currency = @"";
         self.price = @"";
         self.descriptionText = (NSAttributedString*) @"";
+        self.descriptionText2 =@"";
         self.color = @"";
         self.gender = @"";
         self.material = @"";
         self.brandAboutDescription = @"";
-       // self.sv_productComposition = @"";
     }
     return self;
 }
@@ -55,6 +55,7 @@
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
         self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
+        self.descriptionText2 = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
@@ -77,6 +78,7 @@
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
     [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
+    [encoder encodeObject:self.descriptionText2 forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];
@@ -84,7 +86,6 @@
     [encoder encodeObject:self.colorsType forKey:@"colorsType"];
     [encoder encodeObject:self.sizesType forKey:@"sizesType"];
     [encoder encodeObject:self.brandAboutDescription forKey:@"sv_brand_description"];
-  //  [encoder encodeObject:self.sv_productComposition forKey:@"product_composition"];
 }
 
 @end
