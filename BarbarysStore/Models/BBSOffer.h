@@ -21,8 +21,8 @@
 @property (nonatomic, strong) NSString *brandAboutDescription;
 
 @property (nonatomic, strong) NSString *model;
-@property (nonatomic, strong) NSAttributedString *descriptionText;
-@property (nonatomic, strong) NSString *descriptionText2;
+//@property (nonatomic, strong) NSAttributedString *descriptionText;
+@property (nonatomic, strong) NSString *descriptionText;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *material;

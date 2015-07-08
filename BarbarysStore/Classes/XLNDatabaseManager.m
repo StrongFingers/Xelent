@@ -34,13 +34,14 @@
 
 - (void)createDB {
     if ([[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:nil]) {
-        //[[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];
+        //delete this stroke after final release
+        // [[NSFileManager defaultManager] removeItemAtPath:self.path error:nil];
         return;
     }
     if (![self.db open]) {
         return;
     }
-    [self.db executeUpdate:@"create table favorites(offerId text, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob)"];
+    [self.db executeUpdate:@"create table favorites(offerId text, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob, brandAboutDescription text)"];
     [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
     [self.db executeUpdate:@"create table history (id integer primary key, date text, summaryPrice text, saleValue text, offers blob)"];
 }
@@ -57,7 +58,7 @@
         while ([s next]) {
             __block BBSOffer *offer = [[BBSOffer alloc] init];
             offer.offerId = [s stringForColumnIndex:0];
-            offer.descriptionText = (NSAttributedString *)[s stringForColumnIndex:1];
+            offer.descriptionText = [s stringForColumnIndex:1];
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
@@ -67,6 +68,7 @@
             offer.gender = [s stringForColumnIndex:10];
             offer.material = [s stringForColumnIndex:11];
             //offer.pictures = [self getPicturesForOfferId:offer.offerId];
+            offer.brandAboutDescription = [s stringForColumnIndex:15];
             [offers addObject:offer];
         }
     }];
@@ -93,7 +95,7 @@
 - (void)addToFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"replace into favorites (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
+        [db executeUpdate:@"replace into favorites (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures, brandAboutDescription) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures], offer.brandAboutDescription];
     }];
 }
 
@@ -123,7 +125,7 @@
         while ([s next]) {
             __block BBSOffer *offer = [[BBSOffer alloc] init];
             offer.offerId = [s stringForColumnIndex:0];
-            offer.descriptionText = (NSAttributedString *)[s stringForColumnIndex:1];
+            offer.descriptionText = [s  stringForColumnIndex:1];
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
@@ -135,6 +137,7 @@
             offer.colorsType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:12]];
             offer.sizesType = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:13]];
             offer.pictures = [NSKeyedUnarchiver unarchiveObjectWithData:[s dataForColumnIndex:14]];
+            offer.brandAboutDescription = [s stringForColumnIndex:15];
             [offers addObject:offer];
         }
     }];
@@ -167,7 +170,7 @@
         while ([s next]) {
             __block BBSCartOffer *offer = [[BBSCartOffer alloc] init];
             offer.offerId = [s stringForColumnIndex:0];
-            offer.descriptionText = (NSAttributedString *)[s stringForColumnIndex:1];
+            offer.descriptionText = [s stringForColumnIndex:1];
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
@@ -216,7 +219,7 @@
         FMResultSet *s = [self.db executeQuery:query];
         while ([s next]) {
             offer.offerId = [s stringForColumnIndex:0];
-            offer.descriptionText = (NSAttributedString *)[s stringForColumnIndex:1];
+            offer.descriptionText = [s stringForColumnIndex:1];
             offer.url = [s stringForColumnIndex:3];
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
