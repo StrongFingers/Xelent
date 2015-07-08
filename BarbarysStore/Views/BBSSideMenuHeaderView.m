@@ -43,13 +43,13 @@
     UIImage *iconImage;
     switch (index) {
         case 0:
-            iconImage = self.expanded ? [UIImage imageNamed:@"clothCategoryIconActive"] : [UIImage imageNamed:@"clothCategoryIcon"];
+            iconImage = self.expanded ? [UIImage imageNamed:@"menClothCategoryIconActive"] : [UIImage imageNamed:@"menClothCategoryIcon"];
             break;
         case 1:
-            iconImage = self.expanded ? [UIImage imageNamed:@"shoesCategoryIconActive"] : [UIImage imageNamed:@"shoesCategoryIcon"];
+            iconImage = self.expanded ? [UIImage imageNamed:@"menShoesCategoryIconActive"] : [UIImage imageNamed:@"menShoesCategoryIcon"];
             break;
         case 2:
-            iconImage = self.expanded ? [UIImage imageNamed:@"accessoriesCategoryIconActive"] : [UIImage imageNamed:@"accessoriesCategoryIcon"];
+            iconImage = self.expanded ? [UIImage imageNamed:@"menAccessoriesCategoryIconActive"] : [UIImage imageNamed:@"menAccessoriesCategoryIcon"];
             break;
     }
     return iconImage;
