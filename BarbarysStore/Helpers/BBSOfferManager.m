@@ -8,6 +8,7 @@
 
 #import "BBSOfferManager.h"
 #import "XLNDatabaseManager.h"
+#import "BBSAPIRequest.h"
 @interface BBSOfferManager ()
 
 @property (nonatomic, strong) NSArray *offers;
@@ -33,12 +34,15 @@
     NSMutableArray *offers = [[NSMutableArray alloc] init];
     for (NSDictionary *offerItem in offerData) {
         BBSOffer *offer = [[BBSOffer alloc] init];
+    //    DLog(@"\n%@",offerItem);
         offer.brand = offerItem[@"brand"];
         offer.thumbnailUrl = offerItem[@"image"];
         offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
         offer.color = offerItem[@"color_id"];
+        
+       // NSDictionary *categoryOfferData =
         [offers addObject:offer];
     }
     return offers;
@@ -105,7 +109,7 @@
             if ([property[@"property_type"] isEqualToString:@"brand"])
             {
                     newOffer.brand = property[@"property_name"];
-                    NSString *brandString = [NSString stringWithFormat:@"\n\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                    NSString *brandString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
                     concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
             }
             if ([property[@"property_type"] isEqualToString:@"country_production"]) {
@@ -147,7 +151,7 @@
     newOffer.descriptionText =concreteOfferDescription;
     
     
-        
+    
     
 
 
@@ -167,7 +171,9 @@
     XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
     switch (state) {
         case offerAdd:
-            [manager addToFavorites:offer];
+            
+            [manager getOfferToFavoriteById:offer];
+            
             break;
         case offerDelete:
             [manager removeFromFavorites:offer];

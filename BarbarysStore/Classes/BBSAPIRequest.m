@@ -7,10 +7,13 @@
 //
 
 #import "BBSAPIRequest.h"
-
 #import <AFNetworking.h>
 
+
+
+
 @implementation BBSAPIRequest
+
 
 - (id)initWithDelegate:(id<BBSAPIRequestDelegate>)delegate {
     self = [super init];
@@ -42,18 +45,23 @@
 
 #pragma mark - Main connection methods
 
+
 - (void)requestGET:(NSString *)url {
     if ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:LOC(@"alertView.error.title") message:LOC(@"alertView.connectionError.title") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         return;
+        
     }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self requestFinished:responseObject];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self requestFinishedWithError:error];
+        
     }];
 }
 
@@ -102,6 +110,7 @@
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self requestFinished:responseObject];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self requestFinishedWithError:error];
     }];

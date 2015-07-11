@@ -9,13 +9,22 @@
 #import "XLNDatabaseManager.h"
 #import "BBSOffer.h"
 #import "BBSCategory.h"
-
+#import "BBSAPIRequest.h"
 #import <FMDB.h>
 #import <sqlite3.h>
+#import "BBSOfferManager.h"
+#import <MBProgressHUD.h>
 
-@interface XLNDatabaseManager ()
+@interface XLNDatabaseManager () <BBSAPIRequestDelegate>
 @property (nonatomic, strong) FMDatabase *db;
 @property (nonatomic, strong) NSString *path;
+@property (nonatomic, strong) BBSAPIRequest *offerRequest;
+@property (nonatomic, strong) NSString *testStr;
+@property (nonatomic, strong) NSString *offerId;
+@property (nonatomic, strong) NSString *color;
+@property (nonatomic, strong) NSString *thumbnailImgUrl;
+
+
 @end
 
 @implementation XLNDatabaseManager
@@ -92,13 +101,25 @@
     return pictures;
 }
 
-- (void)addToFavorites:(BBSOffer *)offer {
-    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
-    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"replace into favorites (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures, brandAboutDescription) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures], offer.brandAboutDescription];
-    }];
+- (void)getOfferToFavoriteById:(BBSOffer *)offer {
+     self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
+     self.offer = [[BBSOffer alloc] init];
+     self.offerId = offer.offerId;
+     self.color   = offer.color;
+     self.thumbnailImgUrl = offer.thumbnailUrl;
+     [self.offerRequest getOfferById:offer.offerId];
+
+
 }
 
+- (void) addToFavorite{
+
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"replace into favorites (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, colors, sizes, pictures, brandAboutDescription) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", self.offer.offerId, self.offer.descriptionText, self.offer.url, self.self.offer.thumbnailUrl, self.offer.categoryId, self.offer.price, self.offer.currency, self.offer.brand, self.offer.model, self.offer.color, self.offer.gender, self.self.offer.material, [NSKeyedArchiver archivedDataWithRootObject:self.offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:self.offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:self.offer.pictures], self.offer.brandAboutDescription];
+    }];
+
+};
 - (void)removeFromFavorites:(BBSOffer *)offer {
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
@@ -267,6 +288,19 @@
         }
     }];
     return offers;
+}
+
+#pragma mark - BBSAPIRequest delegate
+- (void)requestFinished:(id)responseObject sender:(id)sender {
+        DLog(@"\n%@", responseObject);
+        self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
+        self.offer.offerId = self.offerId;
+        self.offer.color = self.color;
+        self.offer.thumbnailUrl = self.thumbnailImgUrl;
+        [self addToFavorite];
+}
+
+- (void)requestFinishedWithError:(NSError *)error {
 }
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "BBSOfferCollectionViewCell.h"
-
+#import <MBProgressHUD.h>
 #import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
+#import "XLNDatabaseManager.h"
 
 @interface BBSOfferCollectionViewCell ()
 
@@ -56,11 +57,13 @@
 }
 
 - (IBAction)addToFavorite:(id)sender {
+    
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer isMultiplyCell:YES];
-    if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
+    [self.delegate refreshOffers];
+    /*if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
         [self.delegate refreshOffers];
-    }
+    }*/
 }
 
 @end

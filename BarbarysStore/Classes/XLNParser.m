@@ -28,7 +28,7 @@
             [self parseRootElement:tbxmlDocument.rootXMLElement];
         }
     } failure:^(TBXML *tbxmlDocument, NSError *error) {
-        DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+        //DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
     }];
 }
 
@@ -100,7 +100,7 @@
         } while ((paramElement = paramElement->nextSibling) != nil);
         [offers addObject:offer];
     } while ((offerElement = offerElement->nextSibling) != nil);
-    DLog(@"done offers");
+   // DLog(@"done offers");
     return offers;
 }
 

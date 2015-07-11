@@ -44,6 +44,7 @@
         self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
         [self.offerRequest getOfferById:self.offerId];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+ 
     }
 }
 
@@ -278,7 +279,7 @@
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"%@", responseObject);
+    DLog(@"\n zzi_%@", responseObject);
     if (!self.fromFavorites) {
         self.offer = nil;
         self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
@@ -291,6 +292,8 @@
             [manager updateOfferInFavorites:self.offer state:offerUpdate];
         }
     }
+    
+
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 

@@ -13,9 +13,12 @@
 
 @interface XLNDatabaseManager : NSObject
 
+@property (nonatomic, strong) BBSOffer *offer;
+
 - (void)createDB;
 - (NSArray *)getAllCategories;
-- (void)addToFavorites:(BBSOffer *)offer;
+- (void)getOfferToFavoriteById:(BBSOffer *)offer;
+- (void)addToFavorite;
 - (void)removeFromFavorites:(BBSOffer *)offer;
 - (void)updateFavorite:(BBSOffer *)offer;
 - (NSArray *)getFavorites;
@@ -26,5 +29,6 @@
 - (BBSCartOffer *)cartOfferById:(NSString *)offerId;
 - (void)addToHistory:(BBSHistoryItem *)historyItem;
 - (NSArray *)loadFromHistory;
+
 
 @end
