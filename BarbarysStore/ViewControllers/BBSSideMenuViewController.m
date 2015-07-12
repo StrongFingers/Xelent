@@ -122,7 +122,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     BBSCategorySet *subcategory = self.subcategories.subcategories[section];
-    BBSSideMenuHeaderView *header = [[BBSSideMenuHeaderView alloc] headerWithTitle:subcategory.name index:section];
+    BBSSideMenuHeaderView *header = [[BBSSideMenuHeaderView alloc] headerWithTitle:subcategory.name index:section gender:self.categoriesSegmentedControl.selectedSegmentIndex];
     [header setTouchUpTarget:self selector:@selector(headerTap:)];
     return header;
 }

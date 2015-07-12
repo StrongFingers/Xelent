@@ -1031,22 +1031,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8kp-B6-bNk">
-                                <rect key="frame" x="7" y="20" width="227" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="73I-nJ-upQ"/>
-                                    <constraint firstAttribute="width" constant="227" id="Pbj-0Q-w2D"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Женщинам"/>
-                                    <segment title="Мужчинам"/>
-                                    <segment title="Детям"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="categoryChanged:" destination="da0-Sy-Lvh" eventType="valueChanged" id="TCG-Sg-XUY"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AXF-dX-jPa">
                                 <rect key="frame" x="0.0" y="69" width="240" height="411"/>
                                 <constraints>
@@ -1085,6 +1069,22 @@
                                     <outlet property="delegate" destination="da0-Sy-Lvh" id="KqC-Xv-1ab"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8kp-B6-bNk">
+                                <rect key="frame" x="7" y="20" width="227" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="73I-nJ-upQ"/>
+                                    <constraint firstAttribute="width" constant="227" id="Pbj-0Q-w2D"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Женщинам"/>
+                                    <segment title="Мужчинам"/>
+                                    <segment title="Детям"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="categoryChanged:" destination="da0-Sy-Lvh" eventType="valueChanged" id="TCG-Sg-XUY"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1144,6 +1144,6 @@
         <image name="oneItemButtonHighlighted" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rcE-gt-zHg"/>
+        <segue reference="wuH-jn-cu7"/>
     </inferredMetricsTieBreakers>
 </document>

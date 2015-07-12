@@ -14,7 +14,7 @@
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) BOOL expanded;
 
-- (BBSSideMenuHeaderView *)headerWithTitle:(NSString *)title index:(NSInteger)index;
+- (BBSSideMenuHeaderView *)headerWithTitle:(NSString *)title index:(NSInteger)index gender:(NSInteger)genderIndex;
 
 
 @end
