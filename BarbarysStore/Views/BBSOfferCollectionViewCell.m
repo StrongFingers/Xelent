@@ -46,9 +46,11 @@
     NSInteger count = [self.manager countOfRows:offer];
     if (count > 0) {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
-        self.favoritesButton.selected = YES;
+         self.favoritesButton.selected = YES;
+        //[self.selectedBackgrou];
+        
     } else {
-        [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
+        [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
         self.favoritesButton.selected = NO;
     }
     self.offerVendorLabel.text = offer.brand;

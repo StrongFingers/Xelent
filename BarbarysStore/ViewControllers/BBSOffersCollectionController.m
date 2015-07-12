@@ -202,6 +202,7 @@
     }
     BBSOffer *offer = self.offers[indexPath.row];
     [cell updateOffer:offer isMultiplyCell:self.isMultiplyCell];
+    //[self.offersCollectionView reloadData]; //*
     return cell;
 }
 

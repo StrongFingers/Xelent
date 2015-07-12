@@ -255,13 +255,19 @@
         [self.mainTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [self.mainTableView endUpdates];
-    
-    //TODO
-    // scroll to visible
-    if (!header.expanded) return;
-    UITableViewCell * firstRow = [self.mainTableView cellForRowAtIndexPath:indexPath];
-    if ( ![[self.mainTableView visibleCells] containsObject:firstRow]) {
-        [self.mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    if (!header.expanded) {return;}
+    else {
+            UITableViewCell * firstRow = [self.mainTableView cellForRowAtIndexPath:indexPath];
+            if ( [[self.mainTableView visibleCells] containsObject:firstRow]) {
+                CGPoint expandedHeaderLeftTopPoint = [self.mainTableView contentOffset];
+                CGRect screenRect = [[UIScreen mainScreen] bounds];
+             
+                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 2;
+                [self.mainTableView scrollsToTop];
+                [self.mainTableView setContentOffset:expandedHeaderLeftTopPoint animated:YES];
+                [self.mainTableView reloadData];
+                //[self.mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     }
 }
 
