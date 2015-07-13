@@ -179,6 +179,7 @@
 - (void)loadNewOffers {
     if (self.currentPage > 0) {
         [self.offerRequest getCategoryOffers:self.selectedCategory gender:self.selectedGender page:self.currentPage];
+        
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing];
@@ -201,6 +202,7 @@
     }
     BBSOffer *offer = self.offers[indexPath.row];
     [cell updateOffer:offer isMultiplyCell:self.isMultiplyCell];
+    //[self.offersCollectionView reloadData]; //*
     return cell;
 }
 
@@ -213,6 +215,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
+
     offerDetailVC.offerId = ((BBSOffer *)self.offers[indexPath.row]).offerId;
     offerDetailVC.selectedColor = ((BBSOffer *)self.offers[indexPath.row]).color;
     [self.navigationController pushViewController:offerDetailVC animated:YES];
@@ -235,7 +238,7 @@
 #pragma mark - BBSAPIRequest delegate
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"%@", responseObject);
+    DLog(@"response_ %@", responseObject);
     [self.refreshControl endRefreshing];
     NSInteger allPages = [responseObject[0][@"pages_all"] integerValue];
     if (self.currentPage < allPages) {
@@ -247,6 +250,7 @@
         self.offers = [NSMutableArray array];
     }
     [self.offers addObjectsFromArray:[BBSOfferManager parseCategoryOffers:responseObject[0][@"products"]]];
+    
     [self.offersCollectionView reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }

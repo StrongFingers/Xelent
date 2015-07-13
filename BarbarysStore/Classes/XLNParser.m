@@ -28,7 +28,7 @@
             [self parseRootElement:tbxmlDocument.rootXMLElement];
         }
     } failure:^(TBXML *tbxmlDocument, NSError *error) {
-        DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+        //DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
     }];
 }
 
@@ -69,6 +69,7 @@
         offer.model = [TBXML textForElement:modelElement];
         TBXMLElement *descriptionElement = [TBXML childElementNamed:@"description" parentElement:offerElement];
         if (descriptionElement) {
+           // offer.descriptionText = [TBXML textForElement:descriptionElement];
             offer.descriptionText = [TBXML textForElement:descriptionElement];
         }
         
@@ -99,7 +100,7 @@
         } while ((paramElement = paramElement->nextSibling) != nil);
         [offers addObject:offer];
     } while ((offerElement = offerElement->nextSibling) != nil);
-    DLog(@"done offers");
+   // DLog(@"done offers");
     return offers;
 }
 

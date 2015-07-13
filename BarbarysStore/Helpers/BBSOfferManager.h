@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BBSOffer.h"
 #import "BBSCartOffer.h"
+#import "BBSHistoryItem.h"
+
 typedef enum : NSUInteger {
     offerAdd,
     offerDelete,
@@ -26,6 +28,8 @@ typedef enum : NSUInteger {
 - (NSArray *)getShoppingCart;
 - (void)removeFromShoppingCart:(BBSCartOffer *)offer;
 - (void)addToShoppingCart:(BBSCartOffer *)offer;
+- (void)addToHistory:(BBSHistoryItem *)historyItem;
+- (NSArray *)loadFromHistory;
 
 + (NSArray *)parseCategoryOffers:(NSArray *)offerData;
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData;

@@ -27,7 +27,7 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - Masonry (0.6.1)
+  - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - NMRangeSlider (1.2.1)
   - SDWebImage (3.7.2):
@@ -50,7 +50,7 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CCBottomRefreshControl: 2cfdbd6f5be5181f5f070637605981d5557e8e32
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
-  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29

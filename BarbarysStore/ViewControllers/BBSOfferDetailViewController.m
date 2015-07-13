@@ -44,6 +44,7 @@
         self.offerRequest = [[BBSAPIRequest alloc] initWithDelegate:self];
         [self.offerRequest getOfferById:self.offerId];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+ 
     }
 }
 
@@ -117,10 +118,12 @@
             return 225;
             break;
         case 2:
-            return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:18]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.descriptionText stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:18]].height;
             break;
         case 3:
-            return 150;
+           // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            return [XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            //return 100;
             break;
         case 4:
             return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.deliveryText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
@@ -173,13 +176,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
     cell.textLabel.font = [UIFont lightFont:15];
+    
+    //Next switch load an text to expanding cells of detail offer card
     switch (indexPath.section) {
         case 2:
             cell.textLabel.font = [UIFont lightFont:17];
-            cell.textLabel.attributedText = self.offer.descriptionText;
+            cell.textLabel.text = self.offer.descriptionText;
+            //cell.textLabel.text = self.offer.descriptionText;
             break;
         case 3:
-            cell.textLabel.text = self.offer.model;
+            
+            
+            
+            cell.textLabel.text = self.offer.brandAboutDescription;
+
             break;
         case 4:
             cell.textLabel.text = LOC(@"offerDetail.deliveryText");
@@ -245,13 +255,19 @@
         [self.mainTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [self.mainTableView endUpdates];
-    
-    //TODO
-    // scroll to visible
-    if (!header.expanded) return;
-    UITableViewCell * firstRow = [self.mainTableView cellForRowAtIndexPath:indexPath];
-    if ( ![[self.mainTableView visibleCells] containsObject:firstRow]) {
-        [self.mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (!header.expanded) {return;}
+    else {
+            UITableViewCell * firstRow = [self.mainTableView cellForRowAtIndexPath:indexPath];
+            if ( [[self.mainTableView visibleCells] containsObject:firstRow]) {
+                CGPoint expandedHeaderLeftTopPoint = [self.mainTableView contentOffset];
+                CGRect screenRect = [[UIScreen mainScreen] bounds];
+             
+                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 2;
+                [self.mainTableView scrollsToTop];
+                [self.mainTableView setContentOffset:expandedHeaderLeftTopPoint animated:YES];
+                [self.mainTableView reloadData];
+                //[self.mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     }
 }
 
@@ -269,7 +285,7 @@
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"%@", responseObject);
+    DLog(@"\n zzi_%@", responseObject);
     if (!self.fromFavorites) {
         self.offer = nil;
         self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];
@@ -282,6 +298,8 @@
             [manager updateOfferInFavorites:self.offer state:offerUpdate];
         }
     }
+    
+
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 

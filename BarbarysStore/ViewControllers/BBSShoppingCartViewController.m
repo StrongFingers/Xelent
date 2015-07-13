@@ -11,6 +11,7 @@
 #import "BBSCartOffer.h"
 #import "BBSOfferDetailViewController.h"
 #import "BBSOfferManager.h"
+#import "BBSHistoryViewController.h"
 
 #import "UIImage+Alpha.h"
 
@@ -58,6 +59,7 @@
     historyButton.titleLabel.font = [UIFont mediumFont:14];
     [historyButton setBackgroundImage:[UIImage imageNamed:@"historyButton"] forState:UIControlStateNormal];
     [historyButton setBackgroundImage:[UIImage imageNamed:@"historyButtonActive"] forState:UIControlStateHighlighted];
+    [historyButton addTarget:self action:@selector(showHistoryView:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *historyBarButton = [[UIBarButtonItem alloc] initWithCustomView:historyButton];
     self.navigationItem.rightBarButtonItem = historyBarButton;
     
@@ -83,6 +85,16 @@
 #pragma mark - IBActions
 
 - (IBAction)orderOffers:(id)sender {
+    BBSHistoryItem *historyItem = [[BBSHistoryItem alloc] init];
+    historyItem.createDate = @"05.03.2014";
+    historyItem.summaryPrice = self.summaryPriceLabel.text;
+    historyItem.saleValue = @"3%";
+    historyItem.offers = self.shoppingItems;
+    [self.offerManager addToHistory:historyItem];
+}
+
+- (IBAction)showHistoryView:(id)sender {
+    [self performSegueWithIdentifier:@"toHistoryView" sender:self];
 }
 
 #pragma mark - UITableViewDataSource

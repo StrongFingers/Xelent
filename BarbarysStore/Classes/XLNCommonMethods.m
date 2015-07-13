@@ -15,7 +15,7 @@
     if (text) {
         //iOS 7
         CGRect frame = [text boundingRectWithSize:CGSizeMake(widthValue, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:font } context:nil];
-        size = CGSizeMake(frame.size.width, frame.size.height + 1);
+        size = CGSizeMake(frame.size.width, frame.size.height + 5);
     }
     return size;
 }

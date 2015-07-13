@@ -7,9 +7,10 @@
 //
 
 #import "BBSOfferCollectionViewCell.h"
-
+#import <MBProgressHUD.h>
 #import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
+#import "XLNDatabaseManager.h"
 
 @interface BBSOfferCollectionViewCell ()
 
@@ -43,12 +44,17 @@
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:[[UIImage imageNamed:placeholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
     NSInteger count = [self.manager countOfRows:offer];
-    if (count > 0) {
+    if ((count > 0) || ([offer.FromFavorites  isEqual: @"1"]))  {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
-        self.favoritesButton.selected = YES;
-    } else {
-        [self.favoritesButton setImage:[UIImage new] forState:UIControlStateHighlighted];
-        self.favoritesButton.selected = NO;
+         self.favoritesButton.selected = YES;
+            if (([offer.FromFavorites isEqual: @"0"])&&(count >1 ))
+            {
+                count=0;
+            }
+        } else {
+          [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
+           self.favoritesButton.selected = NO;
+
     }
     self.offerVendorLabel.text = offer.brand;
     self.offerModelLabel.text = offer.model;
@@ -56,11 +62,13 @@
 }
 
 - (IBAction)addToFavorite:(id)sender {
+    
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer isMultiplyCell:YES];
-    if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
+    [self.delegate refreshOffers];
+    /*if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
         [self.delegate refreshOffers];
-    }
+    }*/
 }
 
 @end

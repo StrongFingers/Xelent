@@ -39,7 +39,6 @@
     
     XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
     [dbManager createDB];
-    
     return YES;
 }
 
