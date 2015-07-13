@@ -171,11 +171,13 @@
     XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
     switch (state) {
         case offerAdd:
-            
+            offer.FromFavorites = @"1";
             [manager getOfferToFavoriteById:offer];
+           // [manager updateFavorite:offer];
             
             break;
         case offerDelete:
+            offer.FromFavorites = @"0";
             [manager removeFromFavorites:offer];
             break;
         case offerUpdate:

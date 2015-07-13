@@ -44,14 +44,17 @@
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:[[UIImage imageNamed:placeholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
     NSInteger count = [self.manager countOfRows:offer];
-    if (count > 0) {
+    if ((count > 0) || ([offer.FromFavorites  isEqual: @"1"]))  {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
          self.favoritesButton.selected = YES;
-        //[self.selectedBackgrou];
-        
-    } else {
-        [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
-        self.favoritesButton.selected = NO;
+            if (([offer.FromFavorites isEqual: @"0"])&&(count >1 ))
+            {
+                count=0;
+            }
+        } else {
+          [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
+           self.favoritesButton.selected = NO;
+
     }
     self.offerVendorLabel.text = offer.brand;
     self.offerModelLabel.text = offer.model;

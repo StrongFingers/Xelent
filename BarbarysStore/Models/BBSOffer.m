@@ -20,12 +20,12 @@
         self.brand = @"";
         self.currency = @"";
         self.price = @"";
-//       self.descriptionText = (NSAttributedString*) @"";
         self.descriptionText =@"";
         self.color = @"";
         self.gender = @"";
         self.material = @"";
         self.brandAboutDescription = @"";
+        self.FromFavorites = @"0";
     }
     return self;
 }
@@ -54,7 +54,6 @@
         self.brand = [decoder decodeObjectForKey:@"vendor"];
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
-//        self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
@@ -63,6 +62,7 @@
         self.colorsType = [decoder decodeObjectForKey:@"colorsType"];
         self.sizesType = [decoder decodeObjectForKey:@"sizesType"];
         self.brandAboutDescription = [decoder decodeObjectForKey:@"brandAboutDescription"];
+        self.FromFavorites = [decoder decodeObjectForKey:@"fromFavorites"];
     }
     return self;
 }
@@ -77,7 +77,6 @@
     [encoder encodeObject:self.brand forKey:@"vendor"];
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
- //   [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
     [encoder encodeObject:self.gender forKey:@"gender"];
@@ -86,6 +85,7 @@
     [encoder encodeObject:self.colorsType forKey:@"colorsType"];
     [encoder encodeObject:self.sizesType forKey:@"sizesType"];
     [encoder encodeObject:self.brandAboutDescription forKey:@"brandAboutDescription"];
+    [encoder encodeObject:self.FromFavorites forKey:@"fromFavorites"];
 }
 
 @end
