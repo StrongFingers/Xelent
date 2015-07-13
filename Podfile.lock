@@ -22,7 +22,6 @@ PODS:
     - AFNetworking/NSURLSession
   - CCBottomRefreshControl (0.5):
     - Masonry
-  - CrashlyticsFramework (2.2.10)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -40,7 +39,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - CCBottomRefreshControl
-  - CrashlyticsFramework
   - FMDB
   - MBProgressHUD
   - NMRangeSlider
@@ -51,7 +49,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CCBottomRefreshControl: 2cfdbd6f5be5181f5f070637605981d5557e8e32
-  CrashlyticsFramework: 2f7c515a2d74c8636bf47e761621f2f68193747e
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
