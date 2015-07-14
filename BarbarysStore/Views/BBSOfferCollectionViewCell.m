@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoritesButton;
 @property (nonatomic, strong) BBSOffer *offer;
 @property (nonatomic, strong) BBSOfferManager *manager;
+@property (nonatomic, strong) NSString *fromFavorites;
 - (IBAction)addToFavorite:(id)sender;
 
 @end
@@ -44,13 +45,10 @@
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:[[UIImage imageNamed:placeholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
     NSInteger count = [self.manager countOfRows:offer];
-    if ((count > 0) || ([offer.FromFavorites  isEqual: @"1"]))  {
+    if ((count > 0) || [self.fromFavorites isEqualToString:@"1"])  {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
          self.favoritesButton.selected = YES;
-            if (([offer.FromFavorites isEqual: @"0"])&&(count >1 ))
-            {
-                count=0;
-            }
+         self.fromFavorites = @"0";
         } else {
           [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
            self.favoritesButton.selected = NO;
@@ -63,6 +61,7 @@
 
 - (IBAction)addToFavorite:(id)sender {
     
+    self.fromFavorites = @"1";
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer isMultiplyCell:YES];
     [self.delegate refreshOffers];

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *modelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIPageControl *imagesPageControl;
+@property (nonatomic, strong)        NSString *fromFavorite;
 
 - (IBAction)addToFavorites:(id)sender;
 
@@ -58,8 +59,9 @@
     self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
     BBSOfferManager *dbManager = [[BBSOfferManager alloc] init];
     NSInteger count = [dbManager countOfRows:self.offer];
-    if (count > 0) {
+    if ((count > 0) || (self.fromFavorite = @"1")) {
         self.addToFavoritesButton.selected = YES;
+        self.fromFavorite = @"0";
     }
 }
 
@@ -106,6 +108,7 @@
     self.addToFavoritesButton.selected = !self.addToFavoritesButton.selected;
     BBSOfferManager *dbManager = [[BBSOfferManager alloc] init];
     if (self.addToFavoritesButton.selected) {
+        self.fromFavorite = @"1";
         [dbManager updateOfferInFavorites:self.offer state:offerAdd];
     } else {
         [dbManager updateOfferInFavorites:self.offer state:offerDelete];
