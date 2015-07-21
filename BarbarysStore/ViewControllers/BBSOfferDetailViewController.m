@@ -34,8 +34,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
+    if (!self.brandName)
+    {
+        self.navigationItem.title = self.offer.brand;
+    } else
+        {
+        self.navigationItem.title = self.brandName;
+        };
+    
+    
     if (self.fromShoppingCart) {
         XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
         self.offer = [manager cartOfferById:self.offerId];

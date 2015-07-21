@@ -76,13 +76,16 @@
     [self.refreshControl addTarget:self action:@selector(loadNewOffers) forControlEvents:UIControlEventValueChanged];
     self.offersCollectionView.bottomRefreshControl = self.refreshControl;
     
-    if ([self.offers count] == 0) {
+ /*   if ([self.offers count] == 0) {
         [self showMenu:nil];
-    }
+    }*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.offersCollectionView reloadData];
+    if ([self.offers count] == 0) {
+        [self showMenu:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -216,8 +219,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBSOfferDetailViewController *offerDetailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OffersDetailViewController"];
 
+    offerDetailVC.brandName = ((BBSOffer *)self.offers[indexPath.row]).brand;
     offerDetailVC.offerId = ((BBSOffer *)self.offers[indexPath.row]).offerId;
     offerDetailVC.selectedColor = ((BBSOffer *)self.offers[indexPath.row]).color;
+    UIBarButtonItem *emptyNavigationBackButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    [[self navigationItem] setBackBarButtonItem:emptyNavigationBackButton];
+    
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 

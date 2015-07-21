@@ -96,6 +96,10 @@
     //offerDetailVC.offerId = ((BBSOffer *)self.offers[indexPath.row]).offerId;
     offerDetailVC.fromFavorites = YES;
     [offerDetailVC updateOffer:self.offers[indexPath.row]];
+    /*zz*/
+    UIBarButtonItem *emptyNavigationBackButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    [[self navigationItem] setBackBarButtonItem:emptyNavigationBackButton];
+    
     [self.navigationController pushViewController:offerDetailVC animated:YES];
 }
 
