@@ -37,16 +37,29 @@
         self.typeLabel.textColor = [UIColor customDarkGrayColor];
     }
     self.selectedBorderImageView.hidden = !isSelected;
-}
+}/*
+- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected enabled:(BOOL)isEnabled {
+    self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
+    self.typeLabel.backgroundColor = [UIColor mainDarkColor];
+    if (isEnabled) {
+        self.typeLabel.textColor = [UIColor mainDarkColor];
+    } else {
+        self.typeLabel.textColor = [UIColor customDarkGrayColor];
+    }
+    self.selectedBorderImageView.hidden = !isSelected;
+}*/
 
 - (void)updateTypeBackgroundColor:(NSString *)colorHex selected:(BOOL)isSelected {
     NSArray *colors = [colorHex componentsSeparatedByString:@"-"];
     if ([colors count] == 1) {
         self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
+       // self.colorImageView.backgroundColor = [UIColor blackColor];
         self.secondColorImageView.hidden = YES;
     } else {
-        self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
-        self.secondColorImageView.backgroundColor = [UIColor colorFromHexString:colors[1]];
+        //self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
+        self.colorImageView.backgroundColor = [UIColor redColor];
+        //self.secondColorImageView.backgroundColor = [UIColor colorFromHexString:colors[1]];
+        self.secondColorImageView.backgroundColor = [UIColor greenColor];
         self.secondColorImageView.hidden = NO;
     }
     self.selectedBorderImageView.hidden = !isSelected;

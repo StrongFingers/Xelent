@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
     if (!self.brandName)
@@ -57,11 +57,11 @@
  
     }
 }
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.shoppingCartNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
         XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
+       
         BBSCartOffer *cartOffer = [[BBSCartOffer alloc] initWithOffer:self.offer];
         NSString *colorId = note.userInfo[@"color"];
         cartOffer.choosedColor = self.offer.colorsType[colorId][0][@"color_name"];
@@ -106,7 +106,7 @@
 #pragma mark - TableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -135,12 +135,6 @@
             return [XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
             //return 100;
             break;
-        case 4:
-            return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.deliveryText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            break;
-        case 5:
-            return [XLNCommonMethods findHeightForText:LOC(@"offerDetail.returnText") havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            break;
         default:
             return 0;
             break;
@@ -160,6 +154,7 @@
     }
     if (indexPath.section == 1) {
         BBSOfferDetailSizeColorCell *cell = (BBSOfferDetailSizeColorCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailSizeColorCell"];
+        
         if (!cell) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
         }
@@ -195,17 +190,8 @@
             //cell.textLabel.text = self.offer.descriptionText;
             break;
         case 3:
-            
-            
-            
             cell.textLabel.text = self.offer.brandAboutDescription;
 
-            break;
-        case 4:
-            cell.textLabel.text = LOC(@"offerDetail.deliveryText");
-            break;
-        case 5:
-            cell.textLabel.text = LOC(@"offerDetail.returnText");
             break;
     }
     cell.textLabel.numberOfLines = 0;
@@ -230,10 +216,6 @@
         sectionTitle = LOC(@"offerDetail.descriptionSection.headerTitle");
     } else if (section == 3) {
         sectionTitle = LOC(@"offerDetail.brandSection.headerTitle");
-    } else if (section == 4) {
-        sectionTitle = LOC(@"offerDetail.paymentSection.headerTitle");
-    } else {
-        sectionTitle = LOC(@"offerDetail.changingSection.headerTitle");
     }
     BBSOfferDetailHeaderView *header = [[BBSOfferDetailHeaderView alloc] headerWithTitle:sectionTitle index:section];
     [header setTouchUpTarget:self selector:@selector(headerTap:)];

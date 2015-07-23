@@ -36,12 +36,29 @@
     [self.sizeCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailSizeItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerSizeItemCell"];
     [self.colorCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailColorItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerColorItemCell"];
     self.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
+
     [self.addToCartButton setTitle:LOC(@"offerDetail.addToShoppingCartButton.title") forState:UIControlStateNormal];
     [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateHighlighted];
+    [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateSelected];
     [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
     self.addToCartButton.layer.cornerRadius = 3;
     self.addToCartButton.clipsToBounds = YES;
+   
+
 }
+
+- (void)buttonSetDeselected
+{
+    [self.addToCartButton setSelected:NO];
+
+}
+- (void)buttonSetSelected:(UIButton *)button
+    {
+        [self.addToCartButton setSelected:YES];
+        [button setSelected:YES];
+        [self performSelector:@selector(buttonSetDeselected) withObject:nil afterDelay:0.05];
+    }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -116,6 +133,8 @@
 }
 
 - (IBAction)addToShoppingCart:(id)sender {
+    [self buttonSetSelected:self.addToCartButton];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addToShoppingCart" object:nil userInfo:@{@"color" : [self.colors allKeysForObject:self.selectedColor][0], @"size" : self.selectedSize}];
 }
 

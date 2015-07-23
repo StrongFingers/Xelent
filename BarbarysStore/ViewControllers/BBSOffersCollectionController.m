@@ -127,6 +127,7 @@
     self.priceSlider.upperHandleImageNormal = [[UIImage imageNamed:@"slider"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.priceSlider.lowerHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.priceSlider.upperHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
     self.priceSlider.trackBackgroundImage = [[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
     self.priceSlider.tintColor = [UIColor priceColor];
     self.priceSlider.minimumValue = 0;

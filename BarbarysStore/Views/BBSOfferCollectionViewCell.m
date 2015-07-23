@@ -33,7 +33,8 @@
     self.offerVendorLabel.font = [UIFont mediumFont:14];
     self.offerModelLabel.font = [UIFont lightFont:15];
     self.offerPriceLabel.font = [UIFont mediumFont:14];
-    self.offerVendorLabel.textColor = [UIColor mainDarkColor];
+    self.offerVendorLabel.textColor = [UIColor redColor];
+       //self.offerVendorLabel.textColor = [UIColor mainDarkColor];
     self.offerPriceLabel.textColor = [UIColor priceColor];
 }
 
@@ -45,10 +46,9 @@
         [self.offerImageView sd_setImageWithURL:imageUrl placeholderImage:[[UIImage imageNamed:placeholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
     NSInteger count = [self.manager countOfRows:offer];
-    if ((count > 0) || [self.fromFavorites isEqualToString:@"1"])  {
+    if (count > 0)  {
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActive"] forState:UIControlStateHighlighted];
          self.favoritesButton.selected = YES;
-         self.fromFavorites = @"0";
         } else {
           [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButton"] forState:UIControlStateHighlighted];
            self.favoritesButton.selected = NO;
