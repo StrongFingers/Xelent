@@ -43,8 +43,6 @@
     [self.addToCartButton setBackgroundImage:[[UIImage imageWithColor:[UIColor priceColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 0, 0)] forState:UIControlStateNormal];
     self.addToCartButton.layer.cornerRadius = 3;
     self.addToCartButton.clipsToBounds = YES;
-   
-
 }
 
 - (void)buttonSetDeselected

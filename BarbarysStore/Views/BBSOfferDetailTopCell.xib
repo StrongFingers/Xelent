@@ -15,19 +15,6 @@
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omx-b4-3P2">
                         <rect key="frame" x="0.0" y="17" width="320" height="350"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjc-CV-XvA">
-                                <rect key="frame" x="282" y="0.0" width="30" height="30"/>
-                                <state key="normal" image="favoritesButtonBig">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" image="favoritesButtonBigSelected"/>
-                                <state key="highlighted" image="favoritesButtonBigActive"/>
-                                <connections>
-                                    <action selector="addToFavorites:" destination="y2C-QZ-ToT" eventType="touchUpInside" id="oz3-zH-BX9"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <connections>
                             <outlet property="delegate" destination="-1" id="ZRl-8j-d25"/>
                         </connections>
@@ -55,7 +42,6 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addToFavoritesButton" destination="bjc-CV-XvA" id="JXv-De-T7r"/>
                 <outlet property="imagesPageControl" destination="BMR-oh-EiX" id="rmI-zh-Nrw"/>
                 <outlet property="imagesScrollView" destination="Omx-b4-3P2" id="ck9-A7-ao4"/>
                 <outlet property="modelLabel" destination="iRt-vO-GZK" id="6lG-i7-kFU"/>
@@ -65,9 +51,4 @@
             <point key="canvasLocation" x="467" y="355"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="favoritesButtonBig" width="24" height="22"/>
-        <image name="favoritesButtonBigActive" width="24" height="22"/>
-        <image name="favoritesButtonBigSelected" width="25" height="24"/>
-    </resources>
 </document>

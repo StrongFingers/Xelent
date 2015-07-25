@@ -52,13 +52,6 @@
                         </collectionViewFlowLayout>
                         <cells/>
                     </collectionView>
-                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0h-Ms-8zo">
-                        <rect key="frame" x="282" y="9" width="30" height="30"/>
-                        <state key="normal" image="informerButton">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <state key="highlighted" image="informerButtonActive"/>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g9-bl-YT1">
                         <rect key="frame" x="60" y="166" width="200" height="40"/>
                         <state key="normal">
@@ -70,11 +63,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <variation key="default">
-                    <mask key="subviews">
-                        <exclude reference="L0h-Ms-8zo"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addToCartButton" destination="7g9-bl-YT1" id="9NO-In-OTN"/>
@@ -84,8 +72,4 @@
             <point key="canvasLocation" x="557" y="322"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="informerButton" width="22" height="22"/>
-        <image name="informerButtonActive" width="22" height="22"/>
-    </resources>
 </document>

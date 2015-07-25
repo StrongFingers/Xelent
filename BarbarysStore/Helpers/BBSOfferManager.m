@@ -36,7 +36,10 @@
         BBSOffer *offer = [[BBSOffer alloc] init];
         offer.brand = offerItem[@"brand"];
         offer.thumbnailUrl = offerItem[@"image"];
-        offer.price = offerItem[@"price"];
+        
+        NSArray *temporaryArray = [offerItem[@"price"] componentsSeparatedByString:@"."];
+        offer.price = temporaryArray[0];
+       // offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
         offer.color = offerItem[@"color_id"];
@@ -48,7 +51,9 @@
 + (BBSOffer *)parseDetailOffer:(NSDictionary *)offerData {
     BBSOffer *newOffer = [[BBSOffer alloc] init];
     newOffer.model = offerData[@"product_name"];
-    newOffer.price = offerData[@"product_price"];
+    NSArray *temporaryArray = [offerData[@"product_price"] componentsSeparatedByString:@"."];
+    newOffer.price = temporaryArray[0];
+    
     NSString *brandDescriptions = @"";
     NSString *meta_value = @"meta_value";
     NSArray *brandOfferData = offerData[@"brand"];
