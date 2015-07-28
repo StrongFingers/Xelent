@@ -39,6 +39,7 @@
 
 - (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell {
     _offer = offer;
+
     if (offer.thumbnailUrl && ![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         NSString *placeholderImage = isMultiplyCell ? @"placeholderForDownloadingImage" : @"placeholderForDownloadingImageBig";
@@ -50,8 +51,9 @@
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActiveSelected"] forState:UIControlStateHighlighted | UIControlStateSelected];
     } else {[self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonBigActive"] forState:UIControlStateHighlighted | UIControlStateSelected];}
 
-    if (count > 0)  {
+    if ((count > 0) || ([offer.FromFavorites isEqualToString:@"1"]) )  {
                         self.favoritesButton.selected = YES;
+                        offer.FromFavorites = @"0";
                     } else {
                         self.favoritesButton.selected = NO;
 
@@ -62,8 +64,7 @@
 }
 
 - (IBAction)addToFavorite:(id)sender {
-    
-    self.fromFavorites = @"1";
+    self.offer.FromFavorites = @"1";
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
     [self updateOffer:self.offer isMultiplyCell:YES];
     [self.delegate refreshOffers];

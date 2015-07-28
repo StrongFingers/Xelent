@@ -26,5 +26,5 @@
 @property (nonatomic, strong) NSDictionary *pictures;
 @property (nonatomic, strong) NSDictionary *sizesType;
 @property (nonatomic, strong) NSDictionary *colorsType;
-//@property (nonatomic, assign) NSString *FromFavorites;
+@property (nonatomic, assign) NSString *FromFavorites;
 @end

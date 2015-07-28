@@ -39,7 +39,6 @@
         
         NSArray *temporaryArray = [offerItem[@"price"] componentsSeparatedByString:@"."];
         offer.price = temporaryArray[0];
-       // offer.price = offerItem[@"price"];
         offer.offerId = offerItem[@"product_id"];
         offer.model = offerItem[@"product_name"];
         offer.color = offerItem[@"color_id"];
@@ -61,11 +60,11 @@
         for (NSDictionary *brand in brandOfferData) {
             if ([brand[@"meta_key"]  isEqual: @"brand_about_description"]) {
                 brandDescriptions =[brand objectForKey:meta_value];
-            }
+            } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
         }
     } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
-    
-    newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+   /* newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];*/
+    newOffer.brandAboutDescription = brandDescriptions;
     
     NSArray *items = offerData[@"items"];
     NSMutableDictionary *sizes = [NSMutableDictionary dictionary];
@@ -97,9 +96,10 @@
     newOffer.colorsType = colors;
     
     NSString *concreteOfferDescription = @"";
-    if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [[[concreteOfferDescription stringByAppendingString:offerData[@"product_description"]] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
-        }
-    
+    /*if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [[[concreteOfferDescription stringByAppendingString:offerData[@"product_description"]] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
+        }*/
+    if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [concreteOfferDescription stringByAppendingString:offerData[@"product_description"]];
+    }
    // NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
     NSArray *properties = offerData[@"properties"];
     
@@ -109,38 +109,39 @@
             if ([property[@"property_type"] isEqualToString:@"brand"])
             {
                     newOffer.brand = property[@"property_name"];
-                    NSString *brandString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                    NSString *brandString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
+                
                     concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
             }
             if ([property[@"property_type"] isEqualToString:@"country_production"]) {
-                NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
             }
             if ([property[@"property_type"] isEqualToString:@"material"]) {
-                NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                 concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
             }
             if ([property[@"property_type"] isEqualToString:@"style"]) {
-                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                  concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
             }
             if ([property[@"property_type"] isEqualToString:@"fashion"]) {
-                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                  concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
 
             }
             if ([property[@"property_type"] isEqualToString:@"texture"]) {
-                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                  concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
 
             }
             if ([property[@"property_type"] isEqualToString:@"season"]) {
-                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                  concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
 
             }
             if ([property[@"property_type"] isEqualToString:@"lens_colour"]) {
-                 NSString *temporaryString = [NSString stringWithFormat:@"\n%@: %@", property[@"property_type_name"], property[@"property_name"]];
+                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@</b>: %@", property[@"property_type_name"], property[@"property_name"]];
                  concreteOfferDescription = [concreteOfferDescription stringByAppendingString:temporaryString];
             }
              
@@ -164,6 +165,7 @@
             [manager getOfferToFavoriteById:offer];
             break;
         case offerDelete:
+            offer.FromFavorites = @"0";
             [manager removeFromFavorites:offer];
             break;
         case offerUpdate:

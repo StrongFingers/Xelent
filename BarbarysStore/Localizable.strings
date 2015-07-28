@@ -52,3 +52,5 @@
 "profileEditViewController.phone.title" = "МОБИЛЬНЫЙ ТЕЛЕФОН";
 "profileEditViewController.email.title" = "EMAIL";
 "profileEditViewController.saveButton.title" = "СОХРАНИТЬ ИЗМЕНЕНИЯ";
+
+"BBSOfferManager.brandAboutDescriptionNone" = "Описание бренда отсутствует";

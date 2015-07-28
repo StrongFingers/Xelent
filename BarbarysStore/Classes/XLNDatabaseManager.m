@@ -245,7 +245,6 @@
             offer.thumbnailUrl = [s stringForColumnIndex:4];
             offer.price = [s stringForColumnIndex:5];
             offer.brand = [s stringForColumnIndex:7];
-            //changed
             offer.brandAboutDescription = [s stringForColumnIndex:6];
             offer.model = [s stringForColumnIndex:8];
             offer.color = [s stringForColumnIndex:9];

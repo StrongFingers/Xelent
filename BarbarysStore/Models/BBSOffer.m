@@ -25,7 +25,7 @@
         self.gender = @"";
         self.material = @"";
         self.brandAboutDescription = @"";
-        //self.FromFavorites = @"0";
+        self.FromFavorites = @"0";
     }
     return self;
 }
@@ -62,7 +62,7 @@
         self.colorsType = [decoder decodeObjectForKey:@"colorsType"];
         self.sizesType = [decoder decodeObjectForKey:@"sizesType"];
         self.brandAboutDescription = [decoder decodeObjectForKey:@"brandAboutDescription"];
-      //  self.FromFavorites = [decoder decodeObjectForKey:@"fromFavorites"];
+        self.FromFavorites = [decoder decodeObjectForKey:@"fromFavorites"];
     }
     return self;
 }
@@ -85,7 +85,7 @@
     [encoder encodeObject:self.colorsType forKey:@"colorsType"];
     [encoder encodeObject:self.sizesType forKey:@"sizesType"];
     [encoder encodeObject:self.brandAboutDescription forKey:@"brandAboutDescription"];
-    //[encoder encodeObject:self.FromFavorites forKey:@"fromFavorites"];
+    [encoder encodeObject:self.FromFavorites forKey:@"fromFavorites"];
 }
 
 @end

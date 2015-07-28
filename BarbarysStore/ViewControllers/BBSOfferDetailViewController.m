@@ -180,14 +180,23 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
-    cell.textLabel.font = [UIFont lightFont:15];
-    
+    cell.textLabel.font = [UIFont boldLightFont:15];
     //Next switch load an text to expanding cells of detail offer card
+    NSMutableAttributedString *tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@"BLIA"];
+    
+    [tmpMutableString beginEditing];
+    [tmpMutableString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 2)];
+   // [tmpMutableString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:32] range:NSMakeRange(0, 3)];
+    [tmpMutableString endEditing];
     switch (indexPath.section) {
         case 2:
-            cell.textLabel.font = [UIFont lightFont:17];
-            cell.textLabel.text = self.offer.descriptionText;
+           // cell.textLabel.font = [UIFont lightFont:17];
+        
+           // cell.textLabel.attributedText = (NSAttributedString *)self.offer.descriptionText;
             //cell.textLabel.text = self.offer.descriptionText;
+            //[cell.textLabel setAttributedText:(NSAttributedString *)self.offer.descriptionText];
+            
+            [cell.textLabel setAttributedText:tmpMutableString];
             break;
         case 3:
             cell.textLabel.text = self.offer.brandAboutDescription;

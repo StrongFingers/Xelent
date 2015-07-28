@@ -75,10 +75,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadNewOffers) forControlEvents:UIControlEventValueChanged];
     self.offersCollectionView.bottomRefreshControl = self.refreshControl;
-    
- /*   if ([self.offers count] == 0) {
-        [self showMenu:nil];
-    }*/
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

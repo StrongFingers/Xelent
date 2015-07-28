@@ -12,5 +12,5 @@
 
 + (UIFont *)mediumFont:(CGFloat)size;
 + (UIFont *)lightFont:(CGFloat)size;
-
++ (UIFont *)boldLightFont:(CGFloat)size;
 @end

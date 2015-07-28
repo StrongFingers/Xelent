@@ -13,6 +13,9 @@
 + (UIFont *)mediumFont:(CGFloat)size {
     return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
 }
++ (UIFont *) boldLightFont:(CGFloat)size {
+    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
+}
 
 + (UIFont *)lightFont:(CGFloat)size {
     return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
