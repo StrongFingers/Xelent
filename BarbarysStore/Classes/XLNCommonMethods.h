@@ -11,5 +11,6 @@
 @interface XLNCommonMethods : NSObject
 
 + (CGSize)findHeightForText:(NSString *)text havingWidth:(CGFloat)widthValue andFont:(UIFont *)font;
-
++ (CGSize)findHeightForMutableAttributedText:(NSMutableAttributedString *)text havingWidth:(CGFloat)widthValue;
++ (NSMutableAttributedString *)convertToBoldedString:(NSString *)notBoldString;
 @end

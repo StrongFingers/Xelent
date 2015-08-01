@@ -21,6 +21,7 @@
         self.currency = @"";
         self.price = @"";
         self.descriptionText =@"";
+        self.attributedDescriptionText = [[NSMutableAttributedString alloc] initWithString:@""];
         self.color = @"";
         self.gender = @"";
         self.material = @"";
@@ -55,6 +56,7 @@
         self.currency = [decoder decodeObjectForKey:@"currency"];
         self.price = [decoder decodeObjectForKey:@"price"];
         self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
+        self.attributedDescriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
@@ -78,6 +80,7 @@
     [encoder encodeObject:self.currency forKey:@"currency"];
     [encoder encodeObject:self.price forKey:@"price"];
     [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
+    [encoder encodeObject:self.attributedDescriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];

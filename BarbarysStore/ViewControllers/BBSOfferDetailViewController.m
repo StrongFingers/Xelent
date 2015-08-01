@@ -28,6 +28,7 @@
 @property (nonatomic, strong) id shoppingCartNotification;
 @property (nonatomic, strong) id updateSizeColorNotification;
 @property (nonatomic, strong) NSString *selectedSize;
+@property (nonatomic, strong) NSMutableAttributedString *tmpMutableString;
 @end
 
 @implementation BBSOfferDetailViewController
@@ -128,11 +129,13 @@
             return 225;
             break;
         case 2:
-            return [XLNCommonMethods findHeightForText:[self.offer.descriptionText stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:18]].height;
+          /*  return [XLNCommonMethods findHeightForText:[self.offer.descriptionText stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:18]].height;*/
+        
+            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpMutableString havingWidth:320].height);
             break;
         case 3:
            // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            return [XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height;
+            return ceilf([XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height);
             //return 100;
             break;
         default:
@@ -180,27 +183,24 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
-    cell.textLabel.font = [UIFont boldLightFont:15];
+    cell.textLabel.font = [UIFont lightFont:15];
     //Next switch load an text to expanding cells of detail offer card
-    NSMutableAttributedString *tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@"BLIA"];
-    
-    [tmpMutableString beginEditing];
-    [tmpMutableString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 2)];
-   // [tmpMutableString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:32] range:NSMakeRange(0, 3)];
-    [tmpMutableString endEditing];
+   
     switch (indexPath.section) {
         case 2:
-           // cell.textLabel.font = [UIFont lightFont:17];
-        
-           // cell.textLabel.attributedText = (NSAttributedString *)self.offer.descriptionText;
-            //cell.textLabel.text = self.offer.descriptionText;
-            //[cell.textLabel setAttributedText:(NSAttributedString *)self.offer.descriptionText];
             
-            [cell.textLabel setAttributedText:tmpMutableString];
+            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.descriptionText];
+            cell.textLabel.font = [UIFont lightFont:17];
+            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText];
+            [cell.textLabel setAttributedText:self.tmpMutableString];
             break;
         case 3:
-            cell.textLabel.text = self.offer.brandAboutDescription;
-
+            
+            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@""];
+            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.brandAboutDescription];
+            cell.textLabel.font = [UIFont lightFont:17];
+            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription];
+            [cell.textLabel setAttributedText:self.tmpMutableString];
             break;
     }
     cell.textLabel.numberOfLines = 0;
