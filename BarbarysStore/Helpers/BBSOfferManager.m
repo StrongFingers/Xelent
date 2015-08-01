@@ -60,11 +60,11 @@
         for (NSDictionary *brand in brandOfferData) {
             if ([brand[@"meta_key"]  isEqual: @"brand_about_description"]) {
                 brandDescriptions =[brand objectForKey:meta_value];
-            } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
+            };// else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
         }
     } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
-   /* newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];*/
-    newOffer.brandAboutDescription = brandDescriptions;
+    newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+  //  newOffer.brandAboutDescription = brandDescriptions;
     
     NSArray *items = offerData[@"items"];
     NSMutableDictionary *sizes = [NSMutableDictionary dictionary];
@@ -100,7 +100,6 @@
         }*/
     if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [concreteOfferDescription stringByAppendingString:offerData[@"product_description"]];
     }
-  //  NSMutableAttributedString *atributedDescription = [[NSMutableAttributedString alloc] initWithString:concreteOfferDescription];
     NSArray *properties = offerData[@"properties"];
     
     if (properties)
@@ -111,14 +110,7 @@
                 
                     newOffer.brand = property[@"property_name"];
                 NSString *brandString = [NSString stringWithFormat:@"<b>%@:</b> %@", property[@"property_type_name"], property[@"property_name"]];
-               /*
-                
-                NSInteger tmpLength = [atributedDescription length];
-                NSRange tmpRange = NSMakeRange(tmpLength,[property[@"property_type_name"] length]);
                
-                NSAttributedString *TmpAttributedString = [[NSAttributedString alloc] initWithString:brandString];
-                [attString addAttribute:NSFontAttributeName value:[UIFont boldLightFont:22] range:tmpRange];
-                */
                     concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
             }
             if ([property[@"property_type"] isEqualToString:@"country_production"]) {
@@ -155,7 +147,7 @@
              
         }
     }
-    //newOffer.attributedDescriptionText = atributedDescription;
+
     newOffer.descriptionText =concreteOfferDescription;
     
     NSDictionary *images = offerData[@"images"];

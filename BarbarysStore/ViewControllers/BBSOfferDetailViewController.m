@@ -198,7 +198,6 @@
             
             self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@""];
             self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.brandAboutDescription];
-            cell.textLabel.font = [UIFont lightFont:17];
             self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription];
             [cell.textLabel setAttributedText:self.tmpMutableString];
             break;
