@@ -29,6 +29,7 @@
 @property (nonatomic, strong) id updateSizeColorNotification;
 @property (nonatomic, strong) NSString *selectedSize;
 @property (nonatomic, strong) NSMutableAttributedString *tmpMutableString;
+@property (nonatomic, strong) UIButton *shareButton;
 @end
 
 @implementation BBSOfferDetailViewController
@@ -57,6 +58,13 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
  
     }
+    self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.shareButton.frame = CGRectMake(0, 0, 30, 30);
+    [self.shareButton setImage:[UIImage imageNamed:@"profileTabIconUnactive"] forState:UIControlStateNormal];
+    [self.shareButton setImage:[UIImage imageNamed:@"profileTabIconActive"] forState:UIControlStateHighlighted];
+    UIBarButtonItem *shareRightItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareButton];
+    self.navigationItem.rightBarButtonItem = shareRightItem;
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
