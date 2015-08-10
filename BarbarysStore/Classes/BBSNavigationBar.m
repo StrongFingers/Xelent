@@ -8,10 +8,21 @@
 
 #import "BBSNavigationBar.h"
 
+@interface BBSNavigationBar ()
+
+
+@end
 @implementation BBSNavigationBar
+
+
+-(void) copyNavigationItem:(UINavigationItem *)inputNavItem{
+    self.navigationItem = inputNavItem;
+}
+
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+   
     self.barTintColor = [UIColor colorWithRed:0.14 green:0.37 blue:0.51 alpha:1];
 }
 

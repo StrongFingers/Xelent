@@ -12,5 +12,8 @@
 
 @property (nonatomic, assign) NSInteger pageIndex;
 @property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *backButtonCount;
+
+
 
 @end

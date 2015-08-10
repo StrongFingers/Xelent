@@ -20,7 +20,7 @@
 @interface BBSOfferCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) id<BBSOfferCellDelegate> delegate;
-
+@property (nonatomic, assign) BOOL isMultiplyCelltmp;
 - (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell;
 
 @end

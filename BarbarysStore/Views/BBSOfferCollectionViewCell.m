@@ -34,12 +34,12 @@
     self.offerModelLabel.font = [UIFont lightFont:15];
     self.offerPriceLabel.font = [UIFont mediumFont:14];
     self.offerVendorLabel.textColor = [UIColor mainDarkColor];
-    self.offerPriceLabel.textColor = [UIColor priceColor];
+    self.offerPriceLabel.textColor = [UIColor priceColor];//price
 }
 
 - (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell {
     _offer = offer;
-
+    self.isMultiplyCelltmp = isMultiplyCell;
     if (offer.thumbnailUrl && ![offer.thumbnailUrl isEqualToString:@""]) {
         NSURL *imageUrl = [[NSURL alloc] initWithString:offer.thumbnailUrl];
         NSString *placeholderImage = isMultiplyCell ? @"placeholderForDownloadingImage" : @"placeholderForDownloadingImageBig";
@@ -47,9 +47,12 @@
     }
     NSInteger count = [self.manager countOfRows:offer];
 
-    if (isMultiplyCell) {
+    if (self.isMultiplyCelltmp) {
+        DLog(@"");
         [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonActiveSelected"] forState:UIControlStateHighlighted | UIControlStateSelected];
-    } else {[self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonBigActive"] forState:UIControlStateHighlighted | UIControlStateSelected];}
+    } else {
+        DLog(@"");
+        [self.favoritesButton setImage:[UIImage imageNamed:@"favoritesButtonBigActiveSelected2"] forState:UIControlStateHighlighted | UIControlStateSelected];}
 
     if ((count > 0) || ([offer.FromFavorites isEqualToString:@"1"]) )  {
                         self.favoritesButton.selected = YES;
@@ -66,7 +69,9 @@
 - (IBAction)addToFavorite:(id)sender {
     self.offer.FromFavorites = @"1";
     [self.manager updateOfferInFavorites:self.offer state:!self.favoritesButton.selected ? offerAdd : offerDelete];
-    [self updateOffer:self.offer isMultiplyCell:YES];
+  /*  if (!self.favoritesButton.selected) {
+        
+    } */[self updateOffer:self.offer isMultiplyCell:self.isMultiplyCelltmp];
     [self.delegate refreshOffers];
     /*if ([self.delegate respondsToSelector:@selector(refreshOffers)]) {
         [self.delegate refreshOffers];

@@ -60,14 +60,22 @@
     }
     self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.shareButton.frame = CGRectMake(0, 0, 30, 30);
-    [self.shareButton setImage:[UIImage imageNamed:@"profileTabIconUnactive"] forState:UIControlStateNormal];
-    [self.shareButton setImage:[UIImage imageNamed:@"profileTabIconActive"] forState:UIControlStateHighlighted];
+    [self.shareButton setImage:[UIImage imageNamed:@"sharingButtonNormal"] forState:UIControlStateNormal];
+    [self.shareButton setImage:[UIImage imageNamed:@"sharingButtonSelected"] forState:UIControlStateHighlighted];
     UIBarButtonItem *shareRightItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareButton];
     self.navigationItem.rightBarButtonItem = shareRightItem;
     
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if (!self.brandName)
+            {
+                    self.navigationItem.title = self.offer.brand;
+            } else
+                    {self.navigationItem.title = self.brandName;
+            };
+    
     self.shoppingCartNotification = [[NSNotificationCenter defaultCenter] addObserverForName:@"addToShoppingCart" object:nil queue:nil usingBlock:^(NSNotification *note) {
         XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
        
@@ -210,7 +218,7 @@
             [cell.textLabel setAttributedText:self.tmpMutableString];
             break;
     }
-    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.numberOfLines = 0; //
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor detailCellBackgroundColor];
@@ -279,21 +287,26 @@
     }
 }
 
+- (void)setBackBarButtonTitle:(NSString *)inputString {
+    self.navigationItem.backBarButtonItem.title = inputString;
+    [self.navigationItem setTitle:inputString];
+}
 #pragma mark - OfferDetailTopCellDelegate
 
 - (void)imageTapped:(NSInteger)imageIndex {
     if ([self.offer.pictures count] > 0) {
         BBSPhotoPagingViewController *ctrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BBSPhotoPagingViewController"];
         ctrl.photos = self.offer.pictures[self.selectedColor];
-        ctrl.currentIndex = imageIndex;
+        ctrl.currentIndex = imageIndex;    
         [self.navigationController pushViewController:ctrl animated:YES];
+        
     }
 }
 
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {
-    DLog(@"\n zzi_%@", responseObject);
+    DLog(@"\n%@", responseObject);
     if (!self.fromFavorites) {
         self.offer = nil;
         self.offer = [BBSOfferManager parseDetailOffer:responseObject[0]];

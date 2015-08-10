@@ -19,5 +19,5 @@
 @property (nonatomic, assign) BOOL fromShoppingCart;
 
 - (void)updateOffer:(BBSOffer *)offer;
-
+- (void)setBackBarButtonTitle:(NSString *)inputString;
 @end

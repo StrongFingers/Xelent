@@ -103,6 +103,7 @@
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuButton.frame = CGRectMake(0, 0, 30, 30);
     [self.menuButton setImage:[UIImage imageNamed:@"menuButtonUnactive"] forState:UIControlStateNormal];
+    [self.menuButton setImage:[UIImage imageNamed:@"menuButtonActive"] forState:UIControlStateHighlighted];
     [self.menuButton setImage:[UIImage imageNamed:@"menuButtonActive"] forState:UIControlStateSelected];
     [self.menuButton addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.menuButton];
@@ -111,7 +112,7 @@
     self.findButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.findButton.frame = CGRectMake(0, 0, 30, 30);
     [self.findButton setImage:[UIImage imageNamed:@"findButtonUnactive"] forState:UIControlStateNormal];
-    [self.findButton setImage:[UIImage imageNamed:@"findButtonActive"] forState:UIControlStateSelected];
+    [self.findButton setImage:[UIImage imageNamed:@"findButtonActive"] forState:UIControlStateHighlighted];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.findButton];
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -125,7 +126,8 @@
     self.priceSlider.lowerHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.priceSlider.upperHandleImageHighlighted = [[UIImage imageNamed:@"sliderHighlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    self.priceSlider.trackBackgroundImage = [[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
+     self.priceSlider.trackBackgroundImage = [[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
+   /* self.priceSlider.trackBackgroundImage = [[UIImage imageWithColor:[UIColor mainDarkColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];*/
     self.priceSlider.tintColor = [UIColor priceColor];
     self.priceSlider.minimumValue = 0;
     self.priceSlider.maximumValue = 100;

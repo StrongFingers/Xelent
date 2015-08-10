@@ -63,7 +63,7 @@
             };// else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
         }
     } else {brandDescriptions = LOC(@"BBSOfferManager.brandAboutDescriptionNone");};
-    newOffer.brandAboutDescription = [[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"] stringByReplacingOccurrencesOfString:@"<b>" withString:@""] stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+    newOffer.brandAboutDescription = [[[[[[brandDescriptions stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@""] stringByReplacingOccurrencesOfString:@"<ul>" withString:@""] stringByReplacingOccurrencesOfString:@"</ul>" withString:@""] stringByReplacingOccurrencesOfString:@"<li>" withString:@""] stringByReplacingOccurrencesOfString:@"</li>" withString:@""] ;
   //  newOffer.brandAboutDescription = brandDescriptions;
     
     NSArray *items = offerData[@"items"];
