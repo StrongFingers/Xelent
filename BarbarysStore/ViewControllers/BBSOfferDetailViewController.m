@@ -67,8 +67,25 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.14 green:0.37 blue:0.51 alpha:1]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    self.navigationController.hidesBarsOnTap = NO;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    /*    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+     [self.view setBackgroundColor:[UIColor clearColor]];
+     
+     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+     [self setNeedsStatusBarAppearanceUpdate];*/
+    [super viewWillAppear:animated];
+
     if (!self.brandName)
             {
                     self.navigationItem.title = self.offer.brand;

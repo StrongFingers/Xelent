@@ -19,12 +19,21 @@
 @implementation BBSPhotoPagingViewController
 
 - (void)viewDidLoad {
-    self.tmpIndex = self.currentIndex;
-
     
+    self.tmpIndex = self.currentIndex;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [self setNeedsStatusBarAppearanceUpdate];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.delegate = self;
     self.dataSource = self;
 
@@ -44,13 +53,11 @@
 
     
     [self configurePageView];
-    
+    DLog(@"%f %f",CGRectGetWidth(self.navigationController.navigationBar.bounds),CGRectGetHeight(self.navigationController.navigationBar.bounds));
+    DLog(@"MYSCREEN= %f",CGRectGetWidth(self.view.bounds));
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    /*UIBarButtonItem *backCustomBar = [[UIBarButtonItem alloc] init];
-    backCustomBar.title = [NSString stringWithFormat:@"%lu из %lu",_currentIndex + 1,[self.photos count]];
-    self.navigationController.navigationBar.topItem.backBarButtonItem = backCustomBar;*/
 
     [super viewWillAppear:animated];
 
