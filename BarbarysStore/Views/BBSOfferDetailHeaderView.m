@@ -24,8 +24,10 @@
     _expanded = expanded;
     if (expanded) {
         self.backgroundColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.95 alpha:1];
+        self.titleLabel.textColor = [UIColor priceColor];
     } else {
         self.backgroundColor = [UIColor whiteColor];
+        self.titleLabel.textColor = [UIColor customDarkGrayColor];
     }
     
 }

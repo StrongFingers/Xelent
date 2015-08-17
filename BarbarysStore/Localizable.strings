@@ -2,4 +2,55 @@
 "offerDetail.brandSection.headerTitle" = "О бренде";
 "offerDetail.paymentSection.headerTitle" = "Оплата и доставка";
 "offerDetail.changingSection.headerTitle" = "Обмен и возврат";
+"offerDetail.addToShoppingCartButton.title" = "Купить";
+"offerDetail.sizeAbsent" = "Без размера";
+"offerDetail.deliveryText" = "Оплата заказа осуществляется наличными курьеру при доставке заказа, на указанный вами адрес.\nДоставка товара осуществляется бесплатно по Киеву и всей Украине в течение 1-3 дней после оформления заказа на нашем сайте. После оформления заказа наши менеджеры повторно свяжутся с вами для уточнения деталей, способа оплаты и доставки товара к вам домой или на работу. Наша компания предлагает следующие способы доставки:\n - собственная курьерская служба компании «Барбарис»\n - служба доставки DPD\n - служба доставки «Новая Почта»";
+"offerDetail.returnText" = "Если вам не подошел товар и вы хотите его обменять или вернуть, вы можете сделать это сразу же с помощью курьера или в течение 365 дней после оформления покупки. После получения нами товара обратно в товарном виде согласно условиям, мы возвратим вам средства либо на вашу кредитную карту, либо денежным переводом в течение 3-5 рабочих дней. Товар подлежит возврату или обмену только при наличии сопроводительных элементов, таких как: лейбы, этикетки и бирки, которые входили в комплектацию коробки. Оформление возврата или обмена вы можете осуществить с помощью наших менеджеров по телефонам:\n0800 30-33-8\n(044) 222-75-14";
 
+"offersViewController.title" = "Каталог";
+"offersViewController.priceSlider.lowerValue" = "от %d ₴";
+"offersViewController.priceSlider.upperValue" = "до %d ₴";
+"offersViewController.price.title" = "%@ грн.";
+
+"favoritesViewController.title" = "Избранное";
+
+"shoppingCartViewController.title" = "Корзина";
+"shoppingCargViewController.summaryPrice" = "Итого: %ld грн.";
+"shoppingCartViewController.takeOrderButton.title" = "Оформить заказ";
+"shoppingCartViewController.historyButton.title" = "История";
+"shoppingCartViewController.deleteButton.title" = "Удалить";
+
+"shoppingCartCell.size" = "Размер: %@";
+"shoppingCartCell.color" = "Цвет: %@";
+"shoppingCartCell.quantity" = "Количество: %@";
+
+"profileViewController.title" = "Мой дисконт";
+"profileViewController.info" = "Что бы начать пользоваться дисконтом нужно указать свои анкетные данные";
+"profileViewController.inputTitle" = "АНКЕНТНЫЕ ДАННЫЕ";
+"profileViewController.name.placeholder" = "ИМЯ";
+"profileViewController.phone.placeholder" = "МОБИЛЬНЫЙ ТЕЛЕФОН";
+"profileViewController.email.placeholder" = "EMAIL";
+"profileViewController.loginButton.title" = "ВОЙТИ В МОЙ ДИСКОНТ";
+
+"discountViewController.title" = "Мой дисконт";
+"discountViewController.info" = "Информация о доступных для вас дисконтах";
+"discountViewController.sumInfoTitle" = "Дисконты суммируются";
+"discountViewController.sumValueTitle" = "Ваша суммарная дисконтная скидка составляет";
+"discountViewController.sumValue" = "%d%%";
+"discountViewController.discount" = "ДИСКОНТ";
+"discountViewController.discountValue" = "%d%%";
+"discountViewController.discountValueTitle" = "скидка";
+"discountViewController.discountShare.title" = "\"look book\"";
+"discountViewController.discountShare.comment" = "За шаринг в соцсети товаров из каталога";
+"discountViewController.discountCollect.title" = "\"накопительный\"";
+
+"discountDetailsViewController.infoTitle" = "Информация о дисконте";
+
+"profileEditViewController.title" = "Редактирование данных";
+"profileEditViewController.infoTitle" = "АНКЕНТНЫЕ ДАННЫЕ";
+"profileEditViewController.name.title" = "ИМЯ";
+"profileEditViewController.phone.title" = "МОБИЛЬНЫЙ ТЕЛЕФОН";
+"profileEditViewController.email.title" = "EMAIL";
+"profileEditViewController.saveButton.title" = "СОХРАНИТЬ ИЗМЕНЕНИЯ";
+
+"BBSOfferManager.brandAboutDescriptionNone" = "Описание бренда отсутствует";

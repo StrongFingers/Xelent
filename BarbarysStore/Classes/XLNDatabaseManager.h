@@ -8,15 +8,27 @@
 
 #import <Foundation/Foundation.h>
 #import "BBSOffer.h"
+#import "BBSCartOffer.h"
+#import "BBSHistoryItem.h"
 
 @interface XLNDatabaseManager : NSObject
 
+@property (nonatomic, strong) BBSOffer *offer;
+
 - (void)createDB;
-- (void)addOffers:(NSArray *)offers;
-- (void)addCategories:(NSArray *)categories;
 - (NSArray *)getAllCategories;
-- (NSArray *)getOffersByCategoryId:(NSString *)categoryId;
-- (NSArray *)getPicturesForOfferId:(NSString *)offerId;
-- (void)addToFavorites:(BBSOffer *)offer;
+- (void)getOfferToFavoriteById:(BBSOffer *)offer;
+- (void)addToFavorite;
+- (void)removeFromFavorites:(BBSOffer *)offer;
+- (void)updateFavorite:(BBSOffer *)offer;
+- (NSArray *)getFavorites;
+- (void)addToShoppingCart:(BBSCartOffer *)offer;
+- (void)removeFromShoppingCart:(BBSCartOffer *)offer;
+- (NSArray *)getShoppingCart;
+- (NSInteger)countOfRows:(BBSOffer *)offer;
+- (BBSCartOffer *)cartOfferById:(NSString *)offerId;
+- (void)addToHistory:(BBSHistoryItem *)historyItem;
+- (NSArray *)loadFromHistory;
+
 
 @end

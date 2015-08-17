@@ -10,10 +10,16 @@
 
 @interface UIColor (BBSColor)
 
++ (UIColor *)mainDarkColor;
++ (UIColor *)additionalColor;
++ (UIColor *)priceColor;
 + (UIColor *)sideMenuBackground;
 + (UIColor *)sideMenuSubBackground;
 + (UIColor *)sideMenuExpandedHeaderTitle;
 + (UIColor *)sideMenuCategorySeparator;
 + (UIColor *)sideMenuSubcategorySeparator;
++ (UIColor *)colorFromHexString:(NSString *)hexString;
++ (UIColor *)customDarkGrayColor;
++ (UIColor *)detailCellBackgroundColor;
 
 @end

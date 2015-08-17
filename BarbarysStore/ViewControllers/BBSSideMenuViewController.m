@@ -37,14 +37,16 @@
     self.categories = [BBSCategoriesManager loadCategories];
     self.subcategories = self.categories[self.categoriesSegmentedControl.selectedSegmentIndex];
     [self.categoryTableView setTableFooterView:[[UIView alloc] init]];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"categorySelected" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateOffers" object:nil userInfo:@{@"categoryId" : note.userInfo[@"categoryId"], @"gender" : @(self.categoriesSegmentedControl.selectedSegmentIndex)}];
+    }];
 }
 
 #pragma mark - Customize
 
 - (void)customizeUI {
-    [self.view setBackgroundColor:[UIColor sideMenuBackground]];
+    [self.view setBackgroundColor:[UIColor sideMenuCategorySeparator]];
     [self.categoryTableView setBackgroundColor:[UIColor sideMenuBackground]];
-    [self.categoryTableView setSeparatorColor:[UIColor sideMenuCategorySeparator]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,17 +122,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     BBSCategorySet *subcategory = self.subcategories.subcategories[section];
-    BBSSideMenuHeaderView *header = [[BBSSideMenuHeaderView alloc] headerWithTitle:subcategory.name index:section];
+    BBSSideMenuHeaderView *header = [[BBSSideMenuHeaderView alloc] headerWithTitle:subcategory.name index:section gender:self.categoriesSegmentedControl.selectedSegmentIndex];
     [header setTouchUpTarget:self selector:@selector(headerTap:)];
     return header;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
+    return 43;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger maxHeight = self.categoryTableView.frame.size.height - 120;
+    NSInteger maxHeight = self.categoryTableView.frame.size.height - 130;
     NSInteger rowHeight = [((BBSCategorySet *)self.subcategories.subcategories[indexPath.section]).subcategories count] * 25;
     return MIN(maxHeight, rowHeight + 15);
 }

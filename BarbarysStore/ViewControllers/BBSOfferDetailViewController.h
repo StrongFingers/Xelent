@@ -12,6 +12,12 @@
 
 @interface BBSOfferDetailViewController : UIViewController
 
-@property (nonatomic, strong) BBSOffer *offer;
+@property (nonatomic, strong) NSString *offerId;
+@property (nonatomic, strong) NSString *selectedColor;
+@property (nonatomic, strong) NSString *brandName;
+@property (nonatomic, assign) BOOL fromFavorites;
+@property (nonatomic, assign) BOOL fromShoppingCart;
 
+- (void)updateOffer:(BBSOffer *)offer;
+- (void)setBackBarButtonTitle:(NSString *)inputString;
 @end

@@ -8,19 +8,19 @@
 
 #import "BBSOfferDetailTopCell.h"
 
-#import "XLNDatabaseManager.h"
+#import "BBSOfferManager.h"
 #import <UIImageView+WebCache.h>
 
 @interface BBSOfferDetailTopCell () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *imagesScrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *yourSizeImageView;
-@property (weak, nonatomic) IBOutlet UIButton *addToFavoritesButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *modelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIPageControl *imagesPageControl;
+@property (nonatomic, strong)        NSString *fromFavorite;
 
-- (IBAction)addToFavorites:(id)sender;
 
 @end
 
@@ -34,6 +34,8 @@
     self.imagesScrollView.delegate = self;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imagesScrollView addGestureRecognizer:tapGesture];
+    self.priceLabel.font = [UIFont mediumFont:15];
+    self.modelLabel.font = [UIFont lightFont:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,20 +44,27 @@
 }
 
 - (void)updateElements {
-    self.imagesPageControl.numberOfPages = [self.offer.pictures count];
+    if (!self.offer) {
+        return;
+    }
+    self.imagesPageControl.numberOfPages = [self.offer.pictures[self.offer.color] count];
     self.imagesPageControl.currentPage = 0;
-    [self layoutScrollImages:self.offer.pictures];
+    if (!self.offer.pictures) {
+        [self layoutScrollImages:@[self.offer.thumbnailUrl]];
+    } else {
+        [self layoutScrollImages:self.offer.pictures[self.offer.color]];
+    }
     self.modelLabel.text = self.offer.model;
-    self.priceLabel.text = self.offer.price;
+    self.priceLabel.text = [NSString stringWithFormat:LOC(@"offersViewController.price.title"), self.offer.price];
 }
 
-
 - (void)layoutScrollImages:(NSArray *)images {
-        NSUInteger i;
+    NSUInteger i;
     for (i = 0; i < [images count]; i++)
     {
         UIImageView *imageView = [[UIImageView alloc] init];
-        [imageView sd_setImageWithURL:images[i]];
+        NSURL *imageUrl = [NSURL URLWithString:images[i]];
+        [imageView sd_setImageWithURL:imageUrl];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         CGRect rect = imageView.frame;
         rect.origin.x = 320 * i;
@@ -87,11 +96,6 @@
 }
 
 #pragma mark - IBActions
-
-- (IBAction)addToFavorites:(id)sender {
-    //XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
-    //[dbManager addToFavorites:self.offer];
-}
 
 - (void)imageTapped:(UITapGestureRecognizer *)tapGesture {
     if ([self.delegate respondsToSelector:@selector(imageTapped:)]) {

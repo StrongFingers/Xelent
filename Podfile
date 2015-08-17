@@ -6,7 +6,10 @@ pod 'TBXML'
 pod 'FMDB'
 pod 'SWRevealViewController'
 pod 'SDWebImage'
-pod 'Realm'
+pod 'NMRangeSlider'
+pod 'AFNetworking'
+pod 'MBProgressHUD'
+pod 'CCBottomRefreshControl'
 end
 
 target 'BarbarysStoreTests' do

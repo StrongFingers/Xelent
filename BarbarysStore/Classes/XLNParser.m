@@ -28,7 +28,7 @@
             [self parseRootElement:tbxmlDocument.rootXMLElement];
         }
     } failure:^(TBXML *tbxmlDocument, NSError *error) {
-        DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+        //DLog(@"%@ %@", [error localizedDescription], [error userInfo]);
     }];
 }
 
@@ -43,8 +43,8 @@
     
     XLNDatabaseManager *dbManager = [[XLNDatabaseManager alloc] init];
     [dbManager createDB];
-    [dbManager addCategories:categories];
-    [dbManager addOffers:offers];
+    //[dbManager addCategories:categories];
+    //[dbManager addOffers:offers];
 }
 
 - (NSArray *)getOffers:(TBXMLElement *)offersElement {
@@ -64,22 +64,23 @@
         TBXMLElement *categoryElement = [TBXML childElementNamed:@"categoryId" parentElement:offerElement];
         offer.categoryId = [TBXML textForElement:categoryElement];
         TBXMLElement *vendorElement = [TBXML childElementNamed:@"vendor" parentElement:offerElement];
-        offer.vendor = [TBXML textForElement:vendorElement];
+        offer.brand = [TBXML textForElement:vendorElement];
         TBXMLElement *modelElement = [TBXML childElementNamed:@"model" parentElement:offerElement];
         offer.model = [TBXML textForElement:modelElement];
         TBXMLElement *descriptionElement = [TBXML childElementNamed:@"description" parentElement:offerElement];
         if (descriptionElement) {
+           // offer.descriptionText = [TBXML textForElement:descriptionElement];
             offer.descriptionText = [TBXML textForElement:descriptionElement];
         }
         
         TBXMLElement *pictureElement = [TBXML childElementNamed:@"picture" parentElement:offerElement];
         if (pictureElement) {
             NSString *pictureTagName = [NSString stringWithCString:pictureElement->name encoding:NSUTF8StringEncoding];
-            NSMutableArray *pictures = [[NSMutableArray alloc] init];
+            NSMutableArray *pictures = [NSMutableArray array];
             do {
                 pictureTagName = [NSString stringWithCString:pictureElement->nextSibling->name encoding:NSUTF8StringEncoding];
-                NSString *pictureUrl = [TBXML textForElement:pictureElement];
-                [pictures addObject:pictureUrl];
+                NSString *url = [TBXML textForElement:pictureElement];
+                [pictures addObject:url];
             } while ((pictureElement = pictureElement->nextSibling) && [pictureTagName isEqualToString:@"picture"]);
             offer.pictures = pictures;
             offer.thumbnailUrl = [pictures firstObject];
@@ -99,7 +100,7 @@
         } while ((paramElement = paramElement->nextSibling) != nil);
         [offers addObject:offer];
     } while ((offerElement = offerElement->nextSibling) != nil);
-    DLog(@"done offers");
+   // DLog(@"done offers");
     return offers;
 }
 

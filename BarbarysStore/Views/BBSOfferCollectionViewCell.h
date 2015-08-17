@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "BBSOffer.h"
 
+@protocol BBSOfferCellDelegate <NSObject>
+
+@optional
+- (void)refreshOffer:(BBSOffer *)offer cell:(id)cell;
+- (void)refreshOffers;
+
+@end
+
 @interface BBSOfferCollectionViewCell : UICollectionViewCell
 
-- (void)setOffer:(BBSOffer *)offer;
+@property (nonatomic, strong) id<BBSOfferCellDelegate> delegate;
+@property (nonatomic, assign) BOOL isMultiplyCelltmp;
+- (void)updateOffer:(BBSOffer *)offer isMultiplyCell:(BOOL)isMultiplyCell;
 
 @end

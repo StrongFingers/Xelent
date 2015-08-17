@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BBSNavigationBar : UINavigationBar
-
+@property (nonatomic, strong) UINavigationItem *navigationItem;
+-(void) copyNavigationItem:(UINavigationItem *)inputNavItem;
 @end

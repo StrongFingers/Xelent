@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface BBSOfferDetailSizeColorCell : UITableViewCell
+@property (nonatomic, strong) NSArray *defaultSizes;
+
+
+- (void)updateSizes:(NSArray *)sizes selectedSize:(NSString *)selectedSize;
+- (void)updateColors:(NSDictionary *)colors selectedColor:(NSString *)colorId;
 
 @end

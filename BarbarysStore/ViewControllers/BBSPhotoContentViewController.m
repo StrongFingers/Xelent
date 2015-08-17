@@ -27,6 +27,7 @@
     self.imageScrollView.maximumZoomScale = 6.0;
     self.imageScrollView.contentSize = self.mainImageView.frame.size;
     self.imageScrollView.delegate = self;
+    self.navigationController.hidesBarsOnTap = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +38,8 @@
 #pragma mark - UIScrollView delegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+
+    
     return self.mainImageView;
 }
 
