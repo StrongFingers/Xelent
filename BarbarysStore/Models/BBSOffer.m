@@ -22,6 +22,7 @@
         self.price = @"";
         self.descriptionText =@"";
         self.color = @"";
+
         self.gender = @"";
         self.material = @"";
         self.brandAboutDescription = @"";
@@ -56,6 +57,7 @@
         self.price = [decoder decodeObjectForKey:@"price"];
         self.descriptionText = [decoder decodeObjectForKey:@"descriptionText"];
         self.color = [decoder decodeObjectForKey:@"color"];
+
         self.gender = [decoder decodeObjectForKey:@"gender"];
         self.material = [decoder decodeObjectForKey:@"material"];
         self.pictures = [decoder decodeObjectForKey:@"pictures"];
@@ -79,6 +81,7 @@
     [encoder encodeObject:self.price forKey:@"price"];
     [encoder encodeObject:self.descriptionText forKey:@"descriptionText"];
     [encoder encodeObject:self.color forKey:@"color"];
+
     [encoder encodeObject:self.gender forKey:@"gender"];
     [encoder encodeObject:self.material forKey:@"material"];
     [encoder encodeObject:self.pictures forKey:@"pictures"];

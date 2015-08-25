@@ -40,19 +40,21 @@
     }
     return size;
 }
-+ (CGSize)findHeightForMutableAttributedText:(NSMutableAttributedString *)text havingWidth:(CGFloat)widthValue  {
++ (CGSize)findHeightForMutableAttributedText:(NSAttributedString *)text havingWidth:(CGFloat)widthValue  {
     CGSize size = CGSizeZero;
     if (text) {
+        
         //iOS 7
-        CGRect frame = [text boundingRectWithSize:CGSizeMake(widthValue, CGFLOAT_MAX) options: NSStringDrawingUsesLineFragmentOrigin context:nil];
-        size = CGSizeMake(frame.size.width,( frame.size.height+5)/*[text length]/30 * 8 )*/ );
+        
+        CGRect frame = [text boundingRectWithSize:CGSizeMake(widthValue, CGFLOAT_MAX) options: NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil];
+        size = CGSizeMake(frame.size.width,( frame.size.height)+[text length]/30 * 8 ) ;
 
         
     }
     return size;
 }
 
-+ (NSMutableAttributedString *)convertToBoldedString:(NSString *)notBoldString{
++ (NSAttributedString *)convertToBoldedString:(NSString *)notBoldString fontSize:(float)sizeFont{
     NSString *start = @"<b>";
     NSRange startRange = NSMakeRange(0, start.length);
     NSString *end = @"</b>";
@@ -74,14 +76,17 @@
         [boldString replaceCharactersInRange:endRange withString:@""];
         //calculate valid tmpRange
         tmpRange.location = tmpRange.location - 3;
-        [boldString addAttribute:NSFontAttributeName value:[UIFont boldLightFont:17] range:tmpRange];
-    
+        [boldString addAttribute:NSFontAttributeName value:[UIFont boldLightFont:sizeFont] range:tmpRange];
+       
     }
-    return boldString;
+
+     NSAttributedString *result = [[NSAttributedString alloc] initWithAttributedString:[boldString attributedSubstringFromRange:NSMakeRange(0, [boldString length])]];
+
+
+        return result;
 }
 
 @end
-
 
 
 

@@ -29,6 +29,7 @@
 @implementation BBSOfferDetailTopCell
 
 - (void)awakeFromNib {
+
     // Initialization code
     self.imagesScrollView.clipsToBounds = YES;
     [self.imagesScrollView setCanCancelContentTouches:NO];

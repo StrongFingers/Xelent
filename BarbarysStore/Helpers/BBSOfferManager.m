@@ -96,22 +96,24 @@
     newOffer.colorsType = colors;
     
     NSString *concreteOfferDescription = @"";
-    /*if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [[[concreteOfferDescription stringByAppendingString:offerData[@"product_description"]] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
-        }*/
-    if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [concreteOfferDescription stringByAppendingString:offerData[@"product_description"]];
+    if (![offerData[@"product_description"] isEqualToString:@""]) {concreteOfferDescription = [[[[[[[concreteOfferDescription stringByAppendingString:offerData[@"product_description"]] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@""] stringByReplacingOccurrencesOfString:@"<ul>" withString:@""] stringByReplacingOccurrencesOfString:@"</ul>" withString:@""] stringByReplacingOccurrencesOfString:@"<li>" withString:@""] stringByReplacingOccurrencesOfString:@"</li>" withString:@"" ];
     }
     NSArray *properties = offerData[@"properties"];
     
     if (properties)
     {for (NSDictionary *property in properties)
          {
+             NSString *brandString;
             if ([property[@"property_type"] isEqualToString:@"brand"])
             {
                 
+                if ([concreteOfferDescription isEqualToString:@""]) {
+                newOffer.brand = property[@"property_name"];
+                    brandString = [NSString stringWithFormat:@"<b>%@:</b> %@", property[@"property_type_name"], property[@"property_name"]];
+                } else {
                     newOffer.brand = property[@"property_name"];
-                NSString *brandString = [NSString stringWithFormat:@"<b>%@:</b> %@", property[@"property_type_name"], property[@"property_name"]];
-               
-                    concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
+                    brandString = [NSString stringWithFormat:@"\n<b>%@:</b> %@", property[@"property_type_name"], property[@"property_name"]]; }
+            concreteOfferDescription = [concreteOfferDescription stringByAppendingString:brandString];
             }
             if ([property[@"property_type"] isEqualToString:@"country_production"]) {
                 NSString *temporaryString = [NSString stringWithFormat:@"\n<b>%@:</b> %@", property[@"property_type_name"], property[@"property_name"]];
@@ -192,6 +194,7 @@
 
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
     XLNDatabaseManager *manager = [[XLNDatabaseManager alloc] init];
+
     [manager addToShoppingCart:offer];
 }
 

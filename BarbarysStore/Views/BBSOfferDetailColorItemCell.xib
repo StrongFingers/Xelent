@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,6 +14,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectedColorGray" translatesAutoresizingMaskIntoConstraints="NO" id="qK1-bH-bta">
+                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                    </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectedColor" translatesAutoresizingMaskIntoConstraints="NO" id="mgh-s5-5Fc">
                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                     </imageView>
@@ -33,15 +36,17 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <connections>
+                <outlet property="GrayBorderImageView" destination="qK1-bH-bta" id="tCY-ao-fpY"/>
                 <outlet property="colorImageView" destination="5oj-EK-2EB" id="F5i-hr-u8T"/>
                 <outlet property="colorView" destination="q5U-Px-1fR" id="9i1-Xf-qBy"/>
                 <outlet property="secondColorImageView" destination="S1t-Nv-yUq" id="tmf-6a-GuR"/>
-                <outlet property="selectedBorderImageView" destination="mgh-s5-5Fc" id="4Sp-p3-L6d"/>
+                <outlet property="selectedBorderImageView" destination="mgh-s5-5Fc" id="jpg-FQ-B7k"/>
             </connections>
             <point key="canvasLocation" x="114" y="154"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="selectedColor" width="29" height="29"/>
+        <image name="selectedColorGray" width="29" height="29"/>
     </resources>
 </document>

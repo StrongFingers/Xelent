@@ -35,6 +35,7 @@
     self.colorCollectionView.dataSource = self;
     [self.sizeCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailSizeItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerSizeItemCell"];
     [self.colorCollectionView registerNib:[UINib nibWithNibName:@"BBSOfferDetailColorItemCell" bundle:nil] forCellWithReuseIdentifier:@"offerColorItemCell"];
+    
     self.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
 
     [self.addToCartButton setTitle:LOC(@"offerDetail.addToShoppingCartButton.title") forState:UIControlStateNormal];

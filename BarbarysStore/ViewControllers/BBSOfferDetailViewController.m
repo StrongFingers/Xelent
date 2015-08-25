@@ -28,7 +28,8 @@
 @property (nonatomic, strong) id shoppingCartNotification;
 @property (nonatomic, strong) id updateSizeColorNotification;
 @property (nonatomic, strong) NSString *selectedSize;
-@property (nonatomic, strong) NSMutableAttributedString *tmpMutableString;
+@property (nonatomic, strong) NSAttributedString *tmpAttributedStringDescription;
+@property (nonatomic, strong) NSAttributedString *tmpAttributedStringBrandDescription;
 @property (nonatomic, strong) UIButton *shareButton;
 @end
 
@@ -36,8 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;//teste
     self.expandedInfo = [[NSMutableDictionary alloc] init];
     if (!self.brandName)
     {
@@ -73,19 +75,12 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-    [self setNeedsStatusBarAppearanceUpdate];
-    
     self.navigationController.hidesBarsOnTap = NO;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    /*    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-     [self.view setBackgroundColor:[UIColor clearColor]];
-     
-     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-     [self setNeedsStatusBarAppearanceUpdate];*/
-    [super viewWillAppear:animated];
+    [self setNeedsStatusBarAppearanceUpdate];
+    
 
+    [super viewWillAppear:animated];
     if (!self.brandName)
             {
                     self.navigationItem.title = self.offer.brand;
@@ -154,6 +149,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     switch (indexPath.section) {
         case 0:
             return 430;
@@ -161,16 +157,18 @@
         case 1:
             return 225;
             break;
-        case 2:
-          /*  return [XLNCommonMethods findHeightForText:[self.offer.descriptionText stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:18]].height;*/
-        
-            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpMutableString havingWidth:320].height);
+        case 2:{
+         //   self.tmpAttributedStringDescription = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText fontSize:17.0];
+            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpAttributedStringDescription havingWidth:self.view.frame.size.width].height);
+        }
             break;
-        case 3:
-           // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            return ceilf([XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height);
-            //return 100;
-            break;
+            
+            
+        case 3:{
+        //    self.tmpAttributedStringBrandDescription = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription fontSize:15.0];
+            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpAttributedStringBrandDescription havingWidth:self.view.frame.size.width].height);
+
+        break;}
         default:
             return 0;
             break;
@@ -216,26 +214,27 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
+    cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont lightFont:15];
     //Next switch load an text to expanding cells of detail offer card
-   
+
     switch (indexPath.section) {
-        case 2:
+        case 2:{
             
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.descriptionText];
-            cell.textLabel.font = [UIFont lightFont:17];
-            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText];
-            [cell.textLabel setAttributedText:self.tmpMutableString];
-            break;
-        case 3:
+           // cell.textLabel.font = [UIFont lightFont:17];
+            self.tmpAttributedStringDescription = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText fontSize:15.0];
+        
             
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@""];
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.brandAboutDescription];
-            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription];
-            [cell.textLabel setAttributedText:self.tmpMutableString];
-            break;
+           /* self.tmpAttributedStringDescription = [[NSAttributedString alloc] initWithString:self.offer.descriptionText attributes:@{NSFontAttributeName:[UIFont boldLightFont:25.0]}];*/
+            [cell.textLabel setAttributedText:self.tmpAttributedStringDescription];
+            break;}
+        case 3:{
+            self.tmpAttributedStringBrandDescription = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription fontSize:15.0];
+            //          self.tmpAttributedStringBrandDescription = [[NSAttributedString alloc] initWithString:self.offer.brandAboutDescription attributes:];
+            [cell.textLabel setAttributedText:self.tmpAttributedStringBrandDescription];
+            break;}
     }
-    cell.textLabel.numberOfLines = 0; //
+    
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor detailCellBackgroundColor];
@@ -295,7 +294,7 @@
                 CGPoint expandedHeaderLeftTopPoint = [self.mainTableView contentOffset];
                 CGRect screenRect = [[UIScreen mainScreen] bounds];
              
-                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 2;
+                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 3;
                 [self.mainTableView scrollsToTop];
                 [self.mainTableView setContentOffset:expandedHeaderLeftTopPoint animated:YES];
                 [self.mainTableView reloadData];
@@ -342,6 +341,7 @@
 }
 
 - (void)requestFinishedWithError:(NSError *)error {
+
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
