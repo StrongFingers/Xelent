@@ -8,10 +8,13 @@
 
 #import "BBSOfferDetailSizeItemCell.h"
 
+
+
 @interface BBSOfferDetailSizeItemCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedBorderImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *GrayBorderImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *colorImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *secondColorImageView;
 @property (weak, nonatomic) IBOutlet UIView *colorView;
@@ -20,17 +23,11 @@
 
 @implementation BBSOfferDetailSizeItemCell
 
+
 - (void)awakeFromNib {
     // Initialization code
     self.typeLabel.layer.cornerRadius = self.typeLabel.frame.size.width / 2;
     self.colorView.layer.cornerRadius = self.colorView.frame.size.width / 2;
-
-
-    /*self.selectedBorderImageView.backgroundColor = [UIColor grayColor];
-    self.selectedBorderImageView.layer.cornerRadius = self.colorView.frame.size.width / 2;
-    self.selectedBorderImageView.clipsToBounds = YES;
-    self.selectedBorderImageView.hidden = NO;*/
-   
     self.colorView.clipsToBounds = YES;
     
     
@@ -45,18 +42,10 @@
      } else {
      self.typeLabel.textColor = [UIColor customDarkGrayColor];
      }
+
     self.selectedBorderImageView.hidden = !isSelected;
-}/*
-- (void)updateTypeLabel:(NSString *)typeText selected:(BOOL)isSelected enabled:(BOOL)isEnabled {
-    self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
-    self.typeLabel.backgroundColor = [UIColor mainDarkColor];
-    if (isEnabled) {
-        self.typeLabel.textColor = [UIColor mainDarkColor];
-    } else {
-        self.typeLabel.textColor = [UIColor customDarkGrayColor];
-    }
-    self.selectedBorderImageView.hidden = !isSelected;
-}*/
+
+}
 
 - (void)updateTypeBackgroundColor:(NSString *)colorHex selected:(BOOL)isSelected {
     NSArray *colors = [colorHex componentsSeparatedByString:@"-"];
@@ -66,35 +55,21 @@
 
     } else {
 
-        
-        self.colorImageView.backgroundColor = [UIColor grayColor];
-        //self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
-        //self.secondColorImageView.backgroundColor = [UIColor colorFromHexString:colors[1]];
-        self.secondColorImageView.backgroundColor = [UIColor redColor];
+
+        self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];//colorHex:colors[0]];
+        self.secondColorImageView.backgroundColor = [UIColor colorFromHexString:colors[1]];
         self.secondColorImageView.hidden = NO;
+        if ([colors[0] isEqualToString:@"ffffff"] || [colors[1] isEqualToString :@"ffffff"]) {
+            self.selectedBorderImageView.hidden = !isSelected;
+            self.GrayBorderImageView.hidden = isSelected;
+        }
     }
-    
-    self.selectedBorderImageView.hidden = NO;
-    /*if (isSelected) {
-        self.selectedBorderImageView.backgroundColor = [UIColor mainDarkColor];
-    } else {
-        
-        //self.colorView.layer.backgroundColor = [UIColor redColor];
-            //self.selectedBorderImageView.backgroundColor = [UIColor redColor];
-         self.selectedBorderImageView.backgroundColor = [UIColor mainDarkColor];
-            }*/
 
     self.selectedBorderImageView.hidden = !isSelected;
-    
-    
+    if ([colorHex isEqualToString:@"ffffff"]) {
+        self.GrayBorderImageView.hidden = isSelected;
+    }
 
 }
 
 @end
-
-
-/*        self.colorImageView.backgroundColor = [UIColor colorFromHexString:colors[0]];
- self.selectedBorderImageView.backgroundColor = [UIColor grayColor];
- self.selectedBorderImageView.layer.cornerRadius = self.colorView.frame.size.width / 2;
- self.selectedBorderImageView.clipsToBounds = YES;
- self.selectedBorderImageView.hidden = NO;*/

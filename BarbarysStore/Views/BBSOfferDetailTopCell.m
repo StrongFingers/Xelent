@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIPageControl *imagesPageControl;
 @property (nonatomic, strong)        NSString *fromFavorite;
+- (IBAction)nextImageButton:(id)sender;
+- (IBAction)prevImageButton:(id)sender;
 
 
 @end
@@ -27,6 +29,7 @@
 @implementation BBSOfferDetailTopCell
 
 - (void)awakeFromNib {
+
     // Initialization code
     self.imagesScrollView.clipsToBounds = YES;
     [self.imagesScrollView setCanCancelContentTouches:NO];
@@ -103,4 +106,22 @@
     }
 }
 
+- (IBAction)nextImageButton:(id)sender {
+    if (self.imagesPageControl.currentPage + 1 < [self.offer.pictures[self.offer.color] count]) {
+        self.imagesPageControl.currentPage = self.imagesPageControl.currentPage + 1;
+        CGPoint offset = self.imagesScrollView.contentOffset;
+        offset.x += 320;
+        [self.imagesScrollView setContentOffset:offset animated:YES];
+    }
+    
+}
+
+- (IBAction)prevImageButton:(id)sender {
+    if (self.imagesPageControl.currentPage > 0) {
+        self.imagesPageControl.currentPage = self.imagesPageControl.currentPage - 1;
+        CGPoint offset = self.imagesScrollView.contentOffset;
+        offset.x -= 320;
+        [self.imagesScrollView setContentOffset:offset animated:YES];
+    }
+}
 @end

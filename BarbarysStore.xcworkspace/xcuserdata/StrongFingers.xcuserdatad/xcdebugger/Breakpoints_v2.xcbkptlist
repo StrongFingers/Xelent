@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BarbarysStore/ViewControllers/BBSOffersCollectionController.m"
-            timestampString = "460902531.00939"
+            filePath = "BarbarysStore/Helpers/BBSOfferManager.m"
+            timestampString = "461763815.189026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-addToShoppingCart:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,29 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BarbarysStore/Views/BBSOfferCollectionViewCell.m"
-            timestampString = "460902780.944176"
+            filePath = "BarbarysStore/Helpers/BBSOfferManager.m"
+            timestampString = "461763815.189026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-addToFavorite:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BarbarysStore/Views/BBSOfferCollectionViewCell.m"
-            timestampString = "460902823.389452"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-updateOffer:isMultiplyCell:"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-addToShoppingCart:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

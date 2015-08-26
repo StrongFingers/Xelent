@@ -69,6 +69,8 @@
 		844BE4FF1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE4FE1AA3A67E0033EF12 /* BBSDiscountDetailsViewController.m */; };
 		844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */; };
 		84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84578B551A9F0982007BE782 /* BBSDiscountViewController.m */; };
+		9A59D4EA1B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59D4E81B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.m */; };
+		9A59D4EB1B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A59D4E91B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +197,9 @@
 		844BE5011AA3AB9B0033EF12 /* BBSProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSProfileEditViewController.m; sourceTree = "<group>"; };
 		84578B541A9F0982007BE782 /* BBSDiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSDiscountViewController.h; sourceTree = "<group>"; };
 		84578B551A9F0982007BE782 /* BBSDiscountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSDiscountViewController.m; sourceTree = "<group>"; };
+		9A59D4E71B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSOfferDetailAbsentSizeCell.h; sourceTree = "<group>"; };
+		9A59D4E81B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSOfferDetailAbsentSizeCell.m; sourceTree = "<group>"; };
+		9A59D4E91B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSOfferDetailAbsentSizeCell.xib; sourceTree = "<group>"; };
 		A45193B6BA36523A95818600 /* libPods-BarbarysStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarbarysStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -301,6 +306,9 @@
 				3253F4CA1A8C68CC00005BDE /* BBSOfferDetailHeaderView.h */,
 				3253F4CB1A8C68CC00005BDE /* BBSOfferDetailHeaderView.m */,
 				3253F4CD1A8C6CF000005BDE /* BBSOfferDetailHeaderView.xib */,
+				9A59D4E71B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.h */,
+				9A59D4E81B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.m */,
+				9A59D4E91B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.xib */,
 			);
 			name = OfferDetail;
 			sourceTree = "<group>";
@@ -620,6 +628,7 @@
 				324DE0CD1A8B18A20098ECCD /* BBSOfferDetailTopCell.xib in Resources */,
 				324DE0D71A8B35BE0098ECCD /* BBSOfferDetailSizeItemCell.xib in Resources */,
 				325669001A89C67F00A166E3 /* categories.plist in Resources */,
+				9A59D4EB1B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.xib in Resources */,
 				325BC3FE1A79EE2500A11911 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,6 +709,7 @@
 				84578B561A9F0982007BE782 /* BBSDiscountViewController.m in Sources */,
 				325BC41C1A79EEE300A11911 /* XLNParser.m in Sources */,
 				324516D91A9DAACD009D1EFC /* BBSAPIRequest.m in Sources */,
+				9A59D4EA1B8DE6EC00AD837C /* BBSOfferDetailAbsentSizeCell.m in Sources */,
 				324790C21A93511C0052BD16 /* BBSPhotoContentViewController.m in Sources */,
 				325397581A7F374B0097DBA1 /* BBSSideMenuViewController.m in Sources */,
 				844BE5021AA3AB9B0033EF12 /* BBSProfileEditViewController.m in Sources */,

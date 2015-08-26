@@ -51,9 +51,9 @@
         return;
     }
     [self.db executeUpdate:@"create table favorites(offerId text, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, colors blob, sizes blob, pictures blob, brandAboutDescription text)"];
-    [self.db executeUpdate:@"create table shoppingCart(offerId text primary key, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
+    [self.db executeUpdate:@"create table shoppingCart(offerId text, descriptionText text, categoryId text, url text, thumbnailUrl text, price text, currency text, vendor text, model text, color text, gender text, material text, size text, choosedColor text, quantity text, colors blob, sizes blod, pictures blob)"];
     [self.db executeUpdate:@"create table history (id integer primary key, date text, summaryPrice text, saleValue text, offers blob)"];
-}
+}//primary key offerid
 
 - (NSArray *)getOffersByCategoryId:(NSString *)categoryId {
     if (!self.db.open) {
@@ -164,12 +164,35 @@
     }];
     return offers;
 }
+- (BOOL) isOfferInShoppingCart:(BBSCartOffer*)offer{
+    bool result=nil;
+    if (!self.db.open) {
+        [self.db open];
+    }
+    __block NSInteger count = 0;
+    
+    NSString *query = [NSString stringWithFormat:@"select count(*) from shoppingCart where offerId = %@ and color = %@", offer.offerId, offer.color];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *s = [self.db executeQuery:query];
+        while ([s next]) {
+            count = [s intForColumnIndex:0];
+        }
+    }];
+    if (count<=0) {
+        result = NO;
+    } else if (count > 0) {result = YES;};
+    return result;
+}
 
 - (void)addToShoppingCart:(BBSCartOffer *)offer {
-    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
-    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"insert into shoppingCart (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
-    }];
+    if (![self isOfferInShoppingCart:offer]) {
+        FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:self.path];
+        [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+            [db executeUpdate:@"insert into shoppingCart (offerId, descriptionText, url, thumbnailUrl, categoryId, price, currency, vendor, model, color, gender, material, size, choosedColor, quantity, colors, sizes, pictures) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", offer.offerId, offer.descriptionText, offer.url, offer.thumbnailUrl, offer.categoryId, offer.price, offer.currency, offer.brand, offer.model, offer.color, offer.gender, offer.material, offer.size, offer.choosedColor, offer.quantity, [NSKeyedArchiver archivedDataWithRootObject:offer.colorsType], [NSKeyedArchiver archivedDataWithRootObject:offer.sizesType], [NSKeyedArchiver archivedDataWithRootObject:offer.pictures]];
+        }];
+    }
+
 }
 
 - (void)removeFromShoppingCart:(BBSCartOffer *)offer {

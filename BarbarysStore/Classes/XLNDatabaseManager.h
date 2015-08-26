@@ -29,6 +29,7 @@
 - (BBSCartOffer *)cartOfferById:(NSString *)offerId;
 - (void)addToHistory:(BBSHistoryItem *)historyItem;
 - (NSArray *)loadFromHistory;
+- (BOOL) isOfferInShoppingCart:(BBSOffer*)offer;
 
 
 @end

@@ -9,6 +9,7 @@
 #import "BBSOfferDetailViewController.h"
 #import "BBSOfferDetailTopCell.h"
 #import "BBSOfferDetailSizeColorCell.h"
+#import "BBSOfferDetailAbsentSizeCell.h"
 #import "BBSOfferDetailHeaderView.h"
 #import "BBSPhotoPagingViewController.h"
 #import "XLNCommonMethods.h"
@@ -28,7 +29,8 @@
 @property (nonatomic, strong) id shoppingCartNotification;
 @property (nonatomic, strong) id updateSizeColorNotification;
 @property (nonatomic, strong) NSString *selectedSize;
-@property (nonatomic, strong) NSMutableAttributedString *tmpMutableString;
+@property (nonatomic, strong) NSAttributedString *tmpAttributedStringDescription;
+@property (nonatomic, strong) NSAttributedString *tmpAttributedStringBrandDescription;
 @property (nonatomic, strong) UIButton *shareButton;
 @end
 
@@ -36,16 +38,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    // self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
+       // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
-    if (!self.brandName)
+  /*  if (!self.brandName)
     {
         self.navigationItem.title = self.offer.brand;
     } else
         {
         self.navigationItem.title = self.brandName;
-        };
+        };*/
     
     
     if (self.fromShoppingCart) {
@@ -67,8 +70,19 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.14 green:0.37 blue:0.51 alpha:1]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.hidesBarsOnTap = NO;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+
+    [super viewWillAppear:animated];
+
     if (!self.brandName)
             {
                     self.navigationItem.title = self.offer.brand;
@@ -137,23 +151,29 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     switch (indexPath.section) {
         case 0:
             return 430;
             break;
         case 1:
-            return 225;
+            if (![self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")])
+            {
+                return 225;
+            } else {return 133;}
             break;
-        case 2:
-          /*  return [XLNCommonMethods findHeightForText:[self.offer.descriptionText stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:18]].height;*/
-        
-            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpMutableString havingWidth:320].height);
+        case 2:{
+         //   self.tmpAttributedStringDescription = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText fontSize:17.0];
+            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpAttributedStringDescription havingWidth:self.view.frame.size.width].height);
+        }
             break;
-        case 3:
-           // return [XLNCommonMethods findHeightForText:[self.offer.descriptionText string] havingWidth:320 andFont:[UIFont lightFont:16]].height;
-            return ceilf([XLNCommonMethods findHeightForText:[self.offer.brandAboutDescription stringByAppendingString:@""] havingWidth:320 andFont:[UIFont lightFont:16]].height);
-            //return 100;
-            break;
+            
+            
+        case 3:{
+        //    self.tmpAttributedStringBrandDescription = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription fontSize:15.0];
+            return ceilf([XLNCommonMethods findHeightForMutableAttributedText:self.tmpAttributedStringBrandDescription havingWidth:self.view.frame.size.width].height);
+
+        break;}
         default:
             return 0;
             break;
@@ -172,53 +192,78 @@
         return cell;
     }
     if (indexPath.section == 1) {
-        BBSOfferDetailSizeColorCell *cell = (BBSOfferDetailSizeColorCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailSizeColorCell"];
-        
-        if (!cell) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
+        // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
+        if (![self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")])
+        {
+            BBSOfferDetailSizeColorCell *cell = (BBSOfferDetailSizeColorCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailSizeColorCell"];
+            
+            if (!cell) {
+                cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
+            }
+            if (self.offer) {
+                if (!self.selectedSize) {
+                    self.selectedSize = self.offer.colorsType[self.selectedColor][0][@"size_name"];
+                }
+                NSMutableArray *sizes = [NSMutableArray array];
+                for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
+                    [sizes addObject:item[@"size_name"]];
+                }
+                cell.defaultSizes = [self.offer.sizesType allKeys];
+                [cell updateSizes:sizes selectedSize:self.selectedSize];
+                NSMutableDictionary *colors = [NSMutableDictionary dictionary];
+                for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
+                    [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
+                }
+                [cell updateColors:colors selectedColor:self.selectedColor];
+            }
+            return cell;
+        } else
+        {
+            BBSOfferDetailAbsentSizeCell *cell = (BBSOfferDetailAbsentSizeCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailAbsentSizeCell"];
+            
+            if (!cell) {
+                cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailAbsentSizeCell" owner:self options:nil][0];
+            }
+            if (self.offer)
+            {
+                if (!self.selectedSize) {
+                    self.selectedSize = LOC(@"offerDetail.sizeAbsent");
+                }
+                NSMutableDictionary *colors = [NSMutableDictionary dictionary];
+                for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
+                    [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
+                }
+                [cell updateColors:colors selectedColor:self.selectedColor];
+            }
+            return cell;
         }
-        if (self.offer) {
-            if (!self.selectedSize) {
-                self.selectedSize = self.offer.colorsType[self.selectedColor][0][@"size_name"];
-            }
-            NSMutableArray *sizes = [NSMutableArray array];
-            for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
-                [sizes addObject:item[@"size_name"]];
-            }
-            cell.defaultSizes = [self.offer.sizesType allKeys];
-            [cell updateSizes:sizes selectedSize:self.selectedSize];
-            NSMutableDictionary *colors = [NSMutableDictionary dictionary];
-            for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
-                [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
-            }
-            [cell updateColors:colors selectedColor:self.selectedColor];
-        }
-        return cell;
     }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
     }
+    cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont lightFont:15];
     //Next switch load an text to expanding cells of detail offer card
-   
+
     switch (indexPath.section) {
-        case 2:
+        case 2:{
             
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.descriptionText];
-            cell.textLabel.font = [UIFont lightFont:17];
-            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText];
-            [cell.textLabel setAttributedText:self.tmpMutableString];
-            break;
-        case 3:
+           // cell.textLabel.font = [UIFont lightFont:17];
+            self.tmpAttributedStringDescription = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText fontSize:15.0];
+        
             
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:@""];
-            self.tmpMutableString = [[NSMutableAttributedString alloc] initWithString:self.offer.brandAboutDescription];
-            self.tmpMutableString = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription];
-            [cell.textLabel setAttributedText:self.tmpMutableString];
-            break;
+           /* self.tmpAttributedStringDescription = [[NSAttributedString alloc] initWithString:self.offer.descriptionText attributes:@{NSFontAttributeName:[UIFont boldLightFont:25.0]}];*/
+            [cell.textLabel setAttributedText:self.tmpAttributedStringDescription];
+            break;}
+        case 3:{
+            self.tmpAttributedStringBrandDescription = [XLNCommonMethods convertToBoldedString:self.offer.brandAboutDescription fontSize:15.0];
+            //          self.tmpAttributedStringBrandDescription = [[NSAttributedString alloc] initWithString:self.offer.brandAboutDescription attributes:];
+            [cell.textLabel setAttributedText:self.tmpAttributedStringBrandDescription];
+            break;}
     }
-    cell.textLabel.numberOfLines = 0; //
+    
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor detailCellBackgroundColor];
@@ -278,7 +323,7 @@
                 CGPoint expandedHeaderLeftTopPoint = [self.mainTableView contentOffset];
                 CGRect screenRect = [[UIScreen mainScreen] bounds];
              
-                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 2;
+                expandedHeaderLeftTopPoint.y +=screenRect.size.height / 3;
                 [self.mainTableView scrollsToTop];
                 [self.mainTableView setContentOffset:expandedHeaderLeftTopPoint animated:YES];
                 [self.mainTableView reloadData];
@@ -325,6 +370,7 @@
 }
 
 - (void)requestFinishedWithError:(NSError *)error {
+
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
