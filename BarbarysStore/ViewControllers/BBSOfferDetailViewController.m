@@ -9,6 +9,7 @@
 #import "BBSOfferDetailViewController.h"
 #import "BBSOfferDetailTopCell.h"
 #import "BBSOfferDetailSizeColorCell.h"
+#import "BBSOfferDetailAbsentSizeCell.h"
 #import "BBSOfferDetailHeaderView.h"
 #import "BBSPhotoPagingViewController.h"
 #import "XLNCommonMethods.h"
@@ -37,17 +38,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
+       // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
     // Do any additional setup after loading the view.
-    self.automaticallyAdjustsScrollViewInsets = NO;//teste
     self.expandedInfo = [[NSMutableDictionary alloc] init];
-    if (!self.brandName)
+  /*  if (!self.brandName)
     {
         self.navigationItem.title = self.offer.brand;
     } else
         {
         self.navigationItem.title = self.brandName;
-        };
+        };*/
     
     
     if (self.fromShoppingCart) {
@@ -81,6 +82,7 @@
     
 
     [super viewWillAppear:animated];
+
     if (!self.brandName)
             {
                     self.navigationItem.title = self.offer.brand;
@@ -155,7 +157,10 @@
             return 430;
             break;
         case 1:
-            return 225;
+            if (![self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")])
+            {
+                return 225;
+            } else {return 133;}
             break;
         case 2:{
          //   self.tmpAttributedStringDescription = [XLNCommonMethods convertToBoldedString:self.offer.descriptionText fontSize:17.0];
@@ -187,29 +192,53 @@
         return cell;
     }
     if (indexPath.section == 1) {
-        BBSOfferDetailSizeColorCell *cell = (BBSOfferDetailSizeColorCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailSizeColorCell"];
-        
-        if (!cell) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
+        // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
+        if (![self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")])
+        {
+            BBSOfferDetailSizeColorCell *cell = (BBSOfferDetailSizeColorCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailSizeColorCell"];
+            
+            if (!cell) {
+                cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailSizeColorCell" owner:self options:nil][0];
+            }
+            if (self.offer) {
+                if (!self.selectedSize) {
+                    self.selectedSize = self.offer.colorsType[self.selectedColor][0][@"size_name"];
+                }
+                NSMutableArray *sizes = [NSMutableArray array];
+                for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
+                    [sizes addObject:item[@"size_name"]];
+                }
+                cell.defaultSizes = [self.offer.sizesType allKeys];
+                [cell updateSizes:sizes selectedSize:self.selectedSize];
+                NSMutableDictionary *colors = [NSMutableDictionary dictionary];
+                for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
+                    [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
+                }
+                [cell updateColors:colors selectedColor:self.selectedColor];
+            }
+            return cell;
+        } else
+        {
+            BBSOfferDetailAbsentSizeCell *cell = (BBSOfferDetailAbsentSizeCell *)[tableView dequeueReusableCellWithIdentifier:@"offerDetailAbsentSizeCell"];
+            
+            if (!cell) {
+                cell = [[NSBundle mainBundle] loadNibNamed:@"BBSOfferDetailAbsentSizeCell" owner:self options:nil][0];
+            }
+            if (self.offer)
+            {
+                if (!self.selectedSize) {
+                    self.selectedSize = LOC(@"offerDetail.sizeAbsent");
+                }
+                NSMutableDictionary *colors = [NSMutableDictionary dictionary];
+                for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
+                    [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
+                }
+                [cell updateColors:colors selectedColor:self.selectedColor];
+            }
+            return cell;
         }
-        if (self.offer) {
-            if (!self.selectedSize) {
-                self.selectedSize = self.offer.colorsType[self.selectedColor][0][@"size_name"];
-            }
-            NSMutableArray *sizes = [NSMutableArray array];
-            for (NSDictionary *item in self.offer.colorsType[self.selectedColor]) {
-                [sizes addObject:item[@"size_name"]];
-            }
-            cell.defaultSizes = [self.offer.sizesType allKeys];
-            [cell updateSizes:sizes selectedSize:self.selectedSize];
-            NSMutableDictionary *colors = [NSMutableDictionary dictionary];
-            for (NSDictionary *item in self.offer.sizesType[self.selectedSize]) {
-                [colors setObject:item[@"color_hex"] forKey:item[@"color_id"]];
-            }
-            [cell updateColors:colors selectedColor:self.selectedColor];
-        }
-        return cell;
     }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
