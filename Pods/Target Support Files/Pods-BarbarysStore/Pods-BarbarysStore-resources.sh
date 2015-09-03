@@ -84,6 +84,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-track@2x.png"
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground.png"
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground@2x.png"
+  install_resource "VK-ios-sdk/VKSdkResources.bundle"
+  install_resource "google-plus-ios-sdk/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "NMRangeSlider/NMRangeSlider/DefaultTheme/slider-default-handle-highlighted.png"
@@ -112,6 +114,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-track@2x.png"
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground.png"
   install_resource "NMRangeSlider/NMRangeSlider/MetalTheme/slider-metal-trackBackground@2x.png"
+  install_resource "VK-ios-sdk/VKSdkResources.bundle"
+  install_resource "google-plus-ios-sdk/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"
 fi
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -10,6 +10,13 @@ pod 'NMRangeSlider'
 pod 'AFNetworking'
 pod 'MBProgressHUD'
 pod 'CCBottomRefreshControl'
+pod 'google-plus-ios-sdk'
+pod 'VK-ios-sdk'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+pod 'LVTwitterOAuthClient'
+
 end
 
 target 'BarbarysStoreTests' do

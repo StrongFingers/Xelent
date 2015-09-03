@@ -59,10 +59,19 @@
         [self performSelector:@selector(buttonSetDeselected) withObject:nil afterDelay:0.05];
     }
 
+/*- (void)setSelected:(BOOL)selected{
+    self.backgroundView.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
+    self.backgroundColor = selected ? [UIColor grayColor]:[UIColor yellowColor];
+    self.sizeCollectionView.backgroundColor = [UIColor cyanColor];
+    self.sizeCollectionView.backgroundView.backgroundColor = [UIColor brownColor];
+    
+    [super setSelected:selected];
+}**/
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    //self.backgroundView.backgroundColor = selected ? [UIColor redColor]:[UIColor greenColor];
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -103,6 +112,29 @@
         return cell;
     }
 }
+- (void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([collectionView isEqual:self.sizeCollectionView]) {
+        BBSOfferDetailSizeItemCell *cell = (BBSOfferDetailSizeItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor priceColor];
+
+    } else {
+        BBSOfferDetailSizeItemCell *cell = (BBSOfferDetailSizeItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor priceColor];
+    }
+}
+- (void) collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([collectionView isEqual:self.sizeCollectionView]) {
+        BBSOfferDetailSizeItemCell *cell = (BBSOfferDetailSizeItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
+        
+    } else {
+        BBSOfferDetailSizeItemCell *cell = (BBSOfferDetailSizeItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
+    }
+}
+
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CGFloat cellSpacing = ((UICollectionViewFlowLayout *) collectionViewLayout).minimumLineSpacing;
@@ -115,6 +147,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([collectionView isEqual:self.sizeCollectionView]) {
+        
         NSString *currentSize = self.defaultSizes[indexPath.row]; // self.sizes[indexPath.row];
         if ([self.selectedSize isEqualToString:currentSize] || ![self.sizes containsObject:currentSize]) {
             return;

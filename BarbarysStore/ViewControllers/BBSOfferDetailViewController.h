@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSString *brandName;
 @property (nonatomic, assign) BOOL fromFavorites;
 @property (nonatomic, assign) BOOL fromShoppingCart;
-
 - (void)updateOffer:(BBSOffer *)offer;
 - (void)setBackBarButtonTitle:(NSString *)inputString;
 @end

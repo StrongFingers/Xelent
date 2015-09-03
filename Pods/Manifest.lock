@@ -1,60 +1,101 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CCBottomRefreshControl (0.5):
-    - Masonry
+  - Bolts (1.2.1):
+    - Bolts/AppLinks (= 1.2.1)
+    - Bolts/Tasks (= 1.2.1)
+  - Bolts/AppLinks (1.2.1):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.1)
+  - CCBottomRefreshControl (0.5.1):
+    - Masonry (~> 0.6.2)
+  - FBSDKCoreKit (4.5.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.5.1)
+    - FBSDKCoreKit/no-arc (= 4.5.1)
+  - FBSDKCoreKit/arc (4.5.1):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.5.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.5.1):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.5.1):
+    - FBSDKCoreKit
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - google-plus-ios-sdk (1.7.1)
+  - LVTwitterOAuthClient (0.3.0):
+    - OAuthCore
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - NMRangeSlider (1.2.1)
+  - NSData+Base64 (1.0.0)
+  - OAuthCore (0.0.1):
+    - NSData+Base64
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SWRevealViewController (2.3.0)
   - TBXML (1.5)
+  - VK-ios-sdk (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking
   - CCBottomRefreshControl
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - FMDB
+  - google-plus-ios-sdk
+  - LVTwitterOAuthClient
   - MBProgressHUD
   - NMRangeSlider
   - SDWebImage
   - SWRevealViewController
   - TBXML
+  - VK-ios-sdk
 
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  CCBottomRefreshControl: 2cfdbd6f5be5181f5f070637605981d5557e8e32
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Bolts: 7686a5cb204d1ac54cee26f12d9b7622db3f80d1
+  CCBottomRefreshControl: 57a596348855260f627ffc2b311328ed15b94877
+  FBSDKCoreKit: f335eaf6865e1e1597dee1debfb533045500da47
+  FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
+  FBSDKShareKit: 642034ac9f30793dfd897851b724bb4281750266
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  google-plus-ios-sdk: 47adbe03ea904bdb7aa1c0eca282a23c4686e1bc
+  LVTwitterOAuthClient: 058199e43af92c0b99332332fa26d2229c59f04d
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
+  NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
+  OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   TBXML: 9f9dadb239f2f2af1dadb87fe43a0ce6e479379a
+  VK-ios-sdk: 809c4cdb5706545bcc235d385b23d87b24391980
 
 COCOAPODS: 0.37.2

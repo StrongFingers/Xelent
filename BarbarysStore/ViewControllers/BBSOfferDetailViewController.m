@@ -20,7 +20,16 @@
 #import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 
-@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate, BBSAPIRequestDelegate>
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <VKSdk.h>
+#import <LVTwitterOAuthClient.h>
+#import <Social/SLComposeServiceViewController.h>
+#import <Social/SLComposeViewController.h>
+#import <Social/SLRequest.h>
+@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate, BBSAPIRequestDelegate, VKSdkDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableDictionary *expandedInfo;
@@ -32,23 +41,41 @@
 @property (nonatomic, strong) NSAttributedString *tmpAttributedStringDescription;
 @property (nonatomic, strong) NSAttributedString *tmpAttributedStringBrandDescription;
 @property (nonatomic, strong) UIButton *shareButton;
+@property (nonatomic, strong) FBSDKLoginButton *loginButton;
+@property (nonatomic, strong) NSArray *readPermissions;
+@property (nonatomic, strong) NSArray *publishPermissions;
 @end
 
 @implementation BBSOfferDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [VKSdk initializeWithDelegate:self andAppId:@"5055669"];
+    [VKSdk authorize:@[VK_PER_WALL,VK_PER_PHOTOS] revokeAccess:YES];
+    
+    FBSDKLoginButton *loginebutton =[[FBSDKLoginButton alloc] init];
+    loginebutton.center = self.view.center;
+    loginebutton.userInteractionEnabled = YES;
+    loginebutton.hidden = YES;
+    self.readPermissions = loginebutton.readPermissions;
+    self.publishPermissions = loginebutton.publishPermissions;
+    //[self.view addSubview:loginebutton];
+    
+  
+    /*
+     for (id obj in loginView.subviews) {
+         if ([obj isKindOfClass:[UIButton class]]) {
+             UIButton * loginButton =  obj;
+             [loginButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+             break;
+         }
+     }
+     */
     // self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
        // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
     // Do any additional setup after loading the view.
     self.expandedInfo = [[NSMutableDictionary alloc] init];
-  /*  if (!self.brandName)
-    {
-        self.navigationItem.title = self.offer.brand;
-    } else
-        {
-        self.navigationItem.title = self.brandName;
-        };*/
+
     
     
     if (self.fromShoppingCart) {
@@ -66,6 +93,7 @@
     [self.shareButton setImage:[UIImage imageNamed:@"sharingButtonNormal"] forState:UIControlStateNormal];
     [self.shareButton setImage:[UIImage imageNamed:@"sharingButtonSelected"] forState:UIControlStateHighlighted];
     UIBarButtonItem *shareRightItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareButton];
+    [self.shareButton addTarget:self action:@selector(sharingPressed:) forControlEvents:UIControlEventTouchUpInside && UIControlEventTouchDown];
     self.navigationItem.rightBarButtonItem = shareRightItem;
     
 }
@@ -134,6 +162,102 @@
     self.selectedColor = offer.color;
 }
 
+-(void)sharingPressed:(UIButton *)sender
+{
+    //[self.navigationItem setTitle:@"pazuzu"];
+   /* UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook","Google +","VK","Twitter", nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];*/
+    /////
+    //UIAlertController *popup = [[UIAlertController alloc] init];
+    /////
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"SHARE" message:@"Choose your social" preferredStyle:UIAlertControllerStyleActionSheet];
+    /////////////action buttons
+    UIAlertAction *facebook = [UIAlertAction actionWithTitle:@"Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        /*NSHTTPCookie *cookie =[[NSHTTPCookie alloc] init];
+        NSHTTPCookieStorage *cookiesStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [cookiesStorage cookies]) {
+            [cookiesStorage deleteCookie:cookie];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];*/
+        
+        /*NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray* facebookCookies = [cookies cookiesForURL:[NSURL URLWithString:@"https://facebook.com/"]];
+        for (NSHTTPCookie* cookie in facebookCookies) {
+            [cookies deleteCookie:cookie];
+        }
+        */
+        
+        //FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+       // [loginManager logOut];
+        //[FBSDKAccessToken setCurrentAccessToken:nil];
+        //[FBSDKProfile setCurrentProfile:nil];
+        
+        FBSDKShareLinkContent *link = [[FBSDKShareLinkContent alloc] init];
+        link.contentURL =[NSURL URLWithString:@"http://barbarys.com/"];
+        link.contentTitle = [NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price];
+        link.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]];
+       
+        [FBSDKShareDialog showFromViewController:self withContent:link delegate:nil];
+    }];
+    UIAlertAction *twitter = [UIAlertAction actionWithTitle:@"Twitter" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            //making text of post
+            [tweetSheet setInitialText:[NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price]];
+            [tweetSheet addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]]]];
+            [tweetSheet addURL:[NSURL URLWithString:@"http://barbarys.com/"]];
+            [self presentViewController:tweetSheet animated:NO completion:nil];
+    }];
+    UIAlertAction *googlePlus = [UIAlertAction actionWithTitle:@"Google+" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self.navigationItem setTitle:@"Google"];
+    }];
+    UIAlertAction *vkontakte = [UIAlertAction actionWithTitle:@"Vkontakte" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+
+        if ([VKSdk wakeUpSession])
+        {
+            VKShareDialogController *shareIt = [[VKShareDialogController alloc] init];
+            shareIt.text = [NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price];
+            shareIt.shareLink = [[VKShareLink alloc] initWithTitle:@"Barbarys" link:[NSURL URLWithString:@"http://barbarys.com/"]];
+            
+            UIImage *postImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]]];
+            shareIt.uploadImages = @[[VKUploadImage uploadImageWithImage:postImage andParams:[VKImageParameters jpegImageWithQuality:1.0]]];
+
+            [shareIt setCompletionHandler:^(VKShareDialogControllerResult result) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            
+            [self presentViewController:shareIt animated:YES completion:nil];
+        } else {
+            
+
+            VKShareDialogController *shareIt = [[VKShareDialogController alloc] init];
+            shareIt.text = [NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price];
+            shareIt.shareLink = [[VKShareLink alloc] initWithTitle:@"Barbarys" link:[NSURL URLWithString:@"http://barbarys.com/"]];
+            VKUploadImage *imageToPost = [VKUploadImage uploadImageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]] andParams:[VKImageParameters jpegImageWithQuality:0.9]];
+            //shareIt.vkImages = @[@"224864056_336080820"];
+            [shareIt setUploadImages:@[imageToPost]];
+            [shareIt setCompletionHandler:^(VKShareDialogControllerResult result) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            
+            [self presentViewController:shareIt animated:YES completion:nil];
+        }
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self.navigationItem setTitle:@""];
+    }];
+    /////////////
+
+    [actionSheet addAction:facebook];
+    [actionSheet addAction:twitter];
+    [actionSheet addAction:googlePlus];
+    [actionSheet addAction:vkontakte];
+    [actionSheet addAction:cancel];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
+}
 #pragma mark - TableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -347,7 +471,14 @@
         
     }
 }
-
+#pragma mark - VKSDKDelegate
+-(void)vkSdkNeedCaptchaEnter:(VKError *)captchaError{}
+-(void)vkSdkTokenHasExpired:(VKAccessToken *)expiredToken{}
+-(void)vkSdkUserDeniedAccess:(VKError *)authorizationError{}
+-(void)vkSdkReceivedNewToken:(VKAccessToken *)newToken{}
+-(void)vkSdkShouldPresentViewController:(UIViewController *)controller{
+  //  [self presentViewController:controller animated:YES completion:nil];
+}
 #pragma mark - BBSAPIRequest deletage
 
 - (void)requestFinished:(id)responseObject sender:(id)sender {

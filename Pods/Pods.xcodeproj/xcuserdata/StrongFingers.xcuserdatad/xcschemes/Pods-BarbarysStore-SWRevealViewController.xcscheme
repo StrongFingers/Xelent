@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A67DE4AE8A3F37A8749FEF5E"
+               BlueprintIdentifier = "16AA7561A9929CD5E43185E7"
                BuildableName = "libPods-BarbarysStore-SWRevealViewController.a"
                BlueprintName = "Pods-BarbarysStore-SWRevealViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
