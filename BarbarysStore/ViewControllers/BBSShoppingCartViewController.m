@@ -2,7 +2,7 @@
 //  BBSShoppingCartViewController.m
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 2/9/15.
+//  Created by Владислав Сидоренко on 8/26/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *offersTableView;
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 @property (weak, nonatomic) IBOutlet UILabel *summaryPriceLabel;
+@property (strong, nonatomic) NSString *summaryPriceLabel2;
 @property (nonatomic, strong) NSArray *shoppingItems;
 @property (nonatomic, strong) BBSOfferManager *offerManager;
 
@@ -78,16 +79,23 @@
     for (BBSOffer *offer in self.shoppingItems) {
         price += [offer.price integerValue];
     }
-    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"), price];
+    
+    self.summaryPriceLabel.text = [NSString stringWithFormat:@"%ld грн.", price];
+    self.summaryPriceLabel2 = [NSString stringWithFormat:@"%ld", price];
     [self.offersTableView reloadData];
+    
 }
 
 #pragma mark - IBActions
 
 - (IBAction)orderOffers:(id)sender {
     BBSHistoryItem *historyItem = [[BBSHistoryItem alloc] init];
-    historyItem.createDate = @"05.03.2014";
-    historyItem.summaryPrice = self.summaryPriceLabel.text;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd.MM.yyyy";
+    NSString *string = [formatter stringFromDate:[NSDate date]];
+    
+    historyItem.createDate = string;
+    historyItem.summaryPrice = self.summaryPriceLabel2;
     historyItem.saleValue = @"3%";
     historyItem.offers = self.shoppingItems;
     [self.offerManager addToHistory:historyItem];

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BUNDLE_ID</key>
+	<string>barbarys</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -36,15 +38,31 @@
 				<string>vk5055669</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.googleusercontent.apps.50349261419-n45p3nli1mshq32oed8oo1tu0frlikfq</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.50349261419-n45p3nli1mshq32oed8oo1tu0frlikfq</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>5</string>
+	<key>CLIENT_ID</key>
+	<string>50349261419-n45p3nli1mshq32oed8oo1tu0frlikfq.apps.googleusercontent.com</string>
 	<key>FacebookAppID</key>
 	<string>1486833974963593</string>
 	<key>FacebookDisplayName</key>
 	<string>Barbarys</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.50349261419-n45p3nli1mshq32oed8oo1tu0frlikfq</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

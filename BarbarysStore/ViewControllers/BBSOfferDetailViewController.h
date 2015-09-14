@@ -2,15 +2,16 @@
 //  BBSOfferDetailViewController.h
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 2/10/15.
+//  Created by Владислав Сидоренко on 8/26/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
+#import <GPPSignInButton.h>
+#import <GPPSignIn.h>
 #import "BBSOffer.h"
 
-@interface BBSOfferDetailViewController : UIViewController
+@interface BBSOfferDetailViewController : UIViewController 
 
 @property (nonatomic, strong) NSString *offerId;
 @property (nonatomic, strong) NSString *selectedColor;

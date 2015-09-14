@@ -2,7 +2,7 @@
 //  BBSOfferDetailHeaderView.h
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 2/12/15.
+//  Created by Владислав Сидоренко on 8/26/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 

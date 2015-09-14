@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BarbarysStore/Helpers/BBSOfferManager.m"
-            timestampString = "461763815.189026"
+            filePath = "BarbarysStore/ViewControllers/BBSOfferDetailViewController.m"
+            timestampString = "463403304.65373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-addToShoppingCart:"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "-finishedWithAuth:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BarbarysStore/Helpers/BBSOfferManager.m"
-            timestampString = "461763815.189026"
+            filePath = "BarbarysStore/ViewControllers/BBSOfferDetailViewController.m"
+            timestampString = "463403304.65373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-addToShoppingCart:"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
+            landmarkName = "-finishedWithAuth:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

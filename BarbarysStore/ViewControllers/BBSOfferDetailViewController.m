@@ -2,9 +2,10 @@
 //  BBSOfferDetailViewController.m
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 2/10/15.
+//  Created by Владислав Сидоренко on 8/26/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
+static NSString * const kClientId = @"50349261419-n45p3nli1mshq32oed8oo1tu0frlikfq.apps.googleusercontent.com";
 
 #import "BBSOfferDetailViewController.h"
 #import "BBSOfferDetailTopCell.h"
@@ -29,7 +30,12 @@
 #import <Social/SLComposeServiceViewController.h>
 #import <Social/SLComposeViewController.h>
 #import <Social/SLRequest.h>
-@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate, BBSAPIRequestDelegate, VKSdkDelegate>
+#import <GooglePlus.h>
+#import <GPPSignInButton.h>
+#import <GTLPlusConstants.h>
+
+
+@interface BBSOfferDetailViewController () <UITableViewDataSource, UITableViewDelegate, offerDetailTopCellDelegate, BBSAPIRequestDelegate, VKSdkDelegate ,GPPSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableDictionary *expandedInfo;
@@ -44,6 +50,7 @@
 @property (nonatomic, strong) FBSDKLoginButton *loginButton;
 @property (nonatomic, strong) NSArray *readPermissions;
 @property (nonatomic, strong) NSArray *publishPermissions;
+
 @end
 
 @implementation BBSOfferDetailViewController
@@ -53,6 +60,26 @@
     [VKSdk initializeWithDelegate:self andAppId:@"5055669"];
     [VKSdk authorize:@[VK_PER_WALL,VK_PER_PHOTOS] revokeAccess:YES];
     
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    signIn.shouldFetchGooglePlusUser = YES;
+    signIn.useClientIDForURLScheme= YES;
+
+    signIn.clientID = kClientId;
+    signIn.scopes = [NSArray arrayWithObjects:
+                     kGTLAuthScopePlusLogin,
+                     nil];
+    signIn.delegate = self;
+
+
+   /* self.signIn = [GPPSignIn sharedInstance];
+    self.signIn.clientID = kClientId;
+    self.signIn.scopes = [NSArray arrayWithObjects:kGTLAuthScopePlusLogin,nil];
+    self.signIn.delegate = self;
+    self.signIn trySilentAuthentication];*/
+    
+   /* signIn.shouldFetchGooglePlusUser =YES;
+    signIn.useClientIDForURLScheme = YES;*/
+    
     FBSDKLoginButton *loginebutton =[[FBSDKLoginButton alloc] init];
     loginebutton.center = self.view.center;
     loginebutton.userInteractionEnabled = YES;
@@ -61,16 +88,7 @@
     self.publishPermissions = loginebutton.publishPermissions;
     //[self.view addSubview:loginebutton];
     
-  
-    /*
-     for (id obj in loginView.subviews) {
-         if ([obj isKindOfClass:[UIButton class]]) {
-             UIButton * loginButton =  obj;
-             [loginButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-             break;
-         }
-     }
-     */
+ 
     // self.typeLabel.text = [typeText isEqualToString:LOC(@"offerDetail.sizeAbsent")] ? @"∞" : typeText;
        // if ([self.offer.sizesType objectForKey:LOC(@"offerDetail.sizeAbsent")]) {self.navigationItem.title = @"ABSENT";} else {self.navigationItem.title = @"!ABSENT";}; //detecting absent size in sizesType
     // Do any additional setup after loading the view.
@@ -164,13 +182,6 @@
 
 -(void)sharingPressed:(UIButton *)sender
 {
-    //[self.navigationItem setTitle:@"pazuzu"];
-   /* UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook","Google +","VK","Twitter", nil];
-    popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];*/
-    /////
-    //UIAlertController *popup = [[UIAlertController alloc] init];
-    /////
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"SHARE" message:@"Choose your social" preferredStyle:UIAlertControllerStyleActionSheet];
     /////////////action buttons
     UIAlertAction *facebook = [UIAlertAction actionWithTitle:@"Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -210,7 +221,24 @@
             [self presentViewController:tweetSheet animated:NO completion:nil];
     }];
     UIAlertAction *googlePlus = [UIAlertAction actionWithTitle:@"Google+" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self.navigationItem setTitle:@"Google"];
+            id<GPPShareBuilder> shareBuilder = [[GPPShare sharedInstance] shareDialog];
+            [shareBuilder setURLToShare:[NSURL URLWithString:@"http://barbarys.com/"]];
+            [shareBuilder setPrefillText:[NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price]];
+           // [shareBuilder setTitle:@"Barbarys" description:@"ssdfffdf" thumbnailURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]];
+            [shareBuilder setContentDeepLinkID:[NSString stringWithFormat:@"%@", @"share"]];
+            [shareBuilder open];
+
+
+               //[[GPPSignIn sharedInstance] authenticate];
+                /*id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
+                [shareBuilder setURLToShare:[NSURL URLWithString:@"http://barbarys.com/"]];
+                [shareBuilder setPrefillText:[NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price]];
+                //[shareBuilder setContentDeepLinkID:kClientId];
+                UIImage *postImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]]];
+                [shareBuilder attachImage:postImage];
+                [shareBuilder open];*/
+                
+
     }];
     UIAlertAction *vkontakte = [UIAlertAction actionWithTitle:@"Vkontakte" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
@@ -230,8 +258,6 @@
             
             [self presentViewController:shareIt animated:YES completion:nil];
         } else {
-            
-
             VKShareDialogController *shareIt = [[VKShareDialogController alloc] init];
             shareIt.text = [NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price];
             shareIt.shareLink = [[VKShareLink alloc] initWithTitle:@"Barbarys" link:[NSURL URLWithString:@"http://barbarys.com/"]];
@@ -471,6 +497,22 @@
         
     }
 }
+#pragma mark - GPPSignIndelegate
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error{
+
+    if (error) {
+            DLog(@"Received error %@ and auth object %@",error, auth);
+    } else {
+        id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
+        [shareBuilder setURLToShare:[NSURL URLWithString:@"http://barbarys.com/"]];
+        [shareBuilder setPrefillText:[NSString stringWithFormat:@"%@, %@ грн",self.offer.model,self.offer.price]];
+        //[shareBuilder setContentDeepLinkID:kClientId];
+        UIImage *postImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.offer.thumbnailUrl]]]];
+        [shareBuilder attachImage:postImage];
+        [shareBuilder open];
+    }
+}
+
 #pragma mark - VKSDKDelegate
 -(void)vkSdkNeedCaptchaEnter:(VKError *)captchaError{}
 -(void)vkSdkTokenHasExpired:(VKAccessToken *)expiredToken{}

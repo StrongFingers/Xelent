@@ -2,13 +2,15 @@
 //  BBSHistoryViewController.m
 //  BarbarysStore
 //
-//  Created by Dmitry Kozlov on 3/5/15.
+//  Created by Владислав Сидоренко on 8/26/15.
 //  Copyright (c) 2015 Xelentec. All rights reserved.
 //
 
 #import "BBSHistoryViewController.h"
 #import "BBSHistoryCell.h"
+#import "BBSHistoryItem.h"
 #import "BBSOfferManager.h"
+#import "XLNCommonMethods.h"
 
 @interface BBSHistoryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *historyTableView;
@@ -20,10 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
     BBSOfferManager *manager = [[BBSOfferManager alloc] init];
     self.historyItems = [manager loadFromHistory];
+    [self calculateTotalAmountSpendedMoneyOfArray:self.historyItems];
     [self.historyTableView setTableFooterView:[UIView new]];
+    self.historyTableView.estimatedRowHeight = 12;
+    self.historyTableView.rowHeight = UITableViewAutomaticDimension;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.historyTableView reloadData];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -61,4 +71,25 @@
     
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+    //return [indexPath row]*30;
+}
+
+- (void) calculateTotalAmountSpendedMoneyOfArray:(NSArray*)input {
+    NSInteger summary = 0;
+    for (BBSHistoryItem *iterator in input) {
+        summary += [iterator.summaryPrice integerValue];
+    }
+
+    self.summaryPriceLabel.text = [NSString stringWithFormat:LOC(@"shoppingCargViewController.summaryPrice"),summary];
+}
 @end
+
+
+
+
+
+
+

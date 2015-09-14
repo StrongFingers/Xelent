@@ -11,6 +11,10 @@
 
 @interface BBSHistoryCell : UITableViewCell
 
-- (void)updateCellInfo:(BBSHistoryItem *)dataInfo;
+@property (weak, nonatomic) IBOutlet UILabel *offersLabel;
+@property (nonatomic,strong) NSString *offersInCart;
 
+
+- (void)updateCellInfo:(BBSHistoryItem *)dataInfo;
+- (void)fontSizeToHistoryCell:(float)value item:(BBSHistoryItem *)inputItem;
 @end
